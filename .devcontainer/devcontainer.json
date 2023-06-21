@@ -1,0 +1,29 @@
+{
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "runArgs": [
+        "--shm-size=2gb" // std 64mb (!) are not enough
+        // "--cpus=4",
+        // "-m 4gb"
+    ],
+    "settings": {
+        "terminal.integrated.profiles.linux": {
+            "bash (login)": {
+                "path": "/bin/bash",
+                "args": [
+                    "-li"
+                ]
+            }
+        },
+        "terminal.integrated.defaultProfile.linux": "bash (login)"
+    },
+    "extensions": [
+        "donjayamanne.git-extension-pack",
+        "mhutchie.git-graph",
+        "ms-python.python",
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.cpptools-themes"
+    ]
+}
