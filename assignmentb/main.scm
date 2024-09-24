@@ -13,7 +13,7 @@
 ;If n is negative or greater than the length of lyst, then an empty list is returned.
 (define keep-first-n
   (lambda (n lyst)
-    (if (> 1 n)
+    (if (or (> 1 n) (< (length lyst) n))
       '()
         (if (null? lyst)
           '()
