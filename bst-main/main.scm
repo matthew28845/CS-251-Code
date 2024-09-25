@@ -29,7 +29,9 @@
 ;Return: A list of all entries in bst, ordered according to a preorder traversal.
 (define preorder
   (lambda (bst)
-    #f))
+    (if (equal? (check-bst (car (cdr bst))) #f) 
+      (car bst)
+        (cons (car bst) (cons (preorder (cdr bst)) (cons (preorder (cdr (cdr bst))) '()))))))
 
 ;Input bst: A binary search tree (possibly empty).
 ;Return: A list of all entries in bst, ordered according to a inorder traversal.
