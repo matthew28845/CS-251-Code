@@ -29,21 +29,25 @@
 ;Return: A list of all entries in bst, ordered according to a preorder traversal.
 (define preorder
   (lambda (bst)
-    (if (equal? (check-bst (car (cdr bst))) #f) 
-      (car bst)
-        (cons (car bst) (cons (preorder (cdr bst)) (cons (preorder (cdr (cdr bst))) '()))))))
+    (if (null? bst)
+      '()
+        (cons (entry bst) (append (preorder (left bst)) (preorder (right bst)))))))
 
 ;Input bst: A binary search tree (possibly empty).
 ;Return: A list of all entries in bst, ordered according to a inorder traversal.
 (define inorder
   (lambda (bst)
-    #f))
+    (if (null? bst)
+      '()
+      (append (inorder (left bst)) (cons (entry bst) (inorder (right bst)))))))
 
 ;Input bst: A binary search tree (possibly empty).
 ;Return: A list of all entries in bst, ordered according to a postorder traversal.
 (define postorder
   (lambda (bst)
-    #f))
+    (if (null? bst)
+      '()
+      (append (postorder (left bst)) (postorder (right bst)) (list (entry bst))))))
 
 ;Input v: An integer.
 ;Input bst: A binary search tree (possibly empty).
@@ -51,7 +55,14 @@
 ;already contained v, then this result is identical to bst.
 (define insert
   (lambda (v bst)
-    #f))
+    (if (null? bst)
+      (make-bst v '() '())
+      (cond
+        ((< v (entry bst))
+          (make-bst (entry bst) (insert v (left bst)) (right bst)))
+          ((> v (entry bst))
+            (make-bst (entry bst) (left bst) (insert v (right bst))))
+              (else bst)))))
 
 ;Input bst: A binary search tree (to validate.)
 ;Return: the bst if it is valid, #f if not
