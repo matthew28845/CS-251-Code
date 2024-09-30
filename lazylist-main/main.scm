@@ -38,7 +38,7 @@
 ;Return: A lazy list consisting of the same elements in the same order.
 (define make-lazy
   (lambda (lyst)
-    #f))
+    (if (null? (car lyst)) '() (cons (car lyst) (lambda () (make-lazy (cdr lyst)))))))
 
 ;Input lazy-list: A lazy list of integers.
 ;Input desired: An integer.
@@ -46,7 +46,9 @@
 ;list that add to the desired integer, and #f otherwise.
 (define pair-sum-lazy?
   (lambda (lazy-list desired)
-    #f))
+    (if (< (length lazy-list) 2) #f 
+      (if (= (+ (car lazy-list) 
+		(car (cdr lazy-list))) desired) #t (lambda () (pair-sum-lazy? (cdr lazy-list) desired))))))
 
 ;Input lazy-list: A lazy list.
 ;Input n: An integer >= 1.
@@ -55,7 +57,7 @@
 ;are returned. If the lazy list is empty, then so is the returned list.
 (define first-n
   (lambda (lazy-list n)
-    #f))
+    (if (< n 0) '() (cons (car lazy-list) (lambda () (first-n (cdr lazy-list) (- n 1)))))))
 
 ;Input lazy-list: A lazy list.
 ;Input n: An integer >= 1.
@@ -63,7 +65,7 @@
 ;elements in the lazy list, then #f is returned.
 (define nth
   (lambda (lazy-list n)
-    #f))
+    (if (< n 0) #f (if (= n 0) (car lazy-list) (nth (cdr lazy-list) n)))))
 
 ;Input lazy-list: A lazy list of integers.
 ;Input n: An integer >= 2.
