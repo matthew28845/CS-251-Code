@@ -1,0 +1,4 @@
+/home/matthew/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/matthew/.local/share/JetBrains/Toolbox/apps/clion/bin/ninja/linux/x64/ninja -G Ninja -DPython_EXECUTABLE=/home/matthew/Documents/GitHub/CS-251-Code/venv/bin/python -DPython3_EXECUTABLE=/home/matthew/Documents/GitHub/CS-251-Code/venv/bin/python -S /home/matthew/Documents/GitHub/CS-251-Code -B /home/matthew/Documents/GitHub/CS-251-Code/cmake-build-debug
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/matthew/Documents/GitHub/CS-251-Code/cmake-build-debug
