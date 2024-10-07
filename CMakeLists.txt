@@ -567,4 +567,6 @@ add_executable(CS_251_Code
     venv/pyvenv.cfg
     README.md
         clab-1-main/printing.c
-        clab-1-main/temperature.c)
+        clab-1-main/temperature.c
+        clab-2-main/guess.c
+        clab-2-main/guess.c)
