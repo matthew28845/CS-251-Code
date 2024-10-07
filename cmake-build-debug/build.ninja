@@ -67,6 +67,12 @@ build CMakeFiles/CS_251_Code.dir/clab-1-main/temperature.c.o: C_COMPILER__CS_251
   OBJECT_DIR = CMakeFiles/CS_251_Code.dir
   OBJECT_FILE_DIR = CMakeFiles/CS_251_Code.dir/clab-1-main
 
+build CMakeFiles/CS_251_Code.dir/clab-2-main/guess.c.o: C_COMPILER__CS_251_Code_unscanned_Debug /home/matthew/Documents/GitHub/CS-251-Code/clab-2-main/guess.c || cmake_object_order_depends_target_CS_251_Code
+  DEP_FILE = CMakeFiles/CS_251_Code.dir/clab-2-main/guess.c.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/CS_251_Code.dir
+  OBJECT_FILE_DIR = CMakeFiles/CS_251_Code.dir/clab-2-main
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CS_251_Code
@@ -75,7 +81,7 @@ build CMakeFiles/CS_251_Code.dir/clab-1-main/temperature.c.o: C_COMPILER__CS_251
 #############################################
 # Link the executable CS_251_Code
 
-build CS_251_Code: C_EXECUTABLE_LINKER__CS_251_Code_Debug CMakeFiles/CS_251_Code.dir/clab-1-main/hello.c.o CMakeFiles/CS_251_Code.dir/clab-1-main/printing.c.o CMakeFiles/CS_251_Code.dir/clab-1-main/temperature.c.o
+build CS_251_Code: C_EXECUTABLE_LINKER__CS_251_Code_Debug CMakeFiles/CS_251_Code.dir/clab-1-main/hello.c.o CMakeFiles/CS_251_Code.dir/clab-1-main/printing.c.o CMakeFiles/CS_251_Code.dir/clab-1-main/temperature.c.o CMakeFiles/CS_251_Code.dir/clab-2-main/guess.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/CS_251_Code.dir
   POST_BUILD = :
