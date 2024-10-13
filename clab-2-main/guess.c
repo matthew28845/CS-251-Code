@@ -4,9 +4,9 @@
 int main(void) {
     printf("Enter a random seed: ");
     int seed;
-    scanf("%d", &seed);
-    srand(seed);
-    int numToGuess = (rand() % 100 + 1);
+    scanf("%i", &seed);
+    srandom(seed);
+    int numToGuess = (random() % 100 + 1);
     int myGuess = -1;
     int guesses = 0;
     while (myGuess != numToGuess) {

@@ -569,4 +569,10 @@ add_executable(CS_251_Code
         clab-1-main/printing.c
         clab-1-main/temperature.c
         clab-2-main/guess.c
-        clab-2-main/guess.c)
+        clab-2-main/guess.c
+        clab-2-main/complex.c
+        vector-main/vector.c
+        vector-main/vector.c
+        vector-main/vector.c
+        hmwrk.c
+        hmwrk.c)
