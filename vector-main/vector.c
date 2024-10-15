@@ -63,7 +63,7 @@ int insert(Vector *vector, int location, int value) {
         vector->array = newVector.array;
         vector->memorySize = newVector.memorySize;
     }
-    for (int i = vector->size; i >=location; i--) {
+    for (int i = vector->size; i > location; i--) {
         vector->array[i] = vector->array[i - 1];
     }
     vector->array[location] = value;

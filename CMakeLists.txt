@@ -575,4 +575,9 @@ add_executable(CS_251_Code
         vector-main/vector.c
         vector-main/vector.c
         hmwrk.c
-        hmwrk.c)
+        hmwrk.c
+        linkedlist-main/linkedlist.c
+        linkedlist-main/linkedlist.c)
+
+add_executable(linkedlist linkedlist-main/linkedlist.c
+        linkedlist-main/linkedlist.c)

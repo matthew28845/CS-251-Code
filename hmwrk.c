@@ -10,7 +10,7 @@ int sum(int* a, int* b) {
 int main() {
     int x = 4;
     int y;
-    int sumValue = sum(&x, &y);
-    printf("%i",sumValue);
+    long sumValue = sum(&x, &y);
+    printf("%ld",sumValue);
     return 0;
 }
