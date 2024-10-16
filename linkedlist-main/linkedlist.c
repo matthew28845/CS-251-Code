@@ -45,7 +45,7 @@ void display(Object *list) {
             cons = (ConsCell *)cons->cdr;
         }
     }else {
-        printf("You didn't give me a cons cell. Now die.");
+        printf("You didn't give me a cons cell. Now die.\n");
     }
 }
 
@@ -53,7 +53,22 @@ void display(Object *list) {
 // Return: A ConsCell that is the head of a list. The new list is the reverse of 
 // the given list. All content within the list is duplicated; there is no shared 
 // memory whatsoever between the given list and the new one.
-Object *reverse(Object *list);
+Object *reverse(Object *list) {
+    if (list->type == CONS_TYPE) {
+        Object *headptr = (ConsCell *)list;
+        Object *revptr = makeNull();
+        while (headptr->type != NULL_TYPE) {
+            ConsCell *headptrcons = (ConsCell *)headptr;
+            ConsCell *currentCons = (ConsCell *)cons(headptrcons->car, revptr);
+            revptr = currentCons;
+            headptr = currentCons->cdr;
+        }
+        return (Object *)revptr;
+    }
+    else {
+        return makeNull();
+    }
+}
 
 // Input list: A ConsCell that is the head of a list.
 // Frees all memory directly or indirectly referred to by the given list.
@@ -75,8 +90,11 @@ void cleanup(Object *list) {
         cons = (ConsCell *)cons->cdr;
         }
         free(cons);
-    }else {
-        printf("You didn't give me a cons cell. Now die.");
+    }else if (list->type == NULL_TYPE){
+        free(list);
+    }
+    else {
+        printf("%d",list->type);
     }
 }
 
@@ -85,7 +103,7 @@ void cleanup(Object *list) {
 // This is a convenience function to slightly accelerate taking cars of objects 
 // known to be cons cells.
 Object *car(Object *list) {
-    assert(list->type = CONS_TYPE);
+    assert(list->type == CONS_TYPE);
     ConsCell *cons = (ConsCell *)list;
     return cons->car;
 }
@@ -95,7 +113,7 @@ Object *car(Object *list) {
 // This is a convenience function to slightly accelerate taking cars of objects 
 // known to be cons cells 
 Object *cdr(Object *list) {
-    assert(list->type = CONS_TYPE);
+    assert(list->type == CONS_TYPE);
     ConsCell *cons = (ConsCell *)list;
     return cons->cdr;
 }
@@ -113,12 +131,13 @@ int length(Object *value) {
     if (value->type == CONS_TYPE) {
         ConsCell *cons = (ConsCell *)value;
         int length = 0;
-        while (cons->car != NULL) {
+        while (cons->type != NULL_TYPE) {
             length++;
             cons = (ConsCell *)cons->cdr;
         }
+        return length;
     }else {
-        printf("You didn't give me a cons cell. Now die.");
+        return 0;
     }
 }
 
