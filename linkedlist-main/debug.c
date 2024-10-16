@@ -9,6 +9,7 @@
 
 void testForward(Object *head, int correctLength, bool exemplary) {
   Object *object = head;
+  display(head);
   assert(CONS_TYPE == object->type);
   assert(DOUBLE_TYPE == car(object)->type);
   assert(1 == ((Double*)car(object))->value);
@@ -125,6 +126,7 @@ int main(int argc, char **argv) {
   display(head);
   correctLength++;
   assert(length(head) == correctLength);
+  display(head);
 
   Object *reverseLengthOne = reverse(head);
   assert(length(reverseLengthOne) == correctLength);
@@ -136,6 +138,8 @@ int main(int argc, char **argv) {
   head = cons((Object*)val2,head);
   correctLength++;
   assert(length(head) == correctLength);
+  display(head);
+
 
   if (exemplary) {
     String *val3 = malloc(sizeof(String));
@@ -154,6 +158,8 @@ int main(int argc, char **argv) {
   head = cons((Object*)val4,head);
   correctLength++;
   assert(length(head) == correctLength);
+
+  display(head);
 
   if (exemplary) {
     String *val5 = malloc(sizeof(String));

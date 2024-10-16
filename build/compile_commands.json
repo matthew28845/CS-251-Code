@@ -1,0 +1,56 @@
+[
+{
+  "directory": "/home/matthew/Documents/GitHub/CS-251-Code/build",
+  "command": "/usr/bin/cc   -g -o CMakeFiles/CS_251_Code.dir/clab-1-main/hello.c.o -c /home/matthew/Documents/GitHub/CS-251-Code/clab-1-main/hello.c",
+  "file": "/home/matthew/Documents/GitHub/CS-251-Code/clab-1-main/hello.c",
+  "output": "CMakeFiles/CS_251_Code.dir/clab-1-main/hello.c.o"
+},
+{
+  "directory": "/home/matthew/Documents/GitHub/CS-251-Code/build",
+  "command": "/usr/bin/cc   -g -o CMakeFiles/CS_251_Code.dir/clab-1-main/printing.c.o -c /home/matthew/Documents/GitHub/CS-251-Code/clab-1-main/printing.c",
+  "file": "/home/matthew/Documents/GitHub/CS-251-Code/clab-1-main/printing.c",
+  "output": "CMakeFiles/CS_251_Code.dir/clab-1-main/printing.c.o"
+},
+{
+  "directory": "/home/matthew/Documents/GitHub/CS-251-Code/build",
+  "command": "/usr/bin/cc   -g -o CMakeFiles/CS_251_Code.dir/clab-1-main/temperature.c.o -c /home/matthew/Documents/GitHub/CS-251-Code/clab-1-main/temperature.c",
+  "file": "/home/matthew/Documents/GitHub/CS-251-Code/clab-1-main/temperature.c",
+  "output": "CMakeFiles/CS_251_Code.dir/clab-1-main/temperature.c.o"
+},
+{
+  "directory": "/home/matthew/Documents/GitHub/CS-251-Code/build",
+  "command": "/usr/bin/cc   -g -o CMakeFiles/CS_251_Code.dir/clab-2-main/guess.c.o -c /home/matthew/Documents/GitHub/CS-251-Code/clab-2-main/guess.c",
+  "file": "/home/matthew/Documents/GitHub/CS-251-Code/clab-2-main/guess.c",
+  "output": "CMakeFiles/CS_251_Code.dir/clab-2-main/guess.c.o"
+},
+{
+  "directory": "/home/matthew/Documents/GitHub/CS-251-Code/build",
+  "command": "/usr/bin/cc   -g -o CMakeFiles/CS_251_Code.dir/clab-2-main/complex.c.o -c /home/matthew/Documents/GitHub/CS-251-Code/clab-2-main/complex.c",
+  "file": "/home/matthew/Documents/GitHub/CS-251-Code/clab-2-main/complex.c",
+  "output": "CMakeFiles/CS_251_Code.dir/clab-2-main/complex.c.o"
+},
+{
+  "directory": "/home/matthew/Documents/GitHub/CS-251-Code/build",
+  "command": "/usr/bin/cc   -g -o CMakeFiles/CS_251_Code.dir/vector-main/vector.c.o -c /home/matthew/Documents/GitHub/CS-251-Code/vector-main/vector.c",
+  "file": "/home/matthew/Documents/GitHub/CS-251-Code/vector-main/vector.c",
+  "output": "CMakeFiles/CS_251_Code.dir/vector-main/vector.c.o"
+},
+{
+  "directory": "/home/matthew/Documents/GitHub/CS-251-Code/build",
+  "command": "/usr/bin/cc   -g -o CMakeFiles/CS_251_Code.dir/hmwrk.c.o -c /home/matthew/Documents/GitHub/CS-251-Code/hmwrk.c",
+  "file": "/home/matthew/Documents/GitHub/CS-251-Code/hmwrk.c",
+  "output": "CMakeFiles/CS_251_Code.dir/hmwrk.c.o"
+},
+{
+  "directory": "/home/matthew/Documents/GitHub/CS-251-Code/build",
+  "command": "/usr/bin/cc   -g -o CMakeFiles/CS_251_Code.dir/linkedlist-main/linkedlist.c.o -c /home/matthew/Documents/GitHub/CS-251-Code/linkedlist-main/linkedlist.c",
+  "file": "/home/matthew/Documents/GitHub/CS-251-Code/linkedlist-main/linkedlist.c",
+  "output": "CMakeFiles/CS_251_Code.dir/linkedlist-main/linkedlist.c.o"
+},
+{
+  "directory": "/home/matthew/Documents/GitHub/CS-251-Code/build",
+  "command": "/usr/bin/cc   -g -o CMakeFiles/linkedlist.dir/linkedlist-main/linkedlist.c.o -c /home/matthew/Documents/GitHub/CS-251-Code/linkedlist-main/linkedlist.c",
+  "file": "/home/matthew/Documents/GitHub/CS-251-Code/linkedlist-main/linkedlist.c",
+  "output": "CMakeFiles/linkedlist.dir/linkedlist-main/linkedlist.c.o"
+}
+]

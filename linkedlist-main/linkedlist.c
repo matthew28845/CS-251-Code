@@ -36,16 +36,17 @@ void display(Object *list) {
         while (cons->car != NULL) {
             if (cons->car->type == INT_TYPE) {
                 Integer *integer = (Integer *)cons->car;
-                printf("%i",integer->value);
+                printf("%i\n",integer->value);
             } else if (cons->car->type == DOUBLE_TYPE) {
                 Double *doub = (Double *)cons->car;
-                printf("%f",doub->value);
+                printf("%f\n",doub->value);
             } else if (cons->car->type == STR_TYPE) {
                 String *str = (String *)cons->car;
-                printf("%s",str->value);
+                printf("%s\n",str->value);
             }
             cons = (ConsCell *)cons->cdr;
         }
+        printf("\n");
     }else {
         printf("You didn't give me a cons cell. Now die.\n");
     }

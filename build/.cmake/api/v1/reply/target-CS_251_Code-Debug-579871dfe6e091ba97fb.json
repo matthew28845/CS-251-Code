@@ -1,0 +1,3519 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "CS_251_Code"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 6,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				}
+			],
+			"language" : "C",
+			"sourceIndexes" : 
+			[
+				22,
+				562,
+				563,
+				564,
+				565,
+				566,
+				567,
+				568
+			]
+		}
+	],
+	"id" : "CS_251_Code::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			}
+		],
+		"language" : "C"
+	},
+	"name" : "CS_251_Code",
+	"nameOnDisk" : "CS_251_Code",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				71,
+				72,
+				73,
+				74,
+				75,
+				76,
+				77,
+				78,
+				79,
+				80,
+				81,
+				82,
+				83,
+				84,
+				85,
+				86,
+				87,
+				88,
+				89,
+				90,
+				91,
+				92,
+				93,
+				94,
+				95,
+				96,
+				97,
+				98,
+				99,
+				100,
+				101,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				108,
+				109,
+				110,
+				111,
+				112,
+				113,
+				114,
+				115,
+				116,
+				117,
+				118,
+				119,
+				120,
+				121,
+				122,
+				123,
+				124,
+				125,
+				126,
+				127,
+				128,
+				129,
+				130,
+				131,
+				132,
+				133,
+				134,
+				135,
+				136,
+				137,
+				138,
+				139,
+				140,
+				141,
+				142,
+				143,
+				144,
+				145,
+				146,
+				147,
+				148,
+				149,
+				150,
+				151,
+				152,
+				153,
+				154,
+				155,
+				156,
+				157,
+				158,
+				159,
+				160,
+				161,
+				162,
+				163,
+				164,
+				165,
+				166,
+				167,
+				168,
+				169,
+				170,
+				171,
+				172,
+				173,
+				174,
+				175,
+				176,
+				177,
+				178,
+				179,
+				180,
+				181,
+				182,
+				183,
+				184,
+				185,
+				186,
+				187,
+				188,
+				189,
+				190,
+				191,
+				192,
+				193,
+				194,
+				195,
+				196,
+				197,
+				198,
+				199,
+				200,
+				201,
+				202,
+				203,
+				204,
+				205,
+				206,
+				207,
+				208,
+				209,
+				210,
+				211,
+				212,
+				213,
+				214,
+				215,
+				216,
+				217,
+				218,
+				219,
+				220,
+				221,
+				222,
+				223,
+				224,
+				225,
+				226,
+				227,
+				228,
+				229,
+				230,
+				231,
+				232,
+				233,
+				234,
+				235,
+				236,
+				237,
+				238,
+				239,
+				240,
+				241,
+				242,
+				243,
+				244,
+				245,
+				246,
+				247,
+				248,
+				249,
+				250,
+				251,
+				252,
+				253,
+				254,
+				255,
+				256,
+				257,
+				258,
+				259,
+				260,
+				261,
+				262,
+				263,
+				264,
+				265,
+				266,
+				267,
+				268,
+				269,
+				270,
+				271,
+				272,
+				273,
+				274,
+				275,
+				276,
+				277,
+				278,
+				279,
+				280,
+				281,
+				282,
+				283,
+				284,
+				285,
+				286,
+				287,
+				288,
+				289,
+				290,
+				291,
+				292,
+				293,
+				294,
+				295,
+				296,
+				297,
+				298,
+				299,
+				300,
+				301,
+				302,
+				303,
+				304,
+				305,
+				306,
+				307,
+				308,
+				309,
+				310,
+				311,
+				312,
+				313,
+				314,
+				315,
+				316,
+				317,
+				318,
+				319,
+				320,
+				321,
+				322,
+				323,
+				324,
+				325,
+				326,
+				327,
+				328,
+				329,
+				330,
+				331,
+				332,
+				333,
+				334,
+				335,
+				336,
+				337,
+				338,
+				339,
+				340,
+				341,
+				342,
+				343,
+				344,
+				345,
+				346,
+				347,
+				348,
+				349,
+				350,
+				351,
+				352,
+				353,
+				354,
+				355,
+				356,
+				357,
+				358,
+				359,
+				360,
+				361,
+				362,
+				363,
+				364,
+				365,
+				366,
+				367,
+				368,
+				369,
+				370,
+				371,
+				372,
+				373,
+				374,
+				375,
+				376,
+				377,
+				378,
+				379,
+				380,
+				381,
+				382,
+				383,
+				384,
+				385,
+				386,
+				387,
+				388,
+				389,
+				390,
+				391,
+				392,
+				393,
+				394,
+				395,
+				396,
+				397,
+				398,
+				399,
+				400,
+				401,
+				402,
+				403,
+				404,
+				405,
+				406,
+				407,
+				408,
+				409,
+				410,
+				411,
+				412,
+				413,
+				414,
+				415,
+				416,
+				417,
+				418,
+				419,
+				420,
+				421,
+				422,
+				423,
+				424,
+				425,
+				426,
+				427,
+				428,
+				429,
+				430,
+				431,
+				432,
+				433,
+				434,
+				435,
+				436,
+				437,
+				438,
+				439,
+				440,
+				441,
+				442,
+				443,
+				444,
+				445,
+				446,
+				447,
+				448,
+				449,
+				450,
+				451,
+				452,
+				453,
+				454,
+				455,
+				456,
+				457,
+				458,
+				459,
+				460,
+				461,
+				462,
+				463,
+				464,
+				465,
+				466,
+				467,
+				468,
+				469,
+				470,
+				471,
+				472,
+				473,
+				474,
+				475,
+				476,
+				477,
+				478,
+				479,
+				480,
+				481,
+				482,
+				483,
+				484,
+				485,
+				486,
+				487,
+				488,
+				489,
+				490,
+				491,
+				492,
+				493,
+				494,
+				495,
+				496,
+				497,
+				498,
+				499,
+				500,
+				501,
+				502,
+				503,
+				504,
+				505,
+				506,
+				507,
+				508,
+				509,
+				510,
+				511,
+				512,
+				513,
+				514,
+				515,
+				516,
+				517,
+				518,
+				519,
+				520,
+				521,
+				522,
+				523,
+				524,
+				525,
+				526,
+				527,
+				528,
+				529,
+				530,
+				531,
+				532,
+				533,
+				534,
+				535,
+				536,
+				537,
+				538,
+				539,
+				540,
+				541,
+				542,
+				543,
+				544,
+				545,
+				546,
+				547,
+				548,
+				549,
+				550,
+				551,
+				552,
+				553,
+				554,
+				555,
+				556,
+				557,
+				558,
+				559,
+				560,
+				561
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				22,
+				562,
+				563,
+				564,
+				565,
+				566,
+				567,
+				568
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"path" : "assignmentb/main.scm",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "assignmentd/higherorder-main/main.scm",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "assignmentd/higherorder-main/scheme",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "assignmentd/higherorder-main/test-e",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "assignmentd/higherorder-main/test-m",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "assignmentd/higherorder-main/tester-script.scm",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "assignmentd/higherorder-main/tests-e.scm",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "assignmentd/higherorder-main/tests-m.scm",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "bst-main/main.scm",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "bst-main/scheme",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "bst-main/test-e",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "bst-main/test-m",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "bst-main/tester-script.scm",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "bst-main/tests-e.scm",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "bst-main/tests-m.scm",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "clab-1-main/gradescope_utils/autograder_utils/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "clab-1-main/gradescope_utils/autograder_utils/decorators.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "clab-1-main/gradescope_utils/autograder_utils/files.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "clab-1-main/gradescope_utils/autograder_utils/json_test_runner.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "clab-1-main/gradescope_utils/autograder_utils/README.md",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "clab-1-main/gradescope_utils/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "clab-1-main/gradescope_utils/LICENSE",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "clab-1-main/hello.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "clab-1-main/test-e",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "clab-1-main/test-gradescope.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "clab-1-main/test-m",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "clab-1-main/test_e.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "clab-1-main/test_m.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "lazylist-main/main.scm",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "lazylist-main/scheme",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "lazylist-main/test-e",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "lazylist-main/test-m",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "lazylist-main/tester-script.scm",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "lazylist-main/tests-e.scm",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "lazylist-main/tests-m.scm",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "lazylist-main/tests-m.scm.bak",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/bin/activate",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/bin/activate.csh",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/bin/activate.fish",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/bin/activate.nu",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/bin/activate.ps1",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/bin/activate_this.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/bin/pip",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/bin/pip-3.12",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/bin/pip3",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/bin/pip3.12",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/bin/python",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/bin/python3",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/bin/python3.12",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/cli/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/cli/autocompletion.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/cli/cmdoptions.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/cli/command_context.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/cli/main.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/cli/main_parser.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/cli/parser.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/cli/progress_bars.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/cli/req_command.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/cli/spinners.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/cli/status_codes.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/cache.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/check.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/completion.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/configuration.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/debug.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/download.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/freeze.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/hash.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/help.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/index.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/inspect.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/install.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/list.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/search.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/show.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/uninstall.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/commands/wheel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/distributions/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/distributions/base.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/distributions/installed.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/distributions/sdist.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/distributions/wheel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/index/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/index/collector.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/index/package_finder.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/index/sources.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/locations/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/locations/_distutils.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/locations/_sysconfig.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/locations/base.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/metadata/importlib/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/metadata/importlib/_compat.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/metadata/importlib/_dists.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/metadata/importlib/_envs.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/metadata/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/metadata/_json.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/metadata/base.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/metadata/pkg_resources.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/models/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/models/candidate.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/models/direct_url.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/models/format_control.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/models/index.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/models/installation_report.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/models/link.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/models/scheme.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/models/search_scope.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/models/selection_prefs.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/models/target_python.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/models/wheel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/network/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/network/auth.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/network/cache.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/network/download.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/network/lazy_wheel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/network/session.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/network/utils.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/network/xmlrpc.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/build/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/build/build_tracker.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/build/metadata.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/build/metadata_editable.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/build/metadata_legacy.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/build/wheel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/build/wheel_editable.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/build/wheel_legacy.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/install/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/install/editable_legacy.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/install/wheel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/check.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/freeze.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/operations/prepare.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/req/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/req/constructors.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/req/req_file.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/req/req_install.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/req/req_set.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/resolution/legacy/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/resolution/legacy/resolver.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/resolution/resolvelib/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/resolution/resolvelib/base.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/resolution/resolvelib/candidates.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/resolution/resolvelib/factory.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/resolution/resolvelib/found_candidates.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/resolution/resolvelib/provider.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/resolution/resolvelib/reporter.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/resolution/resolvelib/requirements.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/resolution/resolvelib/resolver.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/resolution/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/resolution/base.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/_jaraco_text.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/_log.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/appdirs.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/compat.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/compatibility_tags.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/datetime.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/deprecation.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/direct_url_helpers.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/egg_link.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/encoding.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/entrypoints.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/filesystem.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/filetypes.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/glibc.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/hashes.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/inject_securetransport.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/logging.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/misc.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/models.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/packaging.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/setuptools_build.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/subprocess.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/temp_dir.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/unpacking.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/urls.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/virtualenv.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/utils/wheel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/vcs/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/vcs/bazaar.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/vcs/git.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/vcs/mercurial.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/vcs/subversion.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/vcs/versioncontrol.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/build_env.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/cache.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/configuration.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/exceptions.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/main.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/pyproject.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/self_outdated_check.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_internal/wheel_builder.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/cachecontrol/caches/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/cachecontrol/caches/file_cache.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/cachecontrol/caches/redis_cache.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/cachecontrol/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/cachecontrol/_cmd.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/cachecontrol/adapter.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/cachecontrol/cache.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/cachecontrol/compat.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/cachecontrol/controller.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/cachecontrol/filewrapper.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/cachecontrol/heuristics.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/cachecontrol/serialize.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/cachecontrol/wrapper.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/certifi/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/certifi/__main__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/certifi/cacert.pem",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/certifi/core.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/cli/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/cli/chardetect.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/metadata/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/metadata/languages.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/big5freq.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/big5prober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/chardistribution.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/charsetgroupprober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/charsetprober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/codingstatemachine.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/codingstatemachinedict.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/cp949prober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/enums.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/escprober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/escsm.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/eucjpprober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/euckrfreq.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/euckrprober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/euctwfreq.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/euctwprober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/gb2312freq.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/gb2312prober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/hebrewprober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/jisfreq.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/johabfreq.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/johabprober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/jpcntx.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/langbulgarianmodel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/langgreekmodel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/langhebrewmodel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/langhungarianmodel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/langrussianmodel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/langthaimodel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/langturkishmodel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/latin1prober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/macromanprober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/mbcharsetprober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/mbcsgroupprober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/mbcssm.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/resultdict.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/sbcharsetprober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/sbcsgroupprober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/sjisprober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/universaldetector.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/utf1632prober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/utf8prober.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/chardet/version.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/colorama/tests/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/colorama/tests/ansi_test.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/colorama/tests/ansitowin32_test.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/colorama/tests/initialise_test.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/colorama/tests/isatty_test.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/colorama/tests/utils.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/colorama/tests/winterm_test.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/colorama/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/colorama/ansi.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/colorama/ansitowin32.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/colorama/initialise.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/colorama/win32.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/colorama/winterm.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/compat.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/database.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/index.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/locators.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/manifest.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/markers.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/metadata.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/resources.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/scripts.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/t32.exe",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/t64-arm.exe",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/t64.exe",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/util.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/version.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/w32.exe",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/w64-arm.exe",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/w64.exe",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distlib/wheel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distro/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distro/__main__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/distro/distro.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/idna/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/idna/codec.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/idna/compat.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/idna/core.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/idna/idnadata.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/idna/intranges.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/idna/package_data.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/idna/uts46data.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/msgpack/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/msgpack/exceptions.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/msgpack/ext.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/msgpack/fallback.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/packaging/__about__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/packaging/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/packaging/_manylinux.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/packaging/_musllinux.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/packaging/_structures.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/packaging/markers.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/packaging/requirements.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/packaging/specifiers.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/packaging/tags.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/packaging/utils.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/packaging/version.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pkg_resources/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/platformdirs/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/platformdirs/__main__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/platformdirs/android.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/platformdirs/api.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/platformdirs/macos.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/platformdirs/unix.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/platformdirs/version.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/platformdirs/windows.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/filters/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/_mapping.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/bbcode.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/groff.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/html.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/img.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/irc.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/latex.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/other.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/pangomarkup.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/rtf.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/svg.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/terminal.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatters/terminal256.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/lexers/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/lexers/_mapping.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/lexers/python.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/styles/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/__main__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/cmdline.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/console.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/filter.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/formatter.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/lexer.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/modeline.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/plugin.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/regexopt.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/scanner.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/sphinxext.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/style.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/token.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/unistring.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pygments/util.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/diagram/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/actions.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/common.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/core.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/exceptions.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/helpers.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/results.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/testing.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/unicode.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/util.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/_in_process/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/_compat.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/_impl.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/__version__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/_internal_utils.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/adapters.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/api.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/auth.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/certs.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/compat.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/cookies.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/exceptions.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/help.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/hooks.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/models.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/packages.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/sessions.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/status_codes.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/structures.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/requests/utils.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/resolvelib/compat/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/resolvelib/compat/collections_abc.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/resolvelib/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/resolvelib/providers.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/resolvelib/reporters.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/resolvelib/resolvers.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/resolvelib/structs.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/__main__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_cell_widths.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_emoji_codes.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_emoji_replace.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_export_format.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_extension.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_fileno.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_inspect.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_log_render.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_loop.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_null_file.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_palettes.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_pick.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_ratio.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_spinners.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_stack.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_timer.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_win32_console.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_windows.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_windows_renderer.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/_wrap.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/abc.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/align.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/ansi.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/bar.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/box.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/cells.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/color.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/color_triplet.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/columns.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/console.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/constrain.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/containers.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/control.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/default_styles.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/diagnose.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/emoji.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/errors.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/file_proxy.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/filesize.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/highlighter.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/json.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/jupyter.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/layout.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/live.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/live_render.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/logging.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/markup.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/measure.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/padding.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/pager.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/palette.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/panel.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/pretty.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/progress.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/progress_bar.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/prompt.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/protocol.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/region.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/repr.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/rule.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/scope.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/screen.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/segment.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/spinner.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/status.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/style.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/styled.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/syntax.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/table.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/terminal_theme.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/text.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/theme.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/themes.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/traceback.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/rich/tree.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tenacity/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tenacity/_asyncio.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tenacity/_utils.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tenacity/after.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tenacity/before.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tenacity/before_sleep.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tenacity/nap.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tenacity/retry.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tenacity/stop.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tenacity/tornadoweb.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tenacity/wait.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tomli/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tomli/_parser.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tomli/_re.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/tomli/_types.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/contrib/_securetransport/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/contrib/_securetransport/bindings.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/contrib/_securetransport/low_level.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/contrib/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/contrib/_appengine_environ.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/contrib/appengine.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/contrib/ntlmpool.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/contrib/pyopenssl.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/contrib/securetransport.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/contrib/socks.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/packages/backports/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/packages/backports/makefile.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/packages/backports/weakref_finalize.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/packages/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/packages/six.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/util/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/util/connection.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/util/proxy.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/util/queue.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/util/request.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/util/response.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/util/retry.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/util/ssl_.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/util/ssl_match_hostname.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/util/ssltransport.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/util/timeout.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/util/url.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/util/wait.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/_collections.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/_version.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/connection.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/connectionpool.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/exceptions.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/fields.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/filepost.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/poolmanager.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/request.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/urllib3/response.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/webencodings/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/webencodings/labels.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/webencodings/mklabels.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/webencodings/tests.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/webencodings/x_user_defined.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/six.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/typing_extensions.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/_vendor/vendor.txt",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/__init__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/__main__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/__pip-runner__.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip/py.typed",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip-23.2.1.dist-info/AUTHORS.txt",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip-23.2.1.dist-info/entry_points.txt",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip-23.2.1.dist-info/INSTALLER",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip-23.2.1.dist-info/LICENSE.txt",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip-23.2.1.dist-info/METADATA",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip-23.2.1.dist-info/RECORD",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip-23.2.1.dist-info/top_level.txt",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip-23.2.1.dist-info/WHEEL",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/_virtualenv.pth",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/_virtualenv.py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/lib/python3.12/site-packages/pip-23.2.1.virtualenv",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "venv/pyvenv.cfg",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "README.md",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "clab-1-main/printing.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "clab-1-main/temperature.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "clab-2-main/guess.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "clab-2-main/complex.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "vector-main/vector.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "hmwrk.c",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "linkedlist-main/linkedlist.c",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "EXECUTABLE"
+}
