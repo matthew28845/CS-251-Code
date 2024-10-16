@@ -12,6 +12,7 @@
 Object *makeNull() {
     Object *newObject = malloc(sizeof(Object));
     assert(newObject != NULL);
+    newObject->type = NULL_TYPE;
     return newObject;
 }
 
@@ -23,6 +24,7 @@ Object *cons(Object *newCar, Object *newCdr) {
     assert(newCons != NULL);
     newCons->car = newCar;
     newCons->cdr = newCdr;
+    newCons->type = CONS_TYPE;
     return (Object *)newCons;
 }
 
