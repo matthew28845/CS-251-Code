@@ -123,7 +123,6 @@ int main(int argc, char **argv) {
   val1->type = INT_TYPE;
   val1->value = 7;
   head = cons((Object*)val1,head);
-  display(head);
   correctLength++;
   assert(length(head) == correctLength);
   display(head);

@@ -58,13 +58,13 @@ void display(Object *list) {
 // memory whatsoever between the given list and the new one.
 Object *reverse(Object *list) {
     if (list->type == CONS_TYPE) {
-        Object *headptr = (ConsCell *)list;
+        ConsCell *headptr = (ConsCell *)list;
         Object *revptr = makeNull();
         while (headptr->type != NULL_TYPE) {
-            ConsCell *headptrcons = (ConsCell *)headptr;
-            ConsCell *currentCons = (ConsCell *)cons(headptrcons->car, revptr);
-            revptr = currentCons;
-            headptr = currentCons->cdr;
+            ConsCell *headptrCons = (ConsCell *)headptr;
+            ConsCell *currentCons = (ConsCell *)cons(headptrCons->car, revptr);
+            revptr = (Object *)currentCons;
+            headptr = (ConsCell *)headptrCons->cdr;
         }
         return (Object *)revptr;
     }
@@ -76,28 +76,16 @@ Object *reverse(Object *list) {
 // Input list: A ConsCell that is the head of a list.
 // Frees all memory directly or indirectly referred to by the given list.
 void cleanup(Object *list) {
-    if (list->type == CONS_TYPE) {
+    while (list->type == CONS_TYPE) {
         ConsCell *cons = (ConsCell *)list;
-        while (cons->car != NULL) {
-            if (cons->car->type == INT_TYPE) {
-                Integer *integer = (Integer *)cons->car;
-                free(integer);
-            } else if (cons->car->type == DOUBLE_TYPE) {
-                Double *doub = (Double *)cons->car;
-                free(doub);
-            } else if (cons->car->type == STR_TYPE) {
-                String *str = (String *)cons->car;
-                free(str->value);
-                free(str);
-            }
-        cons = (ConsCell *)cons->cdr;
+        if (cons->car->type == STR_TYPE) {
+            String *str = (String *)cons->car;
+            free(str->value);
         }
+        free(cons->car);
+        Object *nextCons = cons->cdr;
         free(cons);
-    }else if (list->type == NULL_TYPE){
-        free(list);
-    }
-    else {
-        printf("%d",list->type);
+        list = nextCons;
     }
 }
 
