@@ -16,6 +16,36 @@ Object *makeNull() {
     return newObject;
 }
 
+// Input: Value to insert into newly created integer object
+// Return: A newly allocated Integer of INT_TYPE.
+Object *makeInt(int *newVal) {
+    Integer *newObject = malloc(sizeof(Integer));
+    assert(newObject != NULL);
+    newObject->type = INT_TYPE;
+    newObject->value = *newVal;
+    return (Object *)newObject;
+}
+
+// Input: Value to insert into newly created double object
+// Return: A newly allocated Double of DOUBLE_TYPE.
+Object *makeDbl(double *newVal) {
+    Double *newObject = malloc(sizeof(Double));
+    assert(newObject != NULL);
+    newObject->type = DOUBLE_TYPE;
+    newObject->value = *newVal;
+    return (Object *)newObject;
+}
+
+// Input: Value to insert into newly created string object
+// Return: A newly allocated Double of STR_TYPE.
+Object *makeStr(char *newVal) {
+    Integer *newObject = malloc(sizeof(String));
+    assert(newObject != NULL);
+    newObject->type = STR_TYPE;
+    newObject->value = *newVal;
+    return (Object *)newObject;
+}
+
 // Input newCar: An instance of Object or one of its subclasses.
 // Input newCdr: An instance of Object or one of its subclasses.
 // Return: A newly allocated ConsCell object with that car and cdr.
@@ -61,10 +91,33 @@ Object *reverse(Object *list) {
         ConsCell *headptr = (ConsCell *)list;
         Object *revptr = makeNull();
         while (headptr->type != NULL_TYPE) {
-            ConsCell *headptrCons = (ConsCell *)headptr;
-            ConsCell *currentCons = (ConsCell *)cons(headptrCons->car, revptr);
-            revptr = (Object *)currentCons;
-            headptr = (ConsCell *)headptrCons->cdr;
+            if (headptr->car->type == INT_TYPE) {
+                Integer *currentCar = (Integer *)headptr->car;
+                Integer *newCar = (Integer *)makeInt(&currentCar->value);
+                ConsCell *reverseItem = (ConsCell *)cons((Object *)newCar, revptr);
+                revptr = (Object *)reverseItem;
+                headptr = (ConsCell *)headptr->cdr;
+            }            
+            else if (headptr->car->type == DOUBLE_TYPE) {
+                Double *currentCar = (Double *)headptr->car;
+                Double *newCar = (Double *)makeDbl(&currentCar->value);
+                ConsCell *reverseItem = (ConsCell *)cons((Object *)newCar, revptr);
+                revptr = (Object *)reverseItem;
+                headptr = (ConsCell *)headptr->cdr;
+            }
+            else if (headptr->car->type == STR_TYPE) {
+                String *currentCar = (String *)headptr->car;
+                String *newCar = (String *)makeStr(currentCar->value);
+                ConsCell *reverseItem = (ConsCell *)cons((Object *)newCar, revptr);
+                revptr = (Object *)reverseItem;
+                headptr = (ConsCell *)headptr->cdr;
+            }
+            else {
+                Object *newCar = makeNull();
+                ConsCell *reverseItem = (ConsCell *)cons((Object *)newCar, revptr);
+                revptr = (Object *)reverseItem;
+                headptr = (ConsCell *)headptr->cdr;
+            }
         }
         return (Object *)revptr;
     }
