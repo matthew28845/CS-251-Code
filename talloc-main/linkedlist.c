@@ -7,13 +7,14 @@
 #include "object.h"
 #include <assert.h>
 #include <string.h>
+#include "talloc.h"
 
 #ifndef _LINKEDLIST
 #define _LINKEDLIST
 
 // Return: A newly allocated Object of NULL_TYPE.
 Object *makeNull() {
-    Object *newObject = malloc(sizeof(Object));
+    Object *newObject = talloc(sizeof(Object));
     assert(newObject != NULL);
     newObject->type = NULL_TYPE;
     return newObject;
@@ -22,7 +23,7 @@ Object *makeNull() {
 // Input: Value to insert into newly created integer object
 // Return: A newly allocated Integer of INT_TYPE.
 Object *makeInt(int *newVal) {
-    Integer *newObject = malloc(sizeof(Integer));
+    Integer *newObject = talloc(sizeof(Integer));
     assert(newObject != NULL);
     newObject->type = INT_TYPE;
     newObject->value = *newVal;
@@ -32,7 +33,7 @@ Object *makeInt(int *newVal) {
 // Input: Value to insert into newly created double object
 // Return: A newly allocated Double of DOUBLE_TYPE.
 Object *makeDbl(double *newVal) {
-    Double *newObject = malloc(sizeof(Double));
+    Double *newObject = talloc(sizeof(Double));
     assert(newObject != NULL);
     newObject->type = DOUBLE_TYPE;
     newObject->value = *newVal;
@@ -42,10 +43,10 @@ Object *makeDbl(double *newVal) {
 // Input: Value to insert into newly created string object
 // Return: A newly allocated String of STR_TYPE.
 Object *makeStr(char *newVal) {
-    String *newObject = malloc(sizeof(String));
+    String *newObject = talloc(sizeof(String));
     assert(newObject != NULL);
     newObject->type = STR_TYPE;
-    newObject->value = malloc(strlen(newVal) + 1);
+    newObject->value = talloc(strlen(newVal) + 1);
     assert(newObject->value != NULL);
     strcpy(newObject->value, newVal);
     return (Object *)newObject;
@@ -55,7 +56,7 @@ Object *makeStr(char *newVal) {
 // Input newCdr: An instance of Object or one of its subclasses.
 // Return: A newly allocated ConsCell object with that car and cdr.
 Object *cons(Object *newCar, Object *newCdr) {
-    ConsCell *newCons = malloc(sizeof(ConsCell));
+    ConsCell *newCons = talloc(sizeof(ConsCell));
     assert(newCons != NULL);
     newCons->car = newCar;
     newCons->cdr = newCdr;
@@ -98,59 +99,15 @@ Object *reverse(Object *list) {
         ConsCell *headptr = (ConsCell *)list;
         Object *revptr = makeNull();
         while (headptr->type != NULL_TYPE) {
-            //Check for each type the car could be, and then make a duplicate of it for the reversed list (as to not share mem)
-            if (headptr->car->type == INT_TYPE) {
-                Integer *currentCar = (Integer *)headptr->car;
-                Integer *newCar = (Integer *)makeInt(&currentCar->value);
-                ConsCell *reverseItem = (ConsCell *)cons((Object *)newCar, revptr);
-                revptr = (Object *)reverseItem;
-                headptr = (ConsCell *)headptr->cdr;
-            }            
-            else if (headptr->car->type == DOUBLE_TYPE) {
-                Double *currentCar = (Double *)headptr->car;
-                Double *newCar = (Double *)makeDbl(&currentCar->value);
-                ConsCell *reverseItem = (ConsCell *)cons((Object *)newCar, revptr);
-                revptr = (Object *)reverseItem;
-                headptr = (ConsCell *)headptr->cdr;
-            }
-            else if (headptr->car->type == STR_TYPE) {
-                String *currentCar = (String *)headptr->car;
-                String *newCar = (String *)makeStr(currentCar->value);
-                ConsCell *reverseItem = (ConsCell *)cons((Object *)newCar, revptr);
-                revptr = (Object *)reverseItem;
-                headptr = (ConsCell *)headptr->cdr;
-            }
-            else {
-                Object *newCar = makeNull();
-                ConsCell *reverseItem = (ConsCell *)cons((Object *)newCar, revptr);
-                revptr = (Object *)reverseItem;
-                headptr = (ConsCell *)headptr->cdr;
-            }
+            //Check for each type the car could be, and then copy pointers
+            ConsCell *reverseItem = (ConsCell *)cons((Object *) headptr->car, revptr);
+            revptr = (Object *)reverseItem;
+            headptr = (ConsCell *)headptr->cdr;
         }
         return (Object *)revptr;
     }
     else {
         return makeNull();
-    }
-}
-
-// Input list: A ConsCell that is the head of a list.
-// Frees all memory directly or indirectly referred to by the given list.
-void cleanup(Object *list) {
-    while (list->type == CONS_TYPE) {
-        ConsCell *cons = (ConsCell *)list;
-        if (cons->car->type == STR_TYPE) {
-            String *str = (String *)cons->car;
-            free(str->value);
-        }
-        Object *nextCons = cons->cdr;
-        free(cons->car);
-        free(cons);
-        list = nextCons;
-    }
-    //Assuming we have now gone through the entire list, we still need to free the null object at the end
-    if (list->type == NULL_TYPE) {
-        free(list);
     }
 }
 
