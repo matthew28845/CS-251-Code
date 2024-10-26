@@ -54,33 +54,24 @@ Object *makeStr(char *newVal) {
 
 // Input: Value to insert into newly created symbol object
 // Return: A newly allocated Symbol of SYMBOL_TYPE
-Object *makeStr(char *newVal) {
+Object *makeSymb(char *newVal) {
     Symbol *newObject = talloc(sizeof(Symbol));
     assert(newObject != NULL);
     newObject->type = SYMBOL_TYPE;
-    newObject->value = *newVal;
+    newObject->value = newVal;
     return (Object *)newObject;
 }
 
 // Input: Value to insert into newly created boolean object
 // Return: A newly allocated Symbol of BOOL_TYPE
-Object *makeStr(char *newVal) {
+Object *makeBool(char *newVal) {
     Symbol *newObject = talloc(sizeof(Boolean));
     assert(newObject != NULL);
     newObject->type = BOOL_TYPE;
-    newObject->value = *newVal;
+    newObject->value = newVal;
     return (Object *)newObject;
 }
 
-// Input: Value to insert into newly created boolean object
-// Return: A newly allocated Symbol of BOOL_TYPE
-Object *makeStr(char *newVal) {
-    Symbol *newObject = talloc(sizeof(Boolean));
-    assert(newObject != NULL);
-    newObject->type = BOOL_TYPE;
-    newObject->value = *newVal;
-    return (Object *)newObject;
-}
 
 // Input newCar: An instance of Object or one of its subclasses.
 // Input newCdr: An instance of Object or one of its subclasses.
