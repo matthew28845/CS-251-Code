@@ -14,6 +14,11 @@ bool isDigit(char chr) {
 }
 
 bool isWhitespace(char chr) {
+    if (chr == ' ' || chr == '\n' || chr == '\r' || chr == '\t') return true;
+    return false;
+}
+
+bool isTokenBreak(char chr) {
     if (chr == ' ' || chr == '(' || chr == ')' || chr == '}' || chr == '\n' || chr == '\r' || chr == '\t') return true;
     return false;
 }
@@ -24,7 +29,7 @@ bool isSpecial(char chr) {
 }
 
 bool isLetter(char chr) {
-    if ((chr > 100 && chr < 133) || (chr > 140 && chr < 173)) return true;
+    if ((chr >= 'a' && chr <= 'z') || (chr >= 'A' && chr <= 'Z')) return true;
     return false;
 }
 
@@ -42,7 +47,7 @@ bool isInteger(char token[]) {
 
 bool isDecimal(char token[]) {
     int index = 0;
-    while ((token[index] != '.' || !(isWhitespace(token[index]))) && index != strlen(token)) {
+    while ((token[index] != '.' || !(isTokenBreak(token[index]))) && index != strlen(token)) {
         if (!isDigit(token[index])) {
             return false;
         }
@@ -82,10 +87,11 @@ bool isSymbol(char token[]) {
         if (isInitial(token[0])) return true;
         return false;
     }
-    if ((token[index] == '+' || token[index] == '-') && isWhitespace(token[index+1])) return true;
+    if ((token[index] == '+' || token[index] == '-') && strlen(token) == 1) return true;
     if (isInitial(token[index])) {
-        while (!(isWhitespace(token[index])) && index != strlen(token)) {
+        while (!(isTokenBreak(token[index])) && index != strlen(token)) {
             if (!isSubsequent(token[index])) return false;
+            index++;
         }
         return true;
     }
@@ -126,23 +132,42 @@ Object *tokenize() {
         else if (!(ch == '\n' || ch == '\r' || ch == '\t' || ch == ';' || ch == ' ')) {
             char currentToken[301];
             int tokenIndex = 0;
-
             // Get token segment
-            while (!(isWhitespace(ch))) {
-                currentToken[tokenIndex] = ch;
+            if (ch == '"') {
+                currentToken[tokenIndex] = '"';
                 tokenIndex++;
                 buffer[index] = ch;
                 index++;
                 ch = fgetc(stdin);
+                while (ch != '"') {
+                    currentToken[tokenIndex] = ch;
+                    tokenIndex++;
+                    buffer[index] = ch;
+                    index++;
+                    ch = fgetc(stdin);
+                }
+                currentToken[tokenIndex] = ch;
+                tokenIndex++;
+            }
+            else {
+                while (!(isTokenBreak(ch))) {
+                    currentToken[tokenIndex] = ch;
+                    tokenIndex++;
+                    buffer[index] = ch;
+                    index++;
+                    ch = fgetc(stdin);
+                }
+                ungetc(ch, stdin);
             }
             currentToken[tokenIndex] = '\0';
+
             if (currentToken[0] == '+' || currentToken[0] == '-') {
-                    if (currentToken[1] == '(' || currentToken[1] == ')' || currentToken[1] == '}' ) type = SYMBOL_TYPE;
-                    
-                    if (isDigit(currentToken[1]) || currentToken[1] == '.') {
-                        if (isInteger(currentToken)) type = INT_TYPE;
-                        else type = DOUBLE_TYPE;
-                    }
+                if (strlen(currentToken) < 2) type = SYMBOL_TYPE;
+                if (currentToken[1] == '(' || currentToken[1] == ')' || currentToken[1] == '}' ) type = SYMBOL_TYPE;
+                if (isDigit(currentToken[1]) || currentToken[1] == '.') {
+                    if (isInteger(currentToken)) type = INT_TYPE;
+                    else type = DOUBLE_TYPE;
+                }
             }
             // If token starts with digit then check if Int type / Double type
             else if (isDigit(currentToken[0]) || currentToken[0] == '.') {
