@@ -62,17 +62,6 @@ Object *makeSymb(char *newVal) {
     return (Object *)newObject;
 }
 
-// Input: Value to insert into newly created boolean object
-// Return: A newly allocated Symbol of BOOL_TYPE
-Object *makeBool(char *newVal) {
-    Symbol *newObject = talloc(sizeof(Boolean));
-    assert(newObject != NULL);
-    newObject->type = BOOL_TYPE;
-    newObject->value = newVal;
-    return (Object *)newObject;
-}
-
-
 // Input newCar: An instance of Object or one of its subclasses.
 // Input newCdr: An instance of Object or one of its subclasses.
 // Return: A newly allocated ConsCell object with that car and cdr.

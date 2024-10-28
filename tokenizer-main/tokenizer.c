@@ -3,6 +3,7 @@
 #include "talloc.c"
 #include "object.h"
 #include <stdio.h>
+#include <strings.h>
 
 #ifndef _TOKENIZER
 #define _TOKENIZER
@@ -27,41 +28,38 @@ bool isLetter(char chr) {
     return false;
 }
 
-bool isInteger(char buffer[], int index) {
-    while (!(isWhitespace(buffer[index])) && index != strlen(buffer)) {
-        if (!isDigit(buffer[index])) {
+bool isInteger(char token[]) {
+    int index = 0;
+    while (index < strlen(token)) {
+        if (!isDigit(token[index])) {
             return false;
         }
-
         index++;
     }
 
     return true;
 }
 
-bool isDecimal(char buffer[], int index) {
-    int periodCounter = 0;
-    while (buffer[index] != '.' || !(isWhitespace(buffer[index])) && index != strlen(buffer)) {
-        if (!isDigit(buffer[index])) {
+bool isDecimal(char token[]) {
+    int index = 0;
+    while ((token[index] != '.' || !(isWhitespace(token[index]))) && index != strlen(token)) {
+        if (!isDigit(token[index])) {
             return false;
         }
-        else if (buffer[index] == '.') {
-            periodCounter++;
-        }
-
         index++;
     }
 
-    if (periodCounter > 1) {
-        return false;
+    if ((strstr(".", token)) != NULL) {
+        return true;
     }
 
-    return true;
+    return false;
 }
 
-bool isString(char buffer[], int index) {
-    while (index < strlen(buffer)) {
-        char chr = buffer[index];
+bool isString(char token[]) {
+    int index = 0;
+    while (index < strlen(token)) {
+        char chr = token[index];
         if (chr == '"') return true;
         index++;
     }
@@ -78,91 +76,20 @@ bool isSubsequent(char chr) {
     return false;
 }
 
-bool isSymbol(char buffer[], int index) {
-    if ((buffer[index] == '+' || buffer[index] == '-') && isWhitespace(buffer[index+1])) return true;
-    if (isInitial(buffer[index])) {
-        while (!(isWhitespace(buffer[index])) && index != strlen(buffer)) {
-            if (!isSubsequent(buffer[index])) return false;
+bool isSymbol(char token[]) {
+    int index = 0;
+    if (strlen(token) < 2) {
+        if (isInitial(token[0])) return true;
+        return false;
+    }
+    if ((token[index] == '+' || token[index] == '-') && isWhitespace(token[index+1])) return true;
+    if (isInitial(token[index])) {
+        while (!(isWhitespace(token[index])) && index != strlen(token)) {
+            if (!isSubsequent(token[index])) return false;
         }
         return true;
     }
     return false;
-}
-
-Object *getCurrentToken(char buffer[], int* tokenStart) {
-    char chr = buffer[*tokenStart];
-    Object *token = talloc(sizeof(Object));
-    
-    // Check if Symbol type
-    if (buffer[*tokenStart] == '+' || buffer[*tokenStart] == '-') {
-        if (buffer[*tokenStart+1] == '(' || buffer[*tokenStart+1] == ')' || buffer[*tokenStart+1] == '}' ) token->type = SYMBOL_TYPE;
-        if (isDigit(buffer[*tokenStart+1]) || buffer[*tokenStart+1] == '.') {
-            if (isInteger(buffer, *tokenStart+1)) {
-            token->type = INT_TYPE;
-        }
-            token->type = DOUBLE_TYPE;
-        }
-    }
-    // If token starts with digit then check if Int type / Double type
-    else if (isDigit(buffer[*tokenStart]) || buffer[*tokenStart] == '.') {
-        if (isInteger(buffer, *tokenStart)) token->type = INT_TYPE;
-        token->type = DOUBLE_TYPE;
-    }
-
-    // Check if Boolean Type
-    else if (buffer[*tokenStart] == '#') {
-        if (buffer[*tokenStart+1] == 't' || buffer[*tokenStart+1] == 'f') token->type = BOOL_TYPE;
-        printf("Syntax error: Invalid token '%c'", buffer[*tokenStart]);
-        texit(1);
-    }
-
-    // Check if string
-    else if (buffer[*tokenStart] == '"') {
-        if (isString(buffer, *tokenStart)) token->type = STR_TYPE;
-        printf("Syntax error: Invalid token '%c'", buffer[*tokenStart]);
-        texit(1);
-    }
-    
-    //Assume it is a symbol, but still do error checking
-    else if (isSymbol(buffer, *tokenStart)) {
-        token->type = SYMBOL_TYPE;   
-    }
-
-    // If unparsed via specified types check if whitespace character, else invalid syntax
-    else {
-        if (!isWhitespace(buffer[*tokenStart])) {
-            printf("Syntax error: Invalid token '%c'", buffer[*tokenStart]);
-            texit(1);            
-        }
-    }
-
-    // Iterate until whitespace character to get token segment
-    char tokenSegment[300];
-    
-    while (!(isWhitespace(buffer[*tokenStart])) && *tokenStart != strlen(buffer)) {
-        *tokenStart+=1;
-        chr = buffer[*tokenStart];
-        char cToStr[2];
-        cToStr[0] = chr;
-        cToStr[1] = '\0';
-        strcat(tokenSegment, cToStr);
-    }
-    
-    // Convert token segment to its appropriate type
-    if (token->type == INT_TYPE) {
-        int tmp = atoi(tokenSegment);
-        Integer *token = (Integer *)token;
-        token->value = tmp;
-    }
-    else if (token->type == DOUBLE_TYPE) {
-        double tmp = (atof(tokenSegment));
-        Double *token = (Double *)token;
-        token->value = tmp;
-    }
-    else if (token->type == STR_TYPE) {
-        
-    }
-    return (Object *)token;
 }
 
 // Return: A cons cell that is the head of a list. The list consists of the 
@@ -172,39 +99,144 @@ Object *tokenize() {
     char buffer[300 + 1];         // based on 300-char limit plus terminating \0
     int index = 0;                // where in buffer to place the next char read
     objectType type = NULL_TYPE;  // type of token being built in buffer
+    
     Object *list = makeNull();
     ch = fgetc(stdin);
+    
     while (ch != EOF) {
         //For these three types, we know what they are based on the first character, and can just deal with them simply
-        // TODO keep track of open parens vs closed
         if (ch == '(') {
             Object *newCar = talloc(sizeof(Object));
+            assert(newCar != NULL);
             newCar->type = OPEN_TYPE;
             list = cons(newCar, list);
         }   
         else if (ch == ')') {
             Object *newCar = talloc(sizeof(Object));
+            assert(newCar != NULL);
             newCar->type = CLOSE_TYPE;
             list = cons(newCar, list);
         }
         else if (ch == '}') {
             Object *newCar = talloc(sizeof(Object));
+            assert(newCar != NULL);
             newCar->type = CLOSEBRACE_TYPE;
             list = cons(newCar, list);
         }
-        else if (ch == '\n' || ch == '\r' || ch == '\t') {
-            index++;
+        else if (!(ch == '\n' || ch == '\r' || ch == '\t' || ch == ';' || ch == ' ')) {
+            char currentToken[301];
+            int tokenIndex = 0;
+
+            // Get token segment
+            while (!(isWhitespace(ch))) {
+                currentToken[tokenIndex] = ch;
+                tokenIndex++;
+                buffer[index] = ch;
+                index++;
+                ch = fgetc(stdin);
+            }
+            currentToken[tokenIndex] = '\0';
+            if (currentToken[0] == '+' || currentToken[0] == '-') {
+                    if (currentToken[1] == '(' || currentToken[1] == ')' || currentToken[1] == '}' ) type = SYMBOL_TYPE;
+                    
+                    if (isDigit(currentToken[1]) || currentToken[1] == '.') {
+                        if (isInteger(currentToken)) type = INT_TYPE;
+                        else type = DOUBLE_TYPE;
+                    }
+            }
+            // If token starts with digit then check if Int type / Double type
+            else if (isDigit(currentToken[0]) || currentToken[0] == '.') {
+                if (isInteger(currentToken)) type = INT_TYPE;
+                else type = DOUBLE_TYPE;
+            }
+
+            // Check if Boolean Type
+            else if (currentToken[0] == '#') {
+                if (currentToken[1] == 't' || currentToken[1] == 'f') type = BOOL_TYPE;
+                else {
+                    printf("Syntax error checking if boolean: Invalid token '%s'\n", currentToken);
+                    texit(4);
+                }
+            }
+
+            // Check if string
+            else if (currentToken[0] == '"') {
+                if (isString(currentToken)) type = STR_TYPE;
+                else {
+                    printf("Syntax error checking if string: Invalid token '%s'\n", currentToken);
+                    texit(2);
+                }
+            }
+            
+            //Assume it is a symbol, but still do error checking
+            else if (isSymbol(currentToken)) {
+                type = SYMBOL_TYPE;   
+            }
+
+            // If unparsed via specified types check if whitespace character, else invalid syntax
+            else {
+                if (!isWhitespace(currentToken[0])) {
+                    printf("Syntax error checking if whitespace: Invalid token '%s'\n", currentToken);
+                    texit(3);            
+                }
+            }
+            
+            // Convert current token to its appropriate type, cons onto list
+            if (type == INT_TYPE) {
+                int tmp = atoi(currentToken);
+                Integer *newCar = talloc(sizeof(Integer));
+                assert(newCar != NULL);
+                newCar->type = INT_TYPE;
+                newCar->value = tmp;
+                
+                list = cons((Object *)newCar, list);
+            }
+            else if (type == DOUBLE_TYPE) {
+                double tmp = (atof(currentToken));
+                Double *newCar = talloc(sizeof(Double));
+                assert(newCar != NULL);
+                newCar->type = DOUBLE_TYPE;
+                newCar->value = tmp;
+
+                list = cons((Object *)newCar, list);
+            }
+            else if (type == STR_TYPE) {
+                String *newCar = talloc(sizeof(String));
+                assert(newCar != NULL);
+                newCar->type = STR_TYPE;
+                char *tmp = talloc(301);
+                strcpy(tmp, currentToken);
+                newCar->value = tmp;
+
+                list = cons((Object *)newCar, list);
+            }
+            else if (type == SYMBOL_TYPE) {
+                Symbol *newCar = talloc(sizeof(Symbol));
+                assert(newCar != NULL);
+                newCar->type = SYMBOL_TYPE;
+                char *tmp = talloc(301);
+                strcpy(tmp, currentToken);
+                newCar->value = tmp;
+
+                list = cons((Object *)newCar, list);
+            }
+            else if (type == BOOL_TYPE) {
+                Boolean *newCar = talloc(sizeof(Boolean));
+                assert(newCar != NULL);
+                newCar->type = BOOL_TYPE;
+                if (strcmp(currentToken, "#f") == 0) newCar->value = false;
+                else newCar->value = true;
+                list = cons((Object *)newCar, list);  
+            }
         }
         else if (ch == ';') {
             while (ch != '\n') {
+                buffer[index] = ch;
                 index++;
+                ch = fgetc(stdin);                
             }
         }
-        else {
-            int* tokenStart = &index;
-            getCurrentToken(buffer, tokenStart);
-        }
-        ch = buffer[index];
+        buffer[index] = ch;
         index++;
         ch = fgetc(stdin);
     }
@@ -215,12 +247,47 @@ Object *tokenize() {
 // Prints the tokens, one per line with type annotation, as exemplified in the 
 // assignment.
 void displayTokens(Object *list) {
-
     while (list->type != NULL_TYPE) {
-        printf("%u\n", list->type);
+        ConsCell *listCons = (ConsCell *)list;
+        
+        Object *car = listCons->car;
+
+        if (car->type == OPEN_TYPE) {
+            Object *tmp = (Object *)car;
+            printf("(:open\n");
+
+        } else if (car->type == CLOSE_TYPE) {
+            Object *tmp = (Object *)car;
+            printf("):close\n");
+
+        } else if (car->type == CLOSEBRACE_TYPE) {
+            Object *tmp = (Object *)car;
+            printf("}:closebrace\n");
+
+        } else if (car->type == INT_TYPE) {
+            Integer *tmp = (Integer *)car;
+            printf("%d:integer\n", tmp->value);
+            
+        } else if (car->type == DOUBLE_TYPE) {
+            Double *tmp = (Double *)car;
+            printf("%f:double\n", tmp->value);
+
+        } else if (car->type == STR_TYPE) {
+            String *tmp = (String *)car;
+            printf("%s:string\n", tmp->value);
+            
+        } else if (car->type == SYMBOL_TYPE) {
+            Symbol *tmp = (Symbol *)car;
+            printf("%s:symbol\n", tmp->value);
+            
+        } else if (car->type == BOOL_TYPE) {
+            Boolean *tmp = (Boolean *)car;
+            if (tmp->value == 1) printf("#t:boolean\n");
+            else printf("#f:boolean\n");
+        }
+
+        list = (Object *)listCons->cdr;
     }
 }
 
 #endif
-
-
