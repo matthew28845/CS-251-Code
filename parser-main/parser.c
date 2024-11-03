@@ -1,7 +1,6 @@
-
-
 #include "object.h"
 #include "linkedlist.h"
+#include "talloc.h"
 #include <stddef.h>
 #include <stdio.h>
 
@@ -13,88 +12,136 @@
 // for that token list. If a syntax error is encountered, then an error message
 // is printed and the program cleanly exits.
 Object *parse(Object *tokens) {
-    printf("FUCK YOU BITCH");
-    ConsCell *tokensList = (ConsCell *)tokens;
-    ConsCell *tokenStack = (ConsCell *)makeNull();
+    Object *tokensStack = makeNull();
+    int numUnclosedOpens = 0;
 
-    while (tokensList->type != NULL_TYPE) {d
-    //     printf("tokensList Type: %u", tokensList->type);
+    while (tokens->type != NULL_TYPE) {
+        // Syntax error handling for open and closed parens
+        if (car(tokens)->type == OPEN_TYPE && tokens->type == CONS_TYPE) {
+            numUnclosedOpens++;
+        }
 
-    //     // While not close type, continue to pop from tokensList and add to tokenStack
-    //     if (tokensList->car->type != CLOSE_TYPE) {
-    //         tokenStack = (ConsCell *)cons(tokensList->car, (Object *)tokenStack);
-    //     }
-    //     else {
-    //         ConsCell *poppedList = (ConsCell *)makeNull();
+        if (car(tokens)->type == CLOSE_TYPE && tokens->type == CONS_TYPE) {
+            numUnclosedOpens--;
 
-    //         // While not open type, continue to pop from tokensStack and add to poppedList
-    //         while (tokenStack->car->type != OPEN_TYPE) {
-    //             poppedList = (ConsCell *)cons(tokenStack->car, (Object *)poppedList);
-    //             tokenStack = (ConsCell *)tokenStack->cdr;
-    //         }
+            if (numUnclosedOpens < 0) {
+                printf("Syntax error: too many close parentheses\n");
+                texit(1);
+            }
+        }
 
-    //         // Add poppedList to tokenStack
-    //         tokenStack = (ConsCell *)cons((Object *)poppedList, (Object *)tokenStack);
-    //     }
-        
-    //     tokensList = (ConsCell *)cdr((Object *)tokensList);
+        // While tokens list item is not close type, continue to pop from tokens list and prepend to tokenStack
+        if (car(tokens)->type != CLOSE_TYPE && car(tokens)->type != CLOSEBRACE_TYPE) {
+            tokensStack = cons(car(tokens), tokensStack);
+
+        } else if (car(tokens)->type == CLOSE_TYPE) {
+            Object *poppedList = makeNull();
+
+            // While not open type, continue to pop from tokensStack and prepend to poppedList
+            while (tokensStack->type != NULL_TYPE && car(tokensStack)->type != OPEN_TYPE) {
+                poppedList = cons(car(tokensStack), poppedList);
+                tokensStack = cdr(tokensStack);
+            }
+
+            // QUESTION??? I get that we discard the open paren. But um, should we wrap it in a consCell?
+            if (car(tokensStack)->type == OPEN_TYPE) {
+                poppedList = cons(makeNull(), poppedList);
+            }
+
+            tokensStack = cons(poppedList, cdr(tokensStack));
+
+        // If closebrace, iteratively decrease numUnclosedOpens until 0 while popping from tokenStack and prepending to poppedList
+        // ================================================================== TODO FIXXXX ==================================================================
+        } else if (car(tokens)->type == CLOSEBRACE_TYPE) {
+            Object *poppedList = makeNull();
+
+            printf("i.%i\n", numUnclosedOpens);
+            while (numUnclosedOpens >= 1) {
+                if (car(tokensStack)->type == CONS_TYPE) {
+                    poppedList = cons(car(tokensStack), poppedList);
+
+                    if (car(tokensStack)->type == CONS_TYPE) {
+                        printf("ii.%i\n", numUnclosedOpens);
+                        tokensStack = cdr(tokensStack);
+                    }
+
+                // Handle the case of empty parens
+                } else {
+                    printf("ii.%i\n", numUnclosedOpens);
+                    poppedList = cons(makeNull(), poppedList);
+                }
+
+                numUnclosedOpens--;
+                printf("iii.%i\n", numUnclosedOpens);
+                
+            }
+
+            tokensStack = cons(poppedList, cdr(tokensStack));
+        }
+
+        // Move to next item in tokens list
+        tokens = cdr(tokens);
+    }
+    
+    // Handle Errors
+    if (numUnclosedOpens > 0) {
+        printf("Syntax error: not enough close parentheses\n");
+        texit(1);
+    }
+    if (numUnclosedOpens < 0) {
+        printf("Syntax error: too many close parentheses\n");
+        texit(1);
     }
 
-    return reverse((Object *)tokenStack);
+    return reverse(tokensStack);
 }
 
 // Input tree: An abstract syntax tree (forest). The output of parse.
 // Prints the tree in a human-readable format that closely resembles the
 // original Scheme code that led to the abstract syntax tree.
+// ================================================================== TODO FIXXXX ==================================================================
 void printTree(Object *tree) {
-    ConsCell *treeList = (ConsCell *)tree;
+    if (tree->type == CONS_TYPE && car(tree)->type == CONS_TYPE) {
+        printf("(");
+        printTree(car(tree));
+        printf(") ");
 
-    // Iterate through the stack
-    while (treeList->type != NULL_TYPE) {
-        ConsCell *poppedList = (ConsCell *)treeList->car;
+    } else if (tree->type == CONS_TYPE) {
+        Object *poppedItem = car(tree);
 
-        // Iterate through the popped tokensList
-        while (poppedList->type != NULL_TYPE) {
-
-            // Determine type, and handle it
-            if (treeList->car->type == OPEN_TYPE) {
-                printf("(");
-
-            } else if (treeList->car->type == CLOSE_TYPE) {
-                printf(")");
-
-            } else if (treeList->car->type == CLOSEBRACE_TYPE) {
-                printf("}");
-
-            } else if (treeList->car->type == INT_TYPE) {
-                Integer *tmp = (Integer *)car;
+        switch(poppedItem->type) {
+            case INT_TYPE: {
+                Integer *tmp = (Integer *)poppedItem;
                 printf(" %d ", tmp->value);
-                
-            } else if (treeList->car->type == DOUBLE_TYPE) {
-                Double *tmp = (Double *)car;
+                break;
+            }
+            case DOUBLE_TYPE: {
+                Double *tmp = (Double *)poppedItem;
                 printf(" %f ", tmp->value);
-
-            } else if (treeList->car->type == STR_TYPE) {
-                String *tmp = (String *)car;
+                break;
+            }
+            case STR_TYPE: {
+                String *tmp = (String *)poppedItem;
+                printf("\"%s\"", tmp->value);
+                break;
+            }
+            case SYMBOL_TYPE: {
+                Symbol *tmp = (Symbol *)poppedItem;
                 printf(" %s ", tmp->value);
-                
-            } else if (treeList->car->type == SYMBOL_TYPE) {
-                Symbol *tmp = (Symbol *)car;
-                printf(" %s ", tmp->value);
-                
-            } else if (treeList->car->type == BOOL_TYPE) {
-                Boolean *tmp = (Boolean *)car;
+                break;
+            }
+            case BOOL_TYPE: {
+                Boolean *tmp = (Boolean *)poppedItem;
                 if (tmp->value == 1) printf(" #t ");
                 else printf(" #f ");
+                break;
             }
-
-            // Move to next poppedList conscell
-            poppedList = (ConsCell *)poppedList->cdr;
+            default:
+                break;
         }
+    }   
 
-        // Move to next tree list conscell
-        treeList = (ConsCell *)treeList->cdr;
-    }
+    if (tree->type == CONS_TYPE) printTree(cdr(tree));
 }
 
 #endif
