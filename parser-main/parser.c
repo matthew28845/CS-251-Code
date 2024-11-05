@@ -34,18 +34,18 @@ Object *parse(Object *tokens) {
         if (car(tokens)->type != CLOSE_TYPE && car(tokens)->type != CLOSEBRACE_TYPE) {
             tokensStack = cons(car(tokens), tokensStack);
 
+        // Handle closetype
         } else if (car(tokens)->type == CLOSE_TYPE) {
             Object *poppedList = makeNull();
 
+            if (car(tokensStack)->type == OPEN_TYPE) {
+                poppedList = cons(makeNull(), makeNull());
+            }
+            
             // While not open type, continue to pop from tokensStack and prepend to poppedList
             while (tokensStack->type != NULL_TYPE && car(tokensStack)->type != OPEN_TYPE) {
                 poppedList = cons(car(tokensStack), poppedList);
                 tokensStack = cdr(tokensStack);
-            }
-
-            // QUESTION??? I get that we discard the open paren. But um, should we wrap it in a consCell?
-            if (car(tokensStack)->type == OPEN_TYPE) {
-                poppedList = cons(makeNull(), poppedList);
             }
 
             tokensStack = cons(poppedList, cdr(tokensStack));
@@ -53,30 +53,25 @@ Object *parse(Object *tokens) {
         // If closebrace, iteratively decrease numUnclosedOpens until 0 while popping from tokenStack and prepending to poppedList
         // ================================================================== TODO FIXXXX ==================================================================
         } else if (car(tokens)->type == CLOSEBRACE_TYPE) {
-            Object *poppedList = makeNull();
-
-            printf("i.%i\n", numUnclosedOpens);
-            while (numUnclosedOpens >= 1) {
-                if (car(tokensStack)->type == CONS_TYPE) {
+            
+            while (numUnclosedOpens > 0) {
+                Object *poppedList = makeNull();
+                
+                if (car(tokensStack)->type == OPEN_TYPE) {
+                    poppedList = cons(makeNull(), makeNull());
+                
+                // While not open type, continue to pop from tokensStack and prepend to poppedList
+                } 
+                
+                while (tokensStack->type != NULL_TYPE && car(tokensStack)->type != OPEN_TYPE) {
                     poppedList = cons(car(tokensStack), poppedList);
-
-                    if (car(tokensStack)->type == CONS_TYPE) {
-                        printf("ii.%i\n", numUnclosedOpens);
-                        tokensStack = cdr(tokensStack);
-                    }
-
-                // Handle the case of empty parens
-                } else {
-                    printf("ii.%i\n", numUnclosedOpens);
-                    poppedList = cons(makeNull(), poppedList);
+                    tokensStack = cdr(tokensStack);
                 }
 
+                tokensStack = cons(poppedList, cdr(tokensStack));
                 numUnclosedOpens--;
-                printf("iii.%i\n", numUnclosedOpens);
-                
             }
-
-            tokensStack = cons(poppedList, cdr(tokensStack));
+            
         }
 
         // Move to next item in tokens list
