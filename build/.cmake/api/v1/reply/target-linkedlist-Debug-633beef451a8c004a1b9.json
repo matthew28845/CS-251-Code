@@ -57,6 +57,10 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"fragment" : "-Wl,--dependency-file,CMakeFiles/linkedlist.dir/link.d",
+				"role" : "flags"
 			}
 		],
 		"language" : "C"

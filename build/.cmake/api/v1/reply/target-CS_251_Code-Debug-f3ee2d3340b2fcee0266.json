@@ -64,6 +64,10 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"fragment" : "-Wl,--dependency-file,CMakeFiles/CS_251_Code.dir/link.d",
+				"role" : "flags"
 			}
 		],
 		"language" : "C"

@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/CS_251_Code.dir/link.d"
   "CMakeFiles/CS_251_Code.dir/clab-1-main/hello.c.o"
   "CMakeFiles/CS_251_Code.dir/clab-1-main/hello.c.o.d"
   "CMakeFiles/CS_251_Code.dir/clab-1-main/printing.c.o"

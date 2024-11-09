@@ -1,1 +1,1 @@
-/usr/bin/cc -g "CMakeFiles/linkedlist.dir/linkedlist-main/linkedlist.c.o" -o linkedlist
+/usr/bin/cc -g -Wl,--dependency-file,CMakeFiles/linkedlist.dir/link.d "CMakeFiles/linkedlist.dir/linkedlist-main/linkedlist.c.o" -o linkedlist
