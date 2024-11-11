@@ -1,0 +1,21 @@
+clang -gdwarf-4 -fPIC lib/linkedlist-aarch64.o lib/talloc-aarch64.o lib/tokenizer-aarch64.o lib/parser-aarch64.o main.c interpreter.c -o interpreter
+interpreter.c:37:11: error: initializing 'Frame' (aka 'struct Frame') with an expression of incompatible type 'void *'
+   37 |     Frame newFrame = talloc(sizeof(Frame));
+      |           ^          ~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+error: Recipe `build` failed on line 18 with exit code 1
+
+-------------------------------------------------------------
+When debugging, run just a single failing test individually.
+It's faster.
+You can do that just by running:
+     just build
+     ./interpreter < test-files-m/t01.scm
+     or
+     just build
+     valgrind ./interpreter < test-files-m/t01.scm
+(replace test number for 01)
+-------------------------------------------------------------
+
+
+return code is  1

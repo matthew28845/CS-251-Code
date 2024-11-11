@@ -33,36 +33,44 @@ Object *lookup(Object *inputSymbol, Frame *frame) {
     return makeNull();
 }
 
+Frame *createFrame(Frame *parent) {
+    Frame *newFrame = talloc(sizeof(Frame));
+    newFrame->parent = parent;
+    return newFrame;
+}
+
 // Input tree: A cons cell representing the root of the abstract syntax tree for 
 // a single Scheme expression (not an entire program).
 // Input frame: The frame, with respect to which to perform the evaluation.
 // Return: The value of the given expression with respect to the given frame.
 Object *eval(Object *tree, Frame *frame) {
-    if (tree->type == INT_TYPE) {
+    if (car(tree)->type == INT_TYPE) {
+        return car(tree);
+    }
+    else if (car(tree)->type == DOUBLE_TYPE) {
+        return car(tree);
+    }
+    else if (car(tree)->type == STR_TYPE) {
         return tree;
     }
-    else if (tree->type == DOUBLE_TYPE) {
-        return tree;
+    else if (car(tree)->type == BOOL_TYPE) {
+        return car(tree);
     }
-    else if (tree->type == STR_TYPE) {
-        return tree;
-    }
-    else if (tree->type == BOOL_TYPE) {
-        return tree;
-    }
-    else if (tree->type == SYMBOL_TYPE) {
-        lookup(tree, frame);
+    else if (car(tree)->type == SYMBOL_TYPE) {
+        return lookup(car(tree), frame);
     }
     else if (tree->type == CONS_TYPE) {
-        Symbol *symb = (Symbol *)(car(tree));
-        
-        if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "if") == 0) {
+        Symbol *symb = (Symbol *)(car(car(tree)));
+
+        if (car(car(tree))->type == SYMBOL_TYPE && strcmp(symb->value, "if") == 0) {
             //Now we know we are looking at an if statement, so first check for if / cond / true / false, then check for if / cond / true.
             Object *cond = cdr(car(tree));
             Object *ifTrue = cdr(cdr(car(tree)));
             Object *ifFalse = cdr(cdr(cdr(car(tree))));
+            
             if ((cond->type != NULL_TYPE) && (ifTrue->type != NULL_TYPE) && (ifFalse->type != NULL_TYPE)) {
                 Boolean *condBool = (Boolean *)eval(cond, frame); //cast as bool to check if false
+
                 if (condBool->value == 0) {
                     return eval(ifFalse, frame);
                 }
@@ -82,8 +90,19 @@ Object *eval(Object *tree, Frame *frame) {
                 }       
             }
         }
-        else if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "let") == 0) {
-            return car(tree);
+        else if (car(car(tree))->type == SYMBOL_TYPE && strcmp(symb->value, "let") == 0) {
+            printf("you have given me a let statement");
+            Frame *newFrame = createFrame(frame);
+            Object *letList = car(tree);
+            while (letList != NULL) {
+                Object *keyValList = car(cdr(car(tree)));
+                while (keyValList != NULL) {
+                    newFrame->bindings = cons(car(keyValList), newFrame->bindings);
+                    keyValList = cdr(keyValList);
+                }
+            }
+
+            return car(car(tree));
         }
     }
     return evaluationError();
@@ -95,40 +114,48 @@ Object *eval(Object *tree, Frame *frame) {
 void interpret(Object *tree) {
 
     //Set up the global frame and add built-in functions to it (none yet)
-    Frame *globalFrame;
-    globalFrame->parent = NULL;
-    globalFrame->bindings = makeNull();
+    Frame *globalFrame = createFrame(NULL);
 
-    Object *result = eval(tree, globalFrame);
-    switch(result->type) {
-        case INT_TYPE: {
-            Integer *tmp = (Integer *)result;
-            printf(" %d ", tmp->value);
-            break;
+    while(tree->type != NULL_TYPE) {
+        Object *result = eval(tree, globalFrame);
+        switch(result->type) {
+            case INT_TYPE: {
+                Integer *tmp = (Integer *)result;
+                printf(" %d \n", tmp->value);
+                break;
+            }
+            case DOUBLE_TYPE: {
+                Double *tmp = (Double *)result;
+                printf(" %f \n", tmp->value);
+                break;
+            }
+            case STR_TYPE: {
+                String *tmp = (String *)result;
+                printf("\"%s\"\n", tmp->value);
+                break;
+            }
+            case SYMBOL_TYPE: {
+                Symbol *tmp = (Symbol *)result;
+                printf(" %s \n", tmp->value);
+                break;
+            }
+            case BOOL_TYPE: {
+                Boolean *tmp = (Boolean *)result;
+                if (tmp->value == 1) printf(" #t \n");
+                else printf(" #f \n");
+                break;
+            }
+            case UNSPECIFIED_TYPE: {
+                printf("#<unspecified>\n");
+                break;
+            }
+            default:
+                break;
         }
-        case DOUBLE_TYPE: {
-            Double *tmp = (Double *)result;
-            printf(" %f ", tmp->value);
-            break;
-        }
-        case STR_TYPE: {
-            String *tmp = (String *)result;
-            printf("\"%s\"", tmp->value);
-            break;
-        }
-        case SYMBOL_TYPE: {
-            Symbol *tmp = (Symbol *)result;
-            printf(" %s ", tmp->value);
-            break;
-        }
-        case BOOL_TYPE: {
-            Boolean *tmp = (Boolean *)result;
-            if (tmp->value == 1) printf(" #t ");
-            else printf(" #f ");
-            break;
-        }
-        default:
-            break;
+
+        tree = cdr(tree);
     }
+    
+    tfree();    
     return;
 }
