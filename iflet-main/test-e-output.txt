@@ -1,0 +1,23 @@
+clang -gdwarf-4 -fPIC lib/linkedlist-aarch64.o lib/talloc-aarch64.o lib/tokenizer-aarch64.o lib/parser-aarch64.o main.c interpreter.c -o interpreter
+interpreter.c:168:59: warning: incompatible pointer types returning 'Object *()' (aka 'struct Object *()') from a function with result type 'Object *' (aka 'struct Object *') [-Wincompatible-pointer-types]
+  168 |                 if (car(pairs)->type == NULL_TYPE) return evaluationError;
+      |                                                           ^~~~~~~~~~~~~~~
+1 warning generated.
+rm -f *.o
+rm -f vgcore.*
+
+Test failed because of compiler warning.
+-------------------------------------------------------------
+When debugging, run just a single failing test individually.
+It's faster.
+You can do that just by running:
+     just build
+     ./interpreter < test-files-e/t01.scm
+     or
+     just build
+     valgrind ./interpreter < test-files-e/t01.scm
+(replace test number for 01)
+-------------------------------------------------------------
+
+
+return code is  Test failed because of compiler warning.

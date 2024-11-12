@@ -50,6 +50,12 @@ Frame *createFrame(Frame *parent) {
     return newFrame;
 }
 
+Object *createUnspecified() {
+    Object *unspecified = talloc(sizeof(Object));
+    unspecified->type = UNSPECIFIED_TYPE;
+    return unspecified;
+}
+
 void printResult(Object *result) {
     switch(result->type) {
         case INT_TYPE: {
@@ -110,37 +116,40 @@ Object *eval(Object *tree, Frame *frame) {
     }
     else if (tree->type == CONS_TYPE) {
         Symbol *symb = (Symbol *)(car(tree));
-
         // Handle if statements
         if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "if") == 0) {
-            //Now we know we are looking at an if statement, so first check for if / cond / true / false, then check for if / cond / true.
-            Object *cond = car(cdr(tree));
-            Object *ifTrue = car(cdr(cdr(tree)));
-            Object *ifFalse = cdr(cdr(cdr(tree)));
-            
-            if ((cond->type != NULL_TYPE) && (ifTrue->type != NULL_TYPE) && (ifFalse->type != NULL_TYPE)) {
-                Boolean *condBool = (Boolean *)eval(cond, frame); //cast as bool to check if false
+            //Error out if we have less than 3 items
+            if (cdr(cdr(tree))->type != CONS_TYPE) {
+                return evaluationError();
+            }
+            else {
+                //Now we know we are looking at an if statement, so first check for if / cond / true / false, then check for if / cond / true.
+                Object *cond = car(cdr(tree));
+                Object *ifTrue = car(cdr(cdr(tree)));
+                Object *ifFalse = cdr(cdr(cdr(tree)));
+                
+                if ((cond->type != NULL_TYPE) && (ifTrue->type != NULL_TYPE) && (ifFalse->type != NULL_TYPE)) {
+                    Boolean *condBool = (Boolean *)eval(cond, frame); //cast as bool to check if false
 
-                if (condBool->value == 0) {
-                    return eval(car(ifFalse), frame);
+                    if (condBool->value == 0) {
+                        return eval(car(ifFalse), frame);
+                    }
+                    else { // any value of the first argument other than the boolean #f is considered true
+                        return eval(ifTrue, frame);
+                    }
                 }
-                else { // any value of the first argument other than the boolean #f is considered true
-                    return eval(ifTrue, frame);
+                else if ((cond->type != NULL_TYPE) && (ifTrue->type != NULL_TYPE) && (ifFalse->type == NULL_TYPE)) {
+                    Boolean *condBool = (Boolean *)eval(cond, frame); //cast as bool to check if false
+                    if (condBool->value == 0) {
+                        return createUnspecified();
+                    }
+                    else { // any value of the first argument other than the boolean #f is considered true
+                        return eval(ifTrue, frame);
+                    }       
                 }
+                //we have some weird thing happening
+                else return evaluationError();
             }
-            else if ((cond->type != NULL_TYPE) && (ifTrue->type != NULL_TYPE) && (ifFalse->type == NULL_TYPE)) {
-                Boolean *condBool = (Boolean *)eval(cond, frame); //cast as bool to check if false
-                if (condBool->value == 0) {
-                    Object *unspecified;
-                    unspecified->type = UNSPECIFIED_TYPE;
-                    return unspecified;
-                }
-                else { // any value of the first argument other than the boolean #f is considered true
-                    return eval(ifTrue, frame);
-                }       
-            }
-            //we have the wrong number of args
-            else return evaluationError();
         }
         // Handle let statements
         else if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "let") == 0) {
@@ -149,9 +158,29 @@ Object *eval(Object *tree, Frame *frame) {
             Object *pairs = car(cdr(tree));
             Object *expressions = cdr(cdr(tree));
 
+            //if this happens we have a let statement with no body expressions
+            if (expressions->type == NULL_TYPE) {
+                return createUnspecified();
+            }
+
+            //pairs must be a list of pairs, check for it not being a list and it not being of pairs
+            if (pairs->type != CONS_TYPE) {
+                printf("Pairs is not of cons type");
+                return evaluationError();
+            }
+            if (pairs->type == CONS_TYPE) {
+                if (car(pairs)->type == CONS_TYPE) {
+                    if (car(car(pairs))->type == NULL_TYPE) return evaluationError();
+                    if (cdr(car(pairs))->type == NULL_TYPE) return evaluationError();
+                }
+            }
             // Handle the (var value) pairs in a let statement
             while (pairs->type != NULL_TYPE) {
                 Object *pair = car(pairs);
+                //Handle a pair with less than 2 items which is bad
+                if (pair->type != CONS_TYPE) {
+                    return evaluationError();
+                }
                 Object *evaluatedValue = eval(car(cdr(pair)), frame);
                 Object *newBinding = cons(car(pair), evaluatedValue);
 
@@ -165,6 +194,7 @@ Object *eval(Object *tree, Frame *frame) {
             // Handle the expressions in a let statement
             Object *currentExpression;
             if (expressions->type == CONS_TYPE) {
+                expressions = reverse(expressions);
                 if (cdr(expressions)->type != NULL_TYPE) {
                     Object *currentExpression = eval(car(expressions), newFrame);
                     printResult(currentExpression);
@@ -176,7 +206,10 @@ Object *eval(Object *tree, Frame *frame) {
                 }
 
             }
-            return evaluationError();
+            else {
+                return createUnspecified();
+            }
+            return makeNull();
         }
         else return evaluationError();
     }
@@ -192,10 +225,9 @@ void interpret(Object *tree) {
     //Set up the global frame and add built-in functions to it (none yet)
     Frame *globalFrame = createFrame(NULL);
 
-    while(tree->type != NULL_TYPE) {
+    while (tree->type != NULL_TYPE) {
         Object *result = eval(car(tree), globalFrame);
         printResult(result);
-
         tree = cdr(tree);
     }
     
