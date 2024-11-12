@@ -6,6 +6,7 @@
 
 // Descr: Prints evaluation error and performs texit()
 Object *evaluationError() {
+    printf("Evaluation error\n");
     texit(1);
 
     // Appease the compiler
@@ -35,11 +36,11 @@ Object *lookup(Object *inputSymbol, Frame *frame) {
     }
     // If the symbol is not found in the current frame, check the parent frame
     if (frame->parent != NULL) {
-        lookup(inputSymbol, frame->parent);
+        return lookup(inputSymbol, frame->parent);
     }
 
     // Variable is not in any frames
-    return cons(makeNull(), makeNull());
+    return evaluationError();
 }
 
 Frame *createFrame(Frame *parent) {
@@ -138,6 +139,8 @@ Object *eval(Object *tree, Frame *frame) {
                     return eval(ifTrue, frame);
                 }       
             }
+            //we have the wrong number of args
+            else return evaluationError();
         }
         // Handle let statements
         else if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "let") == 0) {
@@ -161,17 +164,23 @@ Object *eval(Object *tree, Frame *frame) {
 
             // Handle the expressions in a let statement
             Object *currentExpression;
-            while (expressions->type == CONS_TYPE) {
-                Object *currentExpression = eval(car(expressions), newFrame);
-                printResult(currentExpression);
-                expressions = cdr(expressions);
+            if (expressions->type == CONS_TYPE) {
+                if (cdr(expressions)->type != NULL_TYPE) {
+                    Object *currentExpression = eval(car(expressions), newFrame);
+                    printResult(currentExpression);
+                    expressions = cdr(expressions);
+                }
+                else {
+                    Object *currentExpression = eval(car(expressions), newFrame);
+                    return currentExpression;
+                }
+
             }
-            // printResult(currentExpression);
-            // return eval(expressions, newFrame);
-            // return eval(expressions, frame);
+            return evaluationError();
         }
+        else return evaluationError();
     }
-    return evaluationError();
+    else return evaluationError();
 }
 
 
