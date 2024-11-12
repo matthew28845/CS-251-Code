@@ -3,6 +3,11 @@
     "files.associations": {
         "stdio.h": "c",
         "stddef.h": "c",
-        "linkedlist.h": "c"
+        "linkedlist.h": "c",
+        "array": "c",
+        "functional": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c"
     }
 }
