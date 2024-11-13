@@ -84,6 +84,10 @@ void printResult(Object *result) {
             else printf("#f ");
             break;
         }
+        case CLOSURE_TYPE: {
+            printf("#<procedure>\n");
+            break;
+        }
         case CONS_TYPE: {
             printf("(");
             while (result->type != NULL_TYPE) {
@@ -95,6 +99,9 @@ void printResult(Object *result) {
         }
         case UNSPECIFIED_TYPE: {
             printf("#<unspecified>\n");
+            break;
+        }
+        case VOID_TYPE: {
             break;
         }
         default:
@@ -124,6 +131,10 @@ Object *eval(Object *tree, Frame *frame) {
         if (binding->type == NULL_TYPE) return evaluationError();
         return cdr(binding);
     }
+    else if (tree->type == CLOSURE_TYPE) {
+        Closure *closureTree = (Closure *)tree;
+        return eval(closureTree->functionCode, closureTree->frame);
+    }
     else if (tree->type == CONS_TYPE) {
         Symbol *symb = (Symbol *)(car(tree));
         // Handle if statements
@@ -150,10 +161,7 @@ Object *eval(Object *tree, Frame *frame) {
                 }
                 else if ((cond->type != NULL_TYPE) && (ifTrue->type != NULL_TYPE) && (ifFalse->type == NULL_TYPE)) {
                     Boolean *condBool = (Boolean *)eval(cond, frame); //cast as bool to check if false
-                    if (condBool->value == 0) {
-                        printf("creating unspecified 1\n");
-                        return createUnspecified();
-                    }
+                    if (condBool->value == 0) return createUnspecified();
                     else { // any value of the first argument other than the boolean #f is considered true
                         return eval(ifTrue, frame);
                     }       
@@ -170,10 +178,7 @@ Object *eval(Object *tree, Frame *frame) {
             Object *expressions = cdr(cdr(tree));
 
             //if this happens we have a let statement with no body expressions
-            if (expressions->type == NULL_TYPE) {
-                printf("creating unspecified 2\n");
-                return createUnspecified();
-            }
+            if (expressions->type == NULL_TYPE) return createUnspecified();
 
             //pairs must be a list of pairs, check for it not being a list and it not being of pairs
             if ((pairs->type != CONS_TYPE) && (pairs->type != NULL_TYPE)) {
@@ -201,12 +206,9 @@ Object *eval(Object *tree, Frame *frame) {
                             return evaluationError();
                         }
 
+                        // Get value using recursive call that evaluates the var
                         Object *evaluatedValue = eval(car(cdr(pair)), frame);
                         Object *newBinding = cons(car(pair), evaluatedValue);
-
-                        // printf("var %u\n", car(pair)->type);
-                        // printf("val %u\n", evaluatedValue->type);
-
                         newFrame->bindings = cons(newBinding, newFrame->bindings);
                         pairs = cdr(pairs);
                     }
@@ -228,19 +230,63 @@ Object *eval(Object *tree, Frame *frame) {
                 }
 
             }
-            else {
-                printf("creating unspecified 3\n");
-                return createUnspecified();
-            }
+            else return createUnspecified();
             return makeNull();
         }
+        //Handle quote
         else if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "quote") == 0) {
             if (cdr(tree)->type == NULL_TYPE) return evaluationError();
             if (cdr(cdr(tree))->type != NULL_TYPE) return evaluationError();
             printResult(car(cdr(tree)));
             return makeNull();
         }
-        else return evaluationError();
+        //Handle define
+        else if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "define") == 0) {
+            //Handle != 2 args
+            if (cdr(cdr(tree))->type == NULL_TYPE) return evaluationError();
+            if (cdr(cdr(cdr(tree)))->type != NULL_TYPE) return evaluationError();
+            //handle first arg not being symbol
+            if (car(cdr(tree))->type != SYMBOL_TYPE) return evaluationError();
+
+            //make sure we are not defining an object that is already defined
+            Object *existingSymbValue = talloc(sizeof(Object));
+            existingSymbValue = lookup(car(cdr(tree)), frame, true);
+            if (existingSymbValue->type != NULL_TYPE) return evaluationError();
+
+            Object *newBinding = cons(car(cdr(tree)), eval(car(cdr(cdr(tree))), frame));
+            frame->bindings = cons(newBinding, frame->bindings);
+            Object *newVoid = talloc(sizeof(Object));
+            newVoid->type = VOID_TYPE;
+            return newVoid;
+        }
+        // Handle lambda
+        else if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "lambda") == 0) {
+            if (car(cdr(tree))->type != CONS_TYPE) return evaluationError();
+
+            Closure *newClosure = talloc(sizeof(Closure));
+            newClosure->paramNames = car(cdr(tree)); // arg list
+            newClosure->functionCode = cdr(cdr(cdr(tree))); // function body
+            newClosure->frame = frame;
+
+            Object *argList = car(cdr(tree));
+
+            printResult(tree);
+            printf("\nPrintResult\n");
+            printResult(cdr(tree));
+
+            while (argList->type != NULL_TYPE) {
+                if (car(argList)->type != SYMBOL_TYPE) return evaluationError();
+                argList = cdr(argList);
+            }
+
+            return (Object *)newClosure;
+        }
+        else if (symb->type == CONS_TYPE) {
+            return eval(car(tree), frame);
+        }
+        else {
+            return evaluationError();
+        }
     }
     else return evaluationError();
 }

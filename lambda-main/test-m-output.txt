@@ -1,0 +1,23 @@
+clang -gdwarf-4 -fPIC linkedlist.c talloc.c main.c tokenizer.c parser.c interpreter.c  -o interpreter
+interpreter.c:278:1: warning: non-void function does not return a value in all control paths [-Wreturn-type]
+  278 | }
+      | ^
+1 warning generated.
+rm -f *.o
+rm -f vgcore.*
+
+Test failed because of compiler warning.
+-------------------------------------------------------------
+When debugging, run just a single failing test individually.
+It's faster.
+You can do that just by running:
+     just build
+     ./interpreter < test-files-m/t01.scm
+     or
+     just build
+     valgrind ./interpreter < test-files-m/t01.scm
+(replace test number for 01)
+-------------------------------------------------------------
+
+
+return code is  Test failed because of compiler warning.
