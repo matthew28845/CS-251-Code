@@ -70,7 +70,7 @@ void printResult(Object *result) {
         }
         case STR_TYPE: {
             String *tmp = (String *)result;
-            printf("\"%s\"\n", tmp->value);
+            printf(" %s \n", tmp->value);
             break;
         }
         case SYMBOL_TYPE: {
@@ -173,31 +173,33 @@ Object *eval(Object *tree, Frame *frame) {
                     if (car(car(pairs))->type == NULL_TYPE) return evaluationError();
                     if (cdr(car(pairs))->type == NULL_TYPE) return evaluationError();
                 }
-            }
-            // Handle the (var value) pairs in a let statement
-            while (pairs->type != NULL_TYPE) {
-                Object *pair = car(pairs);
-                //Handle a pair with less than 2 items
-                if (pair->type != CONS_TYPE) {
-                    return evaluationError();
-                }
-                //Handle trying to pass in a non-symbol as var
-                if (car(pair)->type != SYMBOL_TYPE) {
-                    return evaluationError();
-                }
-                //Handle trying to redefine symbol already defined in let statement
-                if (lookup(car(pair), newFrame, false)->type != NULL_TYPE) {
-                    return evaluationError();
-                }
+                if (car(pairs)->type != NULL_TYPE) {
+                    // Handle the (var value) pairs in a let statement
+                    while (pairs->type != NULL_TYPE) {
+                        Object *pair = car(pairs);
+                        //Handle a pair with less than 2 items
+                        if (pair->type != CONS_TYPE) {
+                            return evaluationError();
+                        }
+                        //Handle trying to pass in a non-symbol as var
+                        if (car(pair)->type != SYMBOL_TYPE) {
+                            return evaluationError();
+                        }
+                        //Handle trying to redefine symbol already defined in let statement
+                        if (lookup(car(pair), newFrame, false)->type != NULL_TYPE) {
+                            return evaluationError();
+                        }
 
-                Object *evaluatedValue = eval(car(cdr(pair)), frame);
-                Object *newBinding = cons(car(pair), evaluatedValue);
+                        Object *evaluatedValue = eval(car(cdr(pair)), frame);
+                        Object *newBinding = cons(car(pair), evaluatedValue);
 
-                // printf("var %u\n", car(pair)->type);
-                // printf("val %u\n", evaluatedValue->type);
+                        // printf("var %u\n", car(pair)->type);
+                        // printf("val %u\n", evaluatedValue->type);
 
-                newFrame->bindings = cons(newBinding, newFrame->bindings);
-                pairs = cdr(pairs);
+                        newFrame->bindings = cons(newBinding, newFrame->bindings);
+                        pairs = cdr(pairs);
+                    }
+                }
             }
 
             // Handle the expressions in a let statement
