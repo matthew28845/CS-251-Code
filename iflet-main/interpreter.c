@@ -18,7 +18,7 @@ Object *evaluationError() {
 // Description: Looks up inputSymbol with regards to frame, if it exists in current frame or
 // ancestors return the cons cell of that object and what it evaluates to, 
 // otherwise return null object.
-Object *lookup(Object *inputSymbol, Frame *frame) {
+Object *lookup(Object *inputSymbol, Frame *frame, bool searchParents) {
     Symbol *symb = (Symbol *)inputSymbol;
     Object *bindingsCopy = frame->bindings;
 
@@ -35,12 +35,12 @@ Object *lookup(Object *inputSymbol, Frame *frame) {
         bindingsCopy = cdr(bindingsCopy);
     }
     // If the symbol is not found in the current frame, check the parent frame
-    if (frame->parent != NULL) {
-        return lookup(inputSymbol, frame->parent);
+    if ((frame->parent != NULL) && (searchParents == true)) {
+        return lookup(inputSymbol, frame->parent, true);
     }
 
     // Variable is not in any frames
-    return evaluationError();
+    return makeNull();
 }
 
 Frame *createFrame(Frame *parent) {
@@ -111,7 +111,8 @@ Object *eval(Object *tree, Frame *frame) {
         return tree;
     }
     else if (tree->type == SYMBOL_TYPE) {
-        Object *binding = lookup(tree, frame);
+        Object *binding = lookup(tree, frame, true);
+        if (binding->type == NULL_TYPE) return evaluationError();
         return cdr(binding);
     }
     else if (tree->type == CONS_TYPE) {
@@ -164,8 +165,7 @@ Object *eval(Object *tree, Frame *frame) {
             }
 
             //pairs must be a list of pairs, check for it not being a list and it not being of pairs
-            if (pairs->type != CONS_TYPE) {
-                printf("Pairs is not of cons type");
+            if ((pairs->type != CONS_TYPE) && (pairs->type != NULL_TYPE)) {
                 return evaluationError();
             }
             if (pairs->type == CONS_TYPE) {
@@ -177,10 +177,19 @@ Object *eval(Object *tree, Frame *frame) {
             // Handle the (var value) pairs in a let statement
             while (pairs->type != NULL_TYPE) {
                 Object *pair = car(pairs);
-                //Handle a pair with less than 2 items which is bad
+                //Handle a pair with less than 2 items
                 if (pair->type != CONS_TYPE) {
                     return evaluationError();
                 }
+                //Handle trying to pass in a non-symbol as var
+                if (car(pair)->type != SYMBOL_TYPE) {
+                    return evaluationError();
+                }
+                //Handle trying to redefine symbol already defined in let statement
+                if (lookup(car(pair), newFrame, false)->type != NULL_TYPE) {
+                    return evaluationError();
+                }
+
                 Object *evaluatedValue = eval(car(cdr(pair)), frame);
                 Object *newBinding = cons(car(pair), evaluatedValue);
 

@@ -1,7 +1,7 @@
-clang -gdwarf-4 -fPIC lib/linkedlist-aarch64.o lib/talloc-aarch64.o lib/tokenizer-aarch64.o lib/parser-aarch64.o main.c interpreter.c -o interpreter
-interpreter.c:168:59: warning: incompatible pointer types returning 'Object *()' (aka 'struct Object *()') from a function with result type 'Object *' (aka 'struct Object *') [-Wincompatible-pointer-types]
-  168 |                 if (car(pairs)->type == NULL_TYPE) return evaluationError;
-      |                                                           ^~~~~~~~~~~~~~~
+clang -gdwarf-4 -fPIC lib/linkedlist-x86_64.o lib/talloc-x86_64.o lib/tokenizer-x86_64.o lib/parser-x86_64.o main.c interpreter.c -o interpreter
+interpreter.c:184:29: warning: format specifies type 'int' but the argument has type 'Object *' (aka 'struct Object *') [-Wformat]
+  184 |                 printf("%d",evaluatedValue);
+      |                         ~~  ^~~~~~~~~~~~~~
 1 warning generated.
 rm -f *.o
 rm -f vgcore.*
