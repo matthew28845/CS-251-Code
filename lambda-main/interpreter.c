@@ -56,6 +56,36 @@ Object *createUnspecified() {
     return unspecified;
 }
 
+Object *eval(Object *tree, Frame *frame);
+void printResult(Object *result);
+
+Object *apply(Object *function, Object *args) {
+    if (function->type != CLOSURE_TYPE) {
+        return evaluationError();
+    }
+
+    Closure *inputClosure = (Closure *)function;
+    Frame *lambdaFrame = createFrame(inputClosure->frame);
+
+    Object *params = inputClosure->paramNames;
+    Object *functionCode = inputClosure->functionCode;
+
+    while (params->type != NULL_TYPE) {
+        Object *newBinding = cons(car(params), car(args));
+        lambdaFrame->bindings = cons(newBinding, lambdaFrame->bindings);
+        params = cdr(params);
+        args = cdr(args);
+    }
+    Object *evaluatedExpression;
+    while (functionCode->type != NULL_TYPE) {
+        evaluatedExpression = eval(car(functionCode), lambdaFrame);
+        printResult(evaluatedExpression);
+        functionCode = cdr(functionCode);
+    }
+
+    return evaluatedExpression;
+}
+
 void printResult(Object *result) {
     switch(result->type) {
         case INT_TYPE: {
@@ -133,6 +163,7 @@ Object *eval(Object *tree, Frame *frame) {
     }
     else if (tree->type == CLOSURE_TYPE) {
         Closure *closureTree = (Closure *)tree;
+        printf("I am going to evaluate the closure now");
         return eval(closureTree->functionCode, closureTree->frame);
     }
     else if (tree->type == CONS_TYPE) {
@@ -264,15 +295,12 @@ Object *eval(Object *tree, Frame *frame) {
             if (car(cdr(tree))->type != CONS_TYPE) return evaluationError();
 
             Closure *newClosure = talloc(sizeof(Closure));
+            newClosure->type = CLOSURE_TYPE;
             newClosure->paramNames = car(cdr(tree)); // arg list
             newClosure->functionCode = cdr(cdr(cdr(tree))); // function body
             newClosure->frame = frame;
 
             Object *argList = car(cdr(tree));
-
-            printResult(tree);
-            printf("\nPrintResult\n");
-            printResult(cdr(tree));
 
             while (argList->type != NULL_TYPE) {
                 if (car(argList)->type != SYMBOL_TYPE) return evaluationError();
@@ -281,8 +309,21 @@ Object *eval(Object *tree, Frame *frame) {
 
             return (Object *)newClosure;
         }
-        else if (symb->type == CONS_TYPE) {
-            return eval(car(tree), frame);
+        // Handle closure / function evaluation
+        else if (symb->type == CLOSURE_TYPE) {
+            Closure *inputClosure = (Closure *)(car(tree));
+
+            Object *evalutedArglist = makeNull();
+            Object *arg = inputClosure->paramNames;
+            while (car(arg)->type != NULL_TYPE) {
+                evalutedArglist = cons(eval(car(arg), inputClosure->frame), evalutedArglist);
+                arg = cdr(arg);
+            }
+
+            Object *closureResult = apply((Object *)inputClosure, evalutedArglist);
+
+            return closureResult;
+            
         }
         else {
             return evaluationError();

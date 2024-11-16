@@ -1,8 +1,20 @@
 clang -gdwarf-4 -fPIC linkedlist.c talloc.c main.c tokenizer.c parser.c interpreter.c  -o interpreter
-interpreter.c:278:1: warning: non-void function does not return a value in all control paths [-Wreturn-type]
-  278 | }
+interpreter.c:280:18: warning: incompatible pointer types passing 'Closure *' (aka 'struct Closure *') to parameter of type 'Object *' (aka 'struct Object *') [-Wincompatible-pointer-types]
+  280 |             eval(newClosure, frame);
+      |                  ^~~~~~~~~~
+interpreter.c:116:22: note: passing argument to parameter 'tree' here
+  116 | Object *eval(Object *tree, Frame *frame) {
+      |                      ^
+interpreter.c:291:25: warning: incompatible pointer types passing 'Closure *' (aka 'struct Closure *') to parameter of type 'Object *' (aka 'struct Object *') [-Wincompatible-pointer-types]
+  291 |             return eval(newClosure, frame);
+      |                         ^~~~~~~~~~
+interpreter.c:116:22: note: passing argument to parameter 'tree' here
+  116 | Object *eval(Object *tree, Frame *frame) {
+      |                      ^
+interpreter.c:298:1: warning: non-void function does not return a value in all control paths [-Wreturn-type]
+  298 | }
       | ^
-1 warning generated.
+3 warnings generated.
 rm -f *.o
 rm -f vgcore.*
 
