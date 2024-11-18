@@ -4,13 +4,11 @@
 #include "talloc.h"
 #include "linkedlist.h"
 
-// Descr: Prints evaluation error and performs texit()
-Object *evaluationError() {
-    printf("Evaluation error\n");
+// Description: Prints evaluation error and performs texit()
+Object *evaluationError(char* str) {
+    printf("Evaluation Error: %s", str);
     texit(1);
-
-    // Appease the compiler
-    return makeNull();
+    return makeNull(); // Appease the compiler
 }
 
 // Input inputSymbol: A symbol to look up the value of.
@@ -60,8 +58,9 @@ Object *eval(Object *tree, Frame *frame);
 void printResult(Object *result);
 
 Object *apply(Object *function, Object *args) {
+    printf("\nRunning apply\n");
     if (function->type != CLOSURE_TYPE) {
-        return evaluationError();
+        return evaluationError("Failed to apply as eval");
     }
 
     Closure *inputClosure = (Closure *)function;
@@ -70,16 +69,20 @@ Object *apply(Object *function, Object *args) {
     Object *params = inputClosure->paramNames;
     Object *functionCode = inputClosure->functionCode;
 
-    while (params->type != NULL_TYPE) {
+    // Bind params to arguments and add to new lambda frame
+    while (params->type != NULL_TYPE && params->type == CONS_TYPE && car(params)->type != NULL_TYPE) {
+        printf("\n Params exist, iterating... \n");
         Object *newBinding = cons(car(params), car(args));
         lambdaFrame->bindings = cons(newBinding, lambdaFrame->bindings);
         params = cdr(params);
         args = cdr(args);
     }
+
+    // Evaluate the function expressions
     Object *evaluatedExpression;
-    while (functionCode->type != NULL_TYPE) {
+    while (functionCode->type != NULL_TYPE && functionCode->type == CONS_TYPE && car(functionCode)->type != NULL_TYPE) {
         evaluatedExpression = eval(car(functionCode), lambdaFrame);
-        printResult(evaluatedExpression);
+        // printResult(evaluatedExpression);
         functionCode = cdr(functionCode);
     }
 
@@ -145,34 +148,36 @@ void printResult(Object *result) {
 // Return: The value of the given expression with respect to the given frame.
 Object *eval(Object *tree, Frame *frame) {
     if (tree->type == INT_TYPE) {
+        printf("\nHandling int\n");
         return tree;
     }
     else if (tree->type == DOUBLE_TYPE) {
+        printf("\nHandling doub\n");
         return tree;
     }
     else if (tree->type == STR_TYPE) {
+        printf("\nHandling str\n");
         return tree;
     }
     else if (tree->type == BOOL_TYPE) {
+        printf("\nHandling bool\n");
         return tree;
     }
     else if (tree->type == SYMBOL_TYPE) {
+        printf("\nHandling symbol\n");
+        printf("%s\n\n", ((Symbol *)tree)->value);
         Object *binding = lookup(tree, frame, true);
-        if (binding->type == NULL_TYPE) return evaluationError();
+        if (binding->type == NULL_TYPE) return evaluationError("Failed to find symbol binding");
         return cdr(binding);
     }
-    else if (tree->type == CLOSURE_TYPE) {
-        Closure *closureTree = (Closure *)tree;
-        printf("I am going to evaluate the closure now");
-        return eval(closureTree->functionCode, closureTree->frame);
-    }
     else if (tree->type == CONS_TYPE) {
+        printf("\nHandling cons\n");
         Symbol *symb = (Symbol *)(car(tree));
         // Handle if statements
         if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "if") == 0) {
             //Error out if we have less than 3 items
             if (cdr(cdr(tree))->type != CONS_TYPE) {
-                return evaluationError();
+                return evaluationError("Less than three arguments in ConsCell");
             }
             else {
                 //Now we know we are looking at an if statement, so first check for if / cond / true / false, then check for if / cond / true.
@@ -198,11 +203,12 @@ Object *eval(Object *tree, Frame *frame) {
                     }       
                 }
                 //we have some weird thing happening
-                else return evaluationError();
+                else return evaluationError("Unsure");
             }
         }
         // Handle let statements
         else if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "let") == 0) {
+            printf("\nHandling let\n");
             Frame *newFrame = createFrame(frame);
 
             Object *pairs = car(cdr(tree));
@@ -213,12 +219,12 @@ Object *eval(Object *tree, Frame *frame) {
 
             //pairs must be a list of pairs, check for it not being a list and it not being of pairs
             if ((pairs->type != CONS_TYPE) && (pairs->type != NULL_TYPE)) {
-                return evaluationError();
+                return evaluationError("Pairs must be a list of pairs, it's either not a list, or not a pair");
             }
             if (pairs->type == CONS_TYPE) {
                 if (car(pairs)->type == CONS_TYPE) {
-                    if (car(car(pairs))->type == NULL_TYPE) return evaluationError();
-                    if (cdr(car(pairs))->type == NULL_TYPE) return evaluationError();
+                    if (car(car(pairs))->type == NULL_TYPE) return evaluationError("The var of the pair is NULL");
+                    if (cdr(car(pairs))->type == NULL_TYPE) return evaluationError("The val of the pair is NULL");
                 }
                 if (car(pairs)->type != NULL_TYPE) {
                     // Handle the (var value) pairs in a let statement
@@ -226,15 +232,15 @@ Object *eval(Object *tree, Frame *frame) {
                         Object *pair = car(pairs);
                         //Handle a pair with less than 2 items
                         if (pair->type != CONS_TYPE) {
-                            return evaluationError();
+                            return evaluationError("Pair with less than 2 items");
                         }
                         //Handle trying to pass in a non-symbol as var
                         if (car(pair)->type != SYMBOL_TYPE) {
-                            return evaluationError();
+                            return evaluationError("Can't pass non-symbol as var");
                         }
                         //Handle trying to redefine symbol already defined in let statement
                         if (lookup(car(pair), newFrame, false)->type != NULL_TYPE) {
-                            return evaluationError();
+                            return evaluationError("Can't redfine symbol already defined in let");
                         }
 
                         // Get value using recursive call that evaluates the var
@@ -266,23 +272,25 @@ Object *eval(Object *tree, Frame *frame) {
         }
         //Handle quote
         else if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "quote") == 0) {
-            if (cdr(tree)->type == NULL_TYPE) return evaluationError();
-            if (cdr(cdr(tree))->type != NULL_TYPE) return evaluationError();
+            printf("\nHandling quote\n");
+            if (cdr(tree)->type == NULL_TYPE) return evaluationError("Second arg for quote is NULL");
+            if (cdr(cdr(tree))->type != NULL_TYPE) return evaluationError("Third arg for quote is NULL");
             printResult(car(cdr(tree)));
             return makeNull();
         }
         //Handle define
         else if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "define") == 0) {
+            printf("\nHandling define\n");
             //Handle != 2 args
-            if (cdr(cdr(tree))->type == NULL_TYPE) return evaluationError();
-            if (cdr(cdr(cdr(tree)))->type != NULL_TYPE) return evaluationError();
+            if (cdr(cdr(tree))->type == NULL_TYPE) return evaluationError("Second arg for define is NULL");
+            if (cdr(cdr(cdr(tree)))->type != NULL_TYPE) return evaluationError("Third arg for define is NULL");
             //handle first arg not being symbol
-            if (car(cdr(tree))->type != SYMBOL_TYPE) return evaluationError();
+            if (car(cdr(tree))->type != SYMBOL_TYPE) return evaluationError("First arg for define is not symbol type");
 
             //make sure we are not defining an object that is already defined
             Object *existingSymbValue = talloc(sizeof(Object));
             existingSymbValue = lookup(car(cdr(tree)), frame, true);
-            if (existingSymbValue->type != NULL_TYPE) return evaluationError();
+            if (existingSymbValue->type != NULL_TYPE) return evaluationError("Can't redefine an object that is already defined");
 
             Object *newBinding = cons(car(cdr(tree)), eval(car(cdr(cdr(tree))), frame));
             frame->bindings = cons(newBinding, frame->bindings);
@@ -291,45 +299,56 @@ Object *eval(Object *tree, Frame *frame) {
             return newVoid;
         }
         // Handle lambda
-        else if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "lambda") == 0) {
-            if (car(cdr(tree))->type != CONS_TYPE) return evaluationError();
+        // else if (car(car(tree))->type == SYMBOL_TYPE && strcmp(((Symbol *)car(car(tree)))->value, "lambda") == 0) {
+        else if (car(tree)->type == SYMBOL_TYPE && strcmp(((Symbol *)car(tree))->value, "lambda") == 0) {
+            printf("\nHandling lambda\n");
+            // if (car(cdr(tree))->type != CONS_TYPE) return evaluationError();
 
             Closure *newClosure = talloc(sizeof(Closure));
             newClosure->type = CLOSURE_TYPE;
             newClosure->paramNames = car(cdr(tree)); // arg list
-            newClosure->functionCode = cdr(cdr(cdr(tree))); // function body
+            newClosure->functionCode = cdr(cdr(tree)); // function body
             newClosure->frame = frame;
 
             Object *argList = car(cdr(tree));
 
-            while (argList->type != NULL_TYPE) {
-                if (car(argList)->type != SYMBOL_TYPE) return evaluationError();
+            while (argList->type == CONS_TYPE && car(argList)->type != NULL_TYPE) {
+                printf("Val: %s Type: %u\n", ((Symbol *)car(argList))->value, car(argList)->type);
+                if (car(argList)->type != SYMBOL_TYPE) return evaluationError("Item in arg list is not symbol type");
                 argList = cdr(argList);
             }
-
+            printf("\nReturning a new closure\n");
             return (Object *)newClosure;
         }
-        // Handle closure / function evaluation
-        else if (symb->type == CLOSURE_TYPE) {
-            Closure *inputClosure = (Closure *)(car(tree));
-
-            Object *evalutedArglist = makeNull();
-            Object *arg = inputClosure->paramNames;
-            while (car(arg)->type != NULL_TYPE) {
-                evalutedArglist = cons(eval(car(arg), inputClosure->frame), evalutedArglist);
-                arg = cdr(arg);
-            }
-
-            Object *closureResult = apply((Object *)inputClosure, evalutedArglist);
-
-            return closureResult;
-            
-        }
+        // Handle else
         else {
-            return evaluationError();
+            // Handle closure evaluation
+            Object *result = eval(car(tree), frame);
+            if (result->type == CLOSURE_TYPE) {
+                printf("\nHandling closure\n");
+                Closure *inputClosure = (Closure *)result;
+                Object *argList = inputClosure->paramNames;
+
+                Object *evalutedArglist = makeNull();
+                Frame *newFrame = createFrame(inputClosure->frame);
+
+                // TODO FIX? Frame issue? I think?
+                // Handle argument evaluation and add to evaluated arg list
+                while (argList->type == CONS_TYPE && car(argList)->type != NULL_TYPE) {
+                    printf("Val: %s Type: %u\n", ((Symbol *)car(argList))->value, car(argList)->type);
+                    Object *evaledArg = lookup(argList, newFrame, true);
+                    // evalutedArglist = cons(evaledArg, evalutedArglist);
+                    // printf("Val: %s Type: %u\n", ((Symbol *)evaledArg)->value, evaledArg->type);
+                    argList = cdr(argList);
+                }
+
+                // Evaluate using apply helper function
+                Object *closureResult = apply((Object *)inputClosure, evalutedArglist);
+                return closureResult;
+            }
         }
     }
-    else return evaluationError();
+    return evaluationError("Unsure");
 }
 
 
