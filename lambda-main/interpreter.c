@@ -54,39 +54,6 @@ Object *createUnspecified() {
     return unspecified;
 }
 
-Object *eval(Object *tree, Frame *frame);
-void printResult(Object *result);
-
-Object *apply(Object *function, Object *args) {
-    if (function->type != CLOSURE_TYPE) {
-        return evaluationError("Failed to apply as eval");
-    }
-
-    Closure *inputClosure = (Closure *)function;
-    Frame *lambdaFrame = createFrame(inputClosure->frame);
-
-    Object *params = inputClosure->paramNames;
-    Object *functionCode = inputClosure->functionCode;
-
-    // Bind params to arguments and add to new lambda frame
-    while (params->type != NULL_TYPE && params->type == CONS_TYPE && car(params)->type != NULL_TYPE) {
-        Object *newBinding = cons(car(params), car(args));
-        lambdaFrame->bindings = cons(newBinding, lambdaFrame->bindings);
-        params = cdr(params);
-        args = cdr(args);
-    }
-
-    // Evaluate the function expressions
-    Object *evaluatedExpression;
-    while (functionCode->type != NULL_TYPE && functionCode->type == CONS_TYPE && car(functionCode)->type != NULL_TYPE) {
-        evaluatedExpression = eval(car(functionCode), lambdaFrame);
-        // printResult(evaluatedExpression);
-        functionCode = cdr(functionCode);
-    }
-
-    return evaluatedExpression;
-}
-
 void printResult(Object *result) {
     switch(result->type) {
         case INT_TYPE: {
@@ -358,6 +325,9 @@ Object *eval(Object *tree, Frame *frame) {
 
                 return evaledExpression;
             }
+        }
+        else {
+          
         }
     }
     return evaluationError("Nothing is going to plan :(");
