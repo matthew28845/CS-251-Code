@@ -73,6 +73,30 @@ build CMakeFiles/CS_251_Code.dir/clab-2-main/guess.c.o: C_COMPILER__CS_251_Code_
   OBJECT_DIR = CMakeFiles/CS_251_Code.dir
   OBJECT_FILE_DIR = CMakeFiles/CS_251_Code.dir/clab-2-main
 
+build CMakeFiles/CS_251_Code.dir/clab-2-main/complex.c.o: C_COMPILER__CS_251_Code_unscanned_Debug /home/matthew/Documents/GitHub/CS-251-Code/clab-2-main/complex.c || cmake_object_order_depends_target_CS_251_Code
+  DEP_FILE = CMakeFiles/CS_251_Code.dir/clab-2-main/complex.c.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/CS_251_Code.dir
+  OBJECT_FILE_DIR = CMakeFiles/CS_251_Code.dir/clab-2-main
+
+build CMakeFiles/CS_251_Code.dir/vector-main/vector.c.o: C_COMPILER__CS_251_Code_unscanned_Debug /home/matthew/Documents/GitHub/CS-251-Code/vector-main/vector.c || cmake_object_order_depends_target_CS_251_Code
+  DEP_FILE = CMakeFiles/CS_251_Code.dir/vector-main/vector.c.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/CS_251_Code.dir
+  OBJECT_FILE_DIR = CMakeFiles/CS_251_Code.dir/vector-main
+
+build CMakeFiles/CS_251_Code.dir/hmwrk.c.o: C_COMPILER__CS_251_Code_unscanned_Debug /home/matthew/Documents/GitHub/CS-251-Code/hmwrk.c || cmake_object_order_depends_target_CS_251_Code
+  DEP_FILE = CMakeFiles/CS_251_Code.dir/hmwrk.c.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/CS_251_Code.dir
+  OBJECT_FILE_DIR = CMakeFiles/CS_251_Code.dir
+
+build CMakeFiles/CS_251_Code.dir/linkedlist-main/linkedlist.c.o: C_COMPILER__CS_251_Code_unscanned_Debug /home/matthew/Documents/GitHub/CS-251-Code/linkedlist-main/linkedlist.c || cmake_object_order_depends_target_CS_251_Code
+  DEP_FILE = CMakeFiles/CS_251_Code.dir/linkedlist-main/linkedlist.c.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/CS_251_Code.dir
+  OBJECT_FILE_DIR = CMakeFiles/CS_251_Code.dir/linkedlist-main
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CS_251_Code
@@ -81,13 +105,44 @@ build CMakeFiles/CS_251_Code.dir/clab-2-main/guess.c.o: C_COMPILER__CS_251_Code_
 #############################################
 # Link the executable CS_251_Code
 
-build CS_251_Code: C_EXECUTABLE_LINKER__CS_251_Code_Debug CMakeFiles/CS_251_Code.dir/clab-1-main/hello.c.o CMakeFiles/CS_251_Code.dir/clab-1-main/printing.c.o CMakeFiles/CS_251_Code.dir/clab-1-main/temperature.c.o CMakeFiles/CS_251_Code.dir/clab-2-main/guess.c.o
+build CS_251_Code: C_EXECUTABLE_LINKER__CS_251_Code_Debug CMakeFiles/CS_251_Code.dir/clab-1-main/hello.c.o CMakeFiles/CS_251_Code.dir/clab-1-main/printing.c.o CMakeFiles/CS_251_Code.dir/clab-1-main/temperature.c.o CMakeFiles/CS_251_Code.dir/clab-2-main/guess.c.o CMakeFiles/CS_251_Code.dir/clab-2-main/complex.c.o CMakeFiles/CS_251_Code.dir/vector-main/vector.c.o CMakeFiles/CS_251_Code.dir/hmwrk.c.o CMakeFiles/CS_251_Code.dir/linkedlist-main/linkedlist.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/CS_251_Code.dir
   POST_BUILD = :
   PRE_LINK = :
   TARGET_FILE = CS_251_Code
   TARGET_PDB = CS_251_Code.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target linkedlist
+
+
+#############################################
+# Order-only phony target for linkedlist
+
+build cmake_object_order_depends_target_linkedlist: phony || .
+
+build CMakeFiles/linkedlist.dir/linkedlist-main/linkedlist.c.o: C_COMPILER__linkedlist_unscanned_Debug /home/matthew/Documents/GitHub/CS-251-Code/linkedlist-main/linkedlist.c || cmake_object_order_depends_target_linkedlist
+  DEP_FILE = CMakeFiles/linkedlist.dir/linkedlist-main/linkedlist.c.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/linkedlist.dir
+  OBJECT_FILE_DIR = CMakeFiles/linkedlist.dir/linkedlist-main
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target linkedlist
+
+
+#############################################
+# Link the executable linkedlist
+
+build linkedlist: C_EXECUTABLE_LINKER__linkedlist_Debug CMakeFiles/linkedlist.dir/linkedlist-main/linkedlist.c.o
+  FLAGS = -g
+  OBJECT_DIR = CMakeFiles/linkedlist.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = linkedlist
+  TARGET_PDB = linkedlist.dbg
 
 
 #############################################
@@ -123,7 +178,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /home/matthew/Documents/GitHub/CS-251-Code/cmake-build-debug
 
-build all: phony CS_251_Code
+build all: phony CS_251_Code linkedlist
 
 # =============================================================================
 # Built-in targets
