@@ -109,11 +109,13 @@ void printResult(Object *result) {
 
 Object *createPrimitive(char *name, Object*(*pf)()) {
     Primitive *myPrimitive = talloc(sizeof(Primitive));
-    Symbol *primitiveName = talloc(sizeof(String));
+    myPrimitive->type = PRIMITIVE_TYPE;
+    Symbol *primitiveName = talloc(sizeof(Symbol));
+    primitiveName->type = SYMBOL_TYPE;
     primitiveName->value = name;
     myPrimitive->pf = pf;
 
-    return (Object *)myPrimitive;
+    return cons((Object *) primitiveName, (Object *)myPrimitive);
 }
 
 Object *primitiveNull(Object *args) {
@@ -158,8 +160,10 @@ Object *eval(Object *tree, Frame *frame) {
         printf("Evaluating symbol");
         Object *binding = lookup(tree, frame, true);
         if (binding->type == NULL_TYPE) return evaluationError("Failed to find symbol binding");
-        else printf("%u", binding->type);
-        return cdr(binding);
+        printf("Binding type: %u\n", binding->type); // Type of binding
+        printf("Binding car type: %u\n", car(binding)->type); // Should be SYMBOL_TYPE
+        printf("Binding cdr type: %u\n", cdr(binding)->type); // Should be PRIMITIVE_TYPE
+        return binding;
     }
     else if (tree->type == CONS_TYPE) {
         printf("Evaluating cons, the car's type is %u", car(tree)->type);
@@ -357,13 +361,16 @@ Object *eval(Object *tree, Frame *frame) {
             }
         }
         //Handle primitives
-        else if (eval(car(tree), frame)->type == PRIMITIVE_TYPE) {
-            printf("Handling primitive");
-            Primitive *primitiveCar = (Primitive *)car(tree);
-            return primitiveCar->pf(cdr(tree));
-        }
         else {
-            return evaluationError("you gave me some wack shit");
+            Object *evaluatedCar = eval(car(tree), frame);
+            Symbol *carName = (Symbol *)car(evaluatedCar);
+            printf("%s\n", carName->value);
+            Primitive *actualPrimitive = (Primitive *)cdr(evaluatedCar);
+            if (actualPrimitive->type != PRIMITIVE_TYPE) {
+                return evaluationError("Expected a primitive function");
+            }
+            Object *result = actualPrimitive->pf(tree);
+            return result;
         }
     }
     return evaluationError("Nothing is going to plan :(");
@@ -379,31 +386,17 @@ void interpret(Object *tree) {
     Frame *globalFrame = createFrame(NULL);
 
     //Create primitive null?
-    Primitive *null = talloc(sizeof(Primitive));
-    null->type = PRIMITIVE_TYPE;
-    null->pf = &primitiveNull;
-    Symbol *nullSymbol = talloc(sizeof(Symbol));
-    nullSymbol->type = SYMBOL_TYPE;
-    nullSymbol->value = "null?";
-    globalFrame->bindings = cons(cons((Object *)nullSymbol, (Object *)null), globalFrame->bindings);
+    Object *null = createPrimitive("null?", primitiveNull);
+    globalFrame->bindings = cons(null, globalFrame->bindings);
 
     //Create primitive car
-    Primitive *primCar = talloc(sizeof(Primitive));
-    primCar->type = PRIMITIVE_TYPE;
-    primCar->pf = &primitiveCar;
-    Symbol *carSymbol = talloc(sizeof(Symbol));
-    carSymbol->type = SYMBOL_TYPE;
-    carSymbol->value = "car";
-    globalFrame->bindings = cons(cons((Object *)carSymbol, (Object *)primCar), globalFrame->bindings);
+    Object *primCar = createPrimitive("car", primitiveCar);
+    globalFrame->bindings = cons(primCar, globalFrame->bindings);
 
     //Create primitive cdr
-    Primitive *primCdr = talloc(sizeof(Primitive));
-    primCdr->type = PRIMITIVE_TYPE;
-    primCdr->pf = &primitiveCdr;
-    Symbol *cdrSymbol = talloc(sizeof(Symbol));
-    cdrSymbol->type = SYMBOL_TYPE;
-    cdrSymbol->value = "cdr";
-    globalFrame->bindings = cons(cons((Object *)cdrSymbol, (Object *)primCdr), globalFrame->bindings);
+    Object *primCdr = createPrimitive("cdr", primitiveCdr);
+    globalFrame->bindings = cons(primCdr, globalFrame->bindings);
+
 
     while (tree->type != NULL_TYPE) {
         Object *result = eval(car(tree), globalFrame);
@@ -413,5 +406,4 @@ void interpret(Object *tree) {
     }
 
     tfree();
-    return;
 }

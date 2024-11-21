@@ -97,6 +97,12 @@ build CMakeFiles/CS_251_Code.dir/linkedlist-main/linkedlist.c.o: C_COMPILER__CS_
   OBJECT_DIR = CMakeFiles/CS_251_Code.dir
   OBJECT_FILE_DIR = CMakeFiles/CS_251_Code.dir/linkedlist-main
 
+build CMakeFiles/CS_251_Code.dir/primitives-main/interpreter.c.o: C_COMPILER__CS_251_Code_unscanned_Debug /home/matthew/Documents/GitHub/CS-251-Code/primitives-main/interpreter.c || cmake_object_order_depends_target_CS_251_Code
+  DEP_FILE = CMakeFiles/CS_251_Code.dir/primitives-main/interpreter.c.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/CS_251_Code.dir
+  OBJECT_FILE_DIR = CMakeFiles/CS_251_Code.dir/primitives-main
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CS_251_Code
@@ -105,7 +111,7 @@ build CMakeFiles/CS_251_Code.dir/linkedlist-main/linkedlist.c.o: C_COMPILER__CS_
 #############################################
 # Link the executable CS_251_Code
 
-build CS_251_Code: C_EXECUTABLE_LINKER__CS_251_Code_Debug CMakeFiles/CS_251_Code.dir/clab-1-main/hello.c.o CMakeFiles/CS_251_Code.dir/clab-1-main/printing.c.o CMakeFiles/CS_251_Code.dir/clab-1-main/temperature.c.o CMakeFiles/CS_251_Code.dir/clab-2-main/guess.c.o CMakeFiles/CS_251_Code.dir/clab-2-main/complex.c.o CMakeFiles/CS_251_Code.dir/vector-main/vector.c.o CMakeFiles/CS_251_Code.dir/hmwrk.c.o CMakeFiles/CS_251_Code.dir/linkedlist-main/linkedlist.c.o
+build CS_251_Code: C_EXECUTABLE_LINKER__CS_251_Code_Debug CMakeFiles/CS_251_Code.dir/clab-1-main/hello.c.o CMakeFiles/CS_251_Code.dir/clab-1-main/printing.c.o CMakeFiles/CS_251_Code.dir/clab-1-main/temperature.c.o CMakeFiles/CS_251_Code.dir/clab-2-main/guess.c.o CMakeFiles/CS_251_Code.dir/clab-2-main/complex.c.o CMakeFiles/CS_251_Code.dir/vector-main/vector.c.o CMakeFiles/CS_251_Code.dir/hmwrk.c.o CMakeFiles/CS_251_Code.dir/linkedlist-main/linkedlist.c.o CMakeFiles/CS_251_Code.dir/primitives-main/interpreter.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/CS_251_Code.dir
   POST_BUILD = :
@@ -128,6 +134,12 @@ build CMakeFiles/linkedlist.dir/linkedlist-main/linkedlist.c.o: C_COMPILER__link
   OBJECT_DIR = CMakeFiles/linkedlist.dir
   OBJECT_FILE_DIR = CMakeFiles/linkedlist.dir/linkedlist-main
 
+build CMakeFiles/linkedlist.dir/primitives-main/interpreter.c.o: C_COMPILER__linkedlist_unscanned_Debug /home/matthew/Documents/GitHub/CS-251-Code/primitives-main/interpreter.c || cmake_object_order_depends_target_linkedlist
+  DEP_FILE = CMakeFiles/linkedlist.dir/primitives-main/interpreter.c.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/linkedlist.dir
+  OBJECT_FILE_DIR = CMakeFiles/linkedlist.dir/primitives-main
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target linkedlist
@@ -136,7 +148,7 @@ build CMakeFiles/linkedlist.dir/linkedlist-main/linkedlist.c.o: C_COMPILER__link
 #############################################
 # Link the executable linkedlist
 
-build linkedlist: C_EXECUTABLE_LINKER__linkedlist_Debug CMakeFiles/linkedlist.dir/linkedlist-main/linkedlist.c.o
+build linkedlist: C_EXECUTABLE_LINKER__linkedlist_Debug CMakeFiles/linkedlist.dir/linkedlist-main/linkedlist.c.o CMakeFiles/linkedlist.dir/primitives-main/interpreter.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/linkedlist.dir
   POST_BUILD = :

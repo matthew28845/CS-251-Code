@@ -1,0 +1,2286 @@
+clang -gdwarf-4 -fPIC linkedlist.c talloc.c main.c tokenizer.c parser.c interpreter.c  -o interpreter
+rm -f *.o
+rm -f vgcore.*
+
+-------------------------------------------------------------
+When debugging, run just a single failing test individually.
+It's faster.
+You can do that just by running:
+     just build
+     ./interpreter < test-files-m/t01.scm
+     or
+     just build
+     valgrind ./interpreter < test-files-m/t01.scm
+(replace test number for 01)
+-------------------------------------------------------------
+
+
+return code is  0
+------Test map01 ------
+---OUTPUT INCORRECT---
+Correct output:
+(2 4 10)
+Student output:
+Evaluating cons, the car's type is 9Evaluating symbolEvaluation Error: Failed to find symbol binding
+---VALGRIND NO ERROR---
+------Test map02 ------
+---OUTPUT INCORRECT---
+Correct output:
+(a c e h)
+Student output:
+Evaluating cons, the car's type is 9Evaluating symbolEvaluation Error: Failed to find symbol binding
+---VALGRIND NO ERROR---
+------Test mix01 ------
+---OUTPUT INCORRECT---
+Correct output:
+(3 4 11 5 6)
+Student output:
+Evaluating cons, the car's type is 9Evaluating symbolEvaluation Error: Failed to find symbol binding
+---VALGRIND NO ERROR---
+------Test mix02 ------
+---OUTPUT INCORRECT---
+Correct output:
+0 3
+Student output:
+Evaluating cons, the car's type is 9Evaluating cons, the car's type is 9 Evaluating cons, the car's type is 9Evaluating symbolMatched symbol. Returning something of type 13Binding type: 3 Binding car type: 9 Binding cdr type: 13 length-list Evaluation error
+---VALGRIND NO ERROR---
+------Test null01 ------
+---OUTPUT INCORRECT---
+Correct output:
+#f
+Student output:
+Evaluating cons, the car's type is 9Evaluating symbolMatched symbol. Returning something of type 14Binding type: 3 Binding car type: 9 Binding cdr type: 14 null? 1
+---VALGRIND ERROR---
+Valgrind test results
+==31148== Memcheck, a memory error detector
+==31148== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==31148== Using Valgrind-3.24.0 and LibVEX; rerun with -h for copyright info
+==31148== Command: ./interpreter
+==31148== 
+==31148== Conditional jump or move depends on uninitialised value(s)
+==31148==    at 0x10B38A: printResult (interpreter.c:58)
+==31148==    by 0x10C55A: interpret (interpreter.c:403)
+==31148==    by 0x10993F: main (main.c:13)
+==31148== 
+==31148== Use of uninitialised value of size 8
+==31148==    at 0x10B39B: printResult (interpreter.c:58)
+==31148==    by 0x10C55A: interpret (interpreter.c:403)
+==31148==    by 0x10993F: main (main.c:13)
+==31148== 
+Evaluating cons, the car's type is 9Evaluating symbolMatched symbol. Returning something of type 14Binding type: 3
+Binding car type: 9
+Binding cdr type: 14
+null?
+1 
+==31148== 
+==31148== HEAP SUMMARY:
+==31148==     in use at exit: 0 bytes in 0 blocks
+==31148==   total heap usage: 82 allocs, 82 frees, 9,813 bytes allocated
+==31148== 
+==31148== All heap blocks were freed -- no leaks are possible
+==31148== 
+==31148== Use --track-origins=yes to see where uninitialised values come from
+==31148== For lists of detected and suppressed errors, rerun with: -s
+==31148== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+
+------Test null02 ------
+---OUTPUT INCORRECT---
+Correct output:
+#f
+Student output:
+Evaluating cons, the car's type is 9Evaluating symbolMatched symbol. Returning something of type 14Binding type: 3 Binding car type: 9 Binding cdr type: 14 null? 1
+---VALGRIND ERROR---
+Valgrind test results
+==31154== Memcheck, a memory error detector
+==31154== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==31154== Using Valgrind-3.24.0 and LibVEX; rerun with -h for copyright info
+==31154== Command: ./interpreter
+==31154== 
+==31154== Conditional jump or move depends on uninitialised value(s)
+==31154==    at 0x10B38A: printResult (interpreter.c:58)
+==31154==    by 0x10C55A: interpret (interpreter.c:403)
+==31154==    by 0x10993F: main (main.c:13)
+==31154== 
+==31154== Use of uninitialised value of size 8
+==31154==    at 0x10B39B: printResult (interpreter.c:58)
+==31154==    by 0x10C55A: interpret (interpreter.c:403)
+==31154==    by 0x10993F: main (main.c:13)
+==31154== 
+Evaluating cons, the car's type is 9Evaluating symbolMatched symbol. Returning something of type 14Binding type: 3
+Binding car type: 9
+Binding cdr type: 14
+null?
+1 
+==31154== 
+==31154== HEAP SUMMARY:
+==31154==     in use at exit: 0 bytes in 0 blocks
+==31154==   total heap usage: 144 allocs, 144 frees, 11,186 bytes allocated
+==31154== 
+==31154== All heap blocks were freed -- no leaks are possible
+==31154== 
+==31154== Use --track-origins=yes to see where uninitialised values come from
+==31154== For lists of detected and suppressed errors, rerun with: -s
+==31154== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+
+------Test null03 ------
+---OUTPUT INCORRECT---
+Correct output:
+#t
+Student output:
+Evaluating cons, the car's type is 9Evaluating symbolMatched symbol. Returning something of type 14Binding type: 3 Binding car type: 9 Binding cdr type: 14 null? 1
+---VALGRIND ERROR---
+Valgrind test results
+==31160== Memcheck, a memory error detector
+==31160== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==31160== Using Valgrind-3.24.0 and LibVEX; rerun with -h for copyright info
+==31160== Command: ./interpreter
+==31160== 
+==31160== Conditional jump or move depends on uninitialised value(s)
+==31160==    at 0x10B38A: printResult (interpreter.c:58)
+==31160==    by 0x10C55A: interpret (interpreter.c:403)
+==31160==    by 0x10993F: main (main.c:13)
+==31160== 
+==31160== Use of uninitialised value of size 8
+==31160==    at 0x10B39B: printResult (interpreter.c:58)
+==31160==    by 0x10C55A: interpret (interpreter.c:403)
+==31160==    by 0x10993F: main (main.c:13)
+==31160== 
+Evaluating cons, the car's type is 9Evaluating symbolMatched symbol. Returning something of type 14Binding type: 3
+Binding car type: 9
+Binding cdr type: 14
+null?
+1 
+==31160== 
+==31160== HEAP SUMMARY:
+==31160==     in use at exit: 0 bytes in 0 blocks
+==31160==   total heap usage: 130 allocs, 130 frees, 10,898 bytes allocated
+==31160== 
+==31160== All heap blocks were freed -- no leaks are possible
+==31160== 
+==31160== Use --track-origins=yes to see where uninitialised values come from
+==31160== For lists of detected and suppressed errors, rerun with: -s
+==31160== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+
+------Test pair01 ------
+---OUTPUT INCORRECT---
+Correct output:
+(3 . 5)
+Student output:
+Evaluating cons, the car's type is 9Evaluating symbolEvaluation Error: Failed to find symbol binding
+---VALGRIND NO ERROR---
+------Test pair02 ------
+---OUTPUT INCORRECT---
+Correct output:
+(3 4 5)
+Student output:
+Evaluating cons, the car's type is 9Evaluating symbolEvaluation Error: Failed to find symbol binding
+---VALGRIND NO ERROR---
+------Test pair03 ------
+---OUTPUT INCORRECT---
+Correct output:
+3
+Student output:
+interpreter: linkedlist.c:129: Object *car(Object *): Assertion `list->type == CONS_TYPE' failed.
+---VALGRIND ERROR---
+Valgrind test results
+==31184== Memcheck, a memory error detector
+==31184== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==31184== Using Valgrind-3.24.0 and LibVEX; rerun with -h for copyright info
+==31184== Command: ./interpreter
+==31184== 
+interpreter: linkedlist.c:129: Object *car(Object *): Assertion `list->type == CONS_TYPE' failed.
+==31184== 
+==31184== Process terminating with default action of signal 6 (SIGABRT)
+==31184==    at 0x49343F4: __pthread_kill_implementation (pthread_kill.c:44)
+==31184==    by 0x48DB11F: raise (raise.c:26)
+==31184==    by 0x48C24C2: abort (abort.c:79)
+==31184==    by 0x48C23DE: __assert_fail_base.cold (assert.c:94)
+==31184==    by 0x48D3176: __assert_fail (assert.c:103)
+==31184==    by 0x1096FC: car (linkedlist.c:129)
+==31184==    by 0x10B63E: primitiveCar (interpreter.c:134)
+==31184==    by 0x10C410: eval (interpreter.c:372)
+==31184==    by 0x10C54D: interpret (interpreter.c:402)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== HEAP SUMMARY:
+==31184==     in use at exit: 10,822 bytes in 122 blocks
+==31184==   total heap usage: 127 allocs, 5 frees, 12,777 bytes allocated
+==31184== 
+==31184== 4 bytes in 1 blocks are still reachable in loss record 1 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x109221: makeNull (linkedlist.c:17)
+==31184==    by 0x10A072: tokenize (tokenizer.c:109)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 4 bytes in 1 blocks are still reachable in loss record 2 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x109221: makeNull (linkedlist.c:17)
+==31184==    by 0x109655: reverse (linkedlist.c:110)
+==31184==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 4 bytes in 1 blocks are still reachable in loss record 3 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x109221: makeNull (linkedlist.c:17)
+==31184==    by 0x10ACE2: parse (parser.c:15)
+==31184==    by 0x109932: main (main.c:12)
+==31184== 
+==31184== 4 bytes in 1 blocks are still reachable in loss record 4 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x109221: makeNull (linkedlist.c:17)
+==31184==    by 0x109655: reverse (linkedlist.c:110)
+==31184==    by 0x10AFEF: parse (parser.c:91)
+==31184==    by 0x109932: main (main.c:12)
+==31184== 
+==31184== 4 bytes in 1 blocks are still reachable in loss record 5 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x109221: makeNull (linkedlist.c:17)
+==31184==    by 0x10B31C: createFrame (interpreter.c:47)
+==31184==    by 0x10C494: interpret (interpreter.c:386)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 8 bytes in 2 blocks are still reachable in loss record 6 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x10A0B2: tokenize (tokenizer.c:115)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 8 bytes in 2 blocks are still reachable in loss record 7 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x10A12E: tokenize (tokenizer.c:121)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 8 bytes in 2 blocks are still reachable in loss record 8 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x109221: makeNull (linkedlist.c:17)
+==31184==    by 0x10ADCC: parse (parser.c:39)
+==31184==    by 0x109932: main (main.c:12)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 9 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x109221: makeNull (linkedlist.c:17)
+==31184==    by 0x10A072: tokenize (tokenizer.c:109)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 10 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x109221: makeNull (linkedlist.c:17)
+==31184==    by 0x109655: reverse (linkedlist.c:110)
+==31184==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 11 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x109221: makeNull (linkedlist.c:17)
+==31184==    by 0x10ACE2: parse (parser.c:15)
+==31184==    by 0x109932: main (main.c:12)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 12 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x109221: makeNull (linkedlist.c:17)
+==31184==    by 0x109655: reverse (linkedlist.c:110)
+==31184==    by 0x10AFEF: parse (parser.c:91)
+==31184==    by 0x109932: main (main.c:12)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 13 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x109677: reverse (linkedlist.c:113)
+==31184==    by 0x10AFEF: parse (parser.c:91)
+==31184==    by 0x109932: main (main.c:12)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 14 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x10B305: createFrame (interpreter.c:45)
+==31184==    by 0x10C494: interpret (interpreter.c:386)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 15 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x10B305: createFrame (interpreter.c:45)
+==31184==    by 0x10C494: interpret (interpreter.c:386)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 16 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x109221: makeNull (linkedlist.c:17)
+==31184==    by 0x10B31C: createFrame (interpreter.c:47)
+==31184==    by 0x10C494: interpret (interpreter.c:386)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 17 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31184==    by 0x10C4AB: interpret (interpreter.c:389)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 18 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31184==    by 0x10C4AB: interpret (interpreter.c:389)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 19 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31184==    by 0x10C4AB: interpret (interpreter.c:389)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 20 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31184==    by 0x10C4AB: interpret (interpreter.c:389)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 21 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31184==    by 0x10C4AB: interpret (interpreter.c:389)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 22 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10C4BF: interpret (interpreter.c:390)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 23 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31184==    by 0x10C4DC: interpret (interpreter.c:393)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 24 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31184==    by 0x10C4DC: interpret (interpreter.c:393)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 25 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31184==    by 0x10C4DC: interpret (interpreter.c:393)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 26 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31184==    by 0x10C4DC: interpret (interpreter.c:393)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 27 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31184==    by 0x10C4DC: interpret (interpreter.c:393)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 28 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10C4F0: interpret (interpreter.c:394)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 29 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31184==    by 0x10C50D: interpret (interpreter.c:397)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 30 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31184==    by 0x10C50D: interpret (interpreter.c:397)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 31 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31184==    by 0x10C50D: interpret (interpreter.c:397)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 32 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31184==    by 0x10C50D: interpret (interpreter.c:397)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 33 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31184==    by 0x10C50D: interpret (interpreter.c:397)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 1 blocks are still reachable in loss record 34 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10C521: interpret (interpreter.c:398)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 16 bytes in 2 blocks are still reachable in loss record 35 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x10A695: tokenize (tokenizer.c:212)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 24 bytes in 1 blocks are still reachable in loss record 36 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x109677: reverse (linkedlist.c:113)
+==31184==    by 0x10AFEF: parse (parser.c:91)
+==31184==    by 0x109932: main (main.c:12)
+==31184== 
+==31184== 24 bytes in 1 blocks are still reachable in loss record 37 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31184==    by 0x10C4AB: interpret (interpreter.c:389)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 24 bytes in 1 blocks are still reachable in loss record 38 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10C4BF: interpret (interpreter.c:390)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 24 bytes in 1 blocks are still reachable in loss record 39 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31184==    by 0x10C4DC: interpret (interpreter.c:393)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 24 bytes in 1 blocks are still reachable in loss record 40 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10C4F0: interpret (interpreter.c:394)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 24 bytes in 1 blocks are still reachable in loss record 41 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31184==    by 0x10C50D: interpret (interpreter.c:397)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 24 bytes in 1 blocks are still reachable in loss record 42 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10C521: interpret (interpreter.c:398)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== 32 bytes in 2 blocks are still reachable in loss record 43 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x10A0B2: tokenize (tokenizer.c:115)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 32 bytes in 2 blocks are still reachable in loss record 44 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10A10B: tokenize (tokenizer.c:118)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 32 bytes in 2 blocks are still reachable in loss record 45 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x10A877: tokenize (tokenizer.c:239)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 32 bytes in 2 blocks are still reachable in loss record 46 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x10A877: tokenize (tokenizer.c:239)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 32 bytes in 2 blocks are still reachable in loss record 47 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x10A8C7: tokenize (tokenizer.c:242)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 32 bytes in 2 blocks are still reachable in loss record 48 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10A906: tokenize (tokenizer.c:246)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 32 bytes in 2 blocks are still reachable in loss record 49 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x10A695: tokenize (tokenizer.c:212)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 32 bytes in 2 blocks are still reachable in loss record 50 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10A6FE: tokenize (tokenizer.c:217)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 32 bytes in 2 blocks are still reachable in loss record 51 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x10A12E: tokenize (tokenizer.c:121)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 32 bytes in 2 blocks are still reachable in loss record 52 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10A187: tokenize (tokenizer.c:124)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 32 bytes in 2 blocks are still reachable in loss record 53 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x109221: makeNull (linkedlist.c:17)
+==31184==    by 0x10ADCC: parse (parser.c:39)
+==31184==    by 0x109932: main (main.c:12)
+==31184== 
+==31184== 32 bytes in 2 blocks are still reachable in loss record 54 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10AE85: parse (parser.c:51)
+==31184==    by 0x109932: main (main.c:12)
+==31184== 
+==31184== 48 bytes in 2 blocks are still reachable in loss record 55 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10A10B: tokenize (tokenizer.c:118)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 48 bytes in 2 blocks are still reachable in loss record 56 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10A906: tokenize (tokenizer.c:246)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 48 bytes in 2 blocks are still reachable in loss record 57 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10A6FE: tokenize (tokenizer.c:217)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 48 bytes in 2 blocks are still reachable in loss record 58 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10A187: tokenize (tokenizer.c:124)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 48 bytes in 2 blocks are still reachable in loss record 59 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10AE85: parse (parser.c:51)
+==31184==    by 0x109932: main (main.c:12)
+==31184== 
+==31184== 80 bytes in 5 blocks are still reachable in loss record 60 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10AE52: parse (parser.c:47)
+==31184==    by 0x109932: main (main.c:12)
+==31184== 
+==31184== 96 bytes in 6 blocks are still reachable in loss record 61 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10ADAA: parse (parser.c:35)
+==31184==    by 0x109932: main (main.c:12)
+==31184== 
+==31184== 120 bytes in 5 blocks are still reachable in loss record 62 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10AE52: parse (parser.c:47)
+==31184==    by 0x109932: main (main.c:12)
+==31184== 
+==31184== 128 bytes in 8 blocks are still reachable in loss record 63 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109825: talloc (talloc.c:27)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x109677: reverse (linkedlist.c:113)
+==31184==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 144 bytes in 6 blocks are still reachable in loss record 64 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x10ADAA: parse (parser.c:35)
+==31184==    by 0x109932: main (main.c:12)
+==31184== 
+==31184== 192 bytes in 8 blocks are still reachable in loss record 65 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x1094A9: cons (linkedlist.c:69)
+==31184==    by 0x109677: reverse (linkedlist.c:113)
+==31184==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 602 bytes in 2 blocks are still reachable in loss record 66 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x109832: talloc (talloc.c:28)
+==31184==    by 0x10A8C7: tokenize (tokenizer.c:242)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 4,096 bytes in 1 blocks are still reachable in loss record 67 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x491C2E3: _IO_file_doallocate (filedoalloc.c:101)
+==31184==    by 0x492B713: _IO_doallocbuf (genops.c:374)
+==31184==    by 0x492B713: _IO_doallocbuf (genops.c:369)
+==31184==    by 0x49293F4: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:486)
+==31184==    by 0x492B7C1: _IO_default_uflow (genops.c:389)
+==31184==    by 0x10A088: tokenize (tokenizer.c:110)
+==31184==    by 0x109925: main (main.c:11)
+==31184== 
+==31184== 4,096 bytes in 1 blocks are still reachable in loss record 68 of 68
+==31184==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31184==    by 0x491C2E3: _IO_file_doallocate (filedoalloc.c:101)
+==31184==    by 0x492B713: _IO_doallocbuf (genops.c:374)
+==31184==    by 0x492B713: _IO_doallocbuf (genops.c:369)
+==31184==    by 0x49297A7: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==31184==    by 0x492A2C7: _IO_new_file_xsputn (fileops.c:1244)
+==31184==    by 0x492A2C7: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==31184==    by 0x48F74C8: __printf_buffer_flush_to_file (printf_buffer_to_file.c:59)
+==31184==    by 0x48F758B: __printf_buffer_to_file_done (printf_buffer_to_file.c:120)
+==31184==    by 0x4902FEB: __vfprintf_internal (vfprintf-internal.c:1545)
+==31184==    by 0x48F6C72: printf (printf.c:33)
+==31184==    by 0x10B7E6: eval (interpreter.c:169)
+==31184==    by 0x10C54D: interpret (interpreter.c:402)
+==31184==    by 0x10993F: main (main.c:13)
+==31184== 
+==31184== LEAK SUMMARY:
+==31184==    definitely lost: 0 bytes in 0 blocks
+==31184==    indirectly lost: 0 bytes in 0 blocks
+==31184==      possibly lost: 0 bytes in 0 blocks
+==31184==    still reachable: 10,822 bytes in 122 blocks
+==31184==         suppressed: 0 bytes in 0 blocks
+==31184== 
+==31184== For lists of detected and suppressed errors, rerun with: -s
+==31184== ERROR SUMMARY: 68 errors from 68 contexts (suppressed: 0 from 0)
+
+------Test pair04 ------
+---OUTPUT INCORRECT---
+Correct output:
+a
+Student output:
+interpreter: linkedlist.c:129: Object *car(Object *): Assertion `list->type == CONS_TYPE' failed.
+---VALGRIND ERROR---
+Valgrind test results
+==31220== Memcheck, a memory error detector
+==31220== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==31220== Using Valgrind-3.24.0 and LibVEX; rerun with -h for copyright info
+==31220== Command: ./interpreter
+==31220== 
+interpreter: linkedlist.c:129: Object *car(Object *): Assertion `list->type == CONS_TYPE' failed.
+==31220== 
+==31220== Process terminating with default action of signal 6 (SIGABRT)
+==31220==    at 0x49343F4: __pthread_kill_implementation (pthread_kill.c:44)
+==31220==    by 0x48DB11F: raise (raise.c:26)
+==31220==    by 0x48C24C2: abort (abort.c:79)
+==31220==    by 0x48C23DE: __assert_fail_base.cold (assert.c:94)
+==31220==    by 0x48D3176: __assert_fail (assert.c:103)
+==31220==    by 0x1096FC: car (linkedlist.c:129)
+==31220==    by 0x10B63E: primitiveCar (interpreter.c:134)
+==31220==    by 0x10C410: eval (interpreter.c:372)
+==31220==    by 0x10C54D: interpret (interpreter.c:402)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== HEAP SUMMARY:
+==31220==     in use at exit: 12,321 bytes in 158 blocks
+==31220==   total heap usage: 163 allocs, 5 frees, 14,276 bytes allocated
+==31220== 
+==31220== 4 bytes in 1 blocks are still reachable in loss record 1 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x109221: makeNull (linkedlist.c:17)
+==31220==    by 0x10A072: tokenize (tokenizer.c:109)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 4 bytes in 1 blocks are still reachable in loss record 2 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x109221: makeNull (linkedlist.c:17)
+==31220==    by 0x109655: reverse (linkedlist.c:110)
+==31220==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 4 bytes in 1 blocks are still reachable in loss record 3 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x109221: makeNull (linkedlist.c:17)
+==31220==    by 0x10ACE2: parse (parser.c:15)
+==31220==    by 0x109932: main (main.c:12)
+==31220== 
+==31220== 4 bytes in 1 blocks are still reachable in loss record 4 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x109221: makeNull (linkedlist.c:17)
+==31220==    by 0x109655: reverse (linkedlist.c:110)
+==31220==    by 0x10AFEF: parse (parser.c:91)
+==31220==    by 0x109932: main (main.c:12)
+==31220== 
+==31220== 4 bytes in 1 blocks are still reachable in loss record 5 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x109221: makeNull (linkedlist.c:17)
+==31220==    by 0x10B31C: createFrame (interpreter.c:47)
+==31220==    by 0x10C494: interpret (interpreter.c:386)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 12 bytes in 3 blocks are still reachable in loss record 6 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x10A0B2: tokenize (tokenizer.c:115)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 12 bytes in 3 blocks are still reachable in loss record 7 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x10A12E: tokenize (tokenizer.c:121)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 12 bytes in 3 blocks are still reachable in loss record 8 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x109221: makeNull (linkedlist.c:17)
+==31220==    by 0x10ADCC: parse (parser.c:39)
+==31220==    by 0x109932: main (main.c:12)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 9 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x109221: makeNull (linkedlist.c:17)
+==31220==    by 0x10A072: tokenize (tokenizer.c:109)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 10 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x109221: makeNull (linkedlist.c:17)
+==31220==    by 0x109655: reverse (linkedlist.c:110)
+==31220==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 11 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x109221: makeNull (linkedlist.c:17)
+==31220==    by 0x10ACE2: parse (parser.c:15)
+==31220==    by 0x109932: main (main.c:12)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 12 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x109221: makeNull (linkedlist.c:17)
+==31220==    by 0x109655: reverse (linkedlist.c:110)
+==31220==    by 0x10AFEF: parse (parser.c:91)
+==31220==    by 0x109932: main (main.c:12)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 13 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x109677: reverse (linkedlist.c:113)
+==31220==    by 0x10AFEF: parse (parser.c:91)
+==31220==    by 0x109932: main (main.c:12)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 14 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x10B305: createFrame (interpreter.c:45)
+==31220==    by 0x10C494: interpret (interpreter.c:386)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 15 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x10B305: createFrame (interpreter.c:45)
+==31220==    by 0x10C494: interpret (interpreter.c:386)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 16 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x109221: makeNull (linkedlist.c:17)
+==31220==    by 0x10B31C: createFrame (interpreter.c:47)
+==31220==    by 0x10C494: interpret (interpreter.c:386)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 17 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31220==    by 0x10C4AB: interpret (interpreter.c:389)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 18 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31220==    by 0x10C4AB: interpret (interpreter.c:389)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 19 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31220==    by 0x10C4AB: interpret (interpreter.c:389)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 20 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31220==    by 0x10C4AB: interpret (interpreter.c:389)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 21 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31220==    by 0x10C4AB: interpret (interpreter.c:389)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 22 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10C4BF: interpret (interpreter.c:390)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 23 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31220==    by 0x10C4DC: interpret (interpreter.c:393)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 24 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31220==    by 0x10C4DC: interpret (interpreter.c:393)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 25 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31220==    by 0x10C4DC: interpret (interpreter.c:393)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 26 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31220==    by 0x10C4DC: interpret (interpreter.c:393)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 27 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31220==    by 0x10C4DC: interpret (interpreter.c:393)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 28 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10C4F0: interpret (interpreter.c:394)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 29 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31220==    by 0x10C50D: interpret (interpreter.c:397)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 30 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31220==    by 0x10C50D: interpret (interpreter.c:397)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 31 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31220==    by 0x10C50D: interpret (interpreter.c:397)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 32 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31220==    by 0x10C50D: interpret (interpreter.c:397)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 33 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31220==    by 0x10C50D: interpret (interpreter.c:397)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 16 bytes in 1 blocks are still reachable in loss record 34 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10C521: interpret (interpreter.c:398)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 24 bytes in 1 blocks are still reachable in loss record 35 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x109677: reverse (linkedlist.c:113)
+==31220==    by 0x10AFEF: parse (parser.c:91)
+==31220==    by 0x109932: main (main.c:12)
+==31220== 
+==31220== 24 bytes in 1 blocks are still reachable in loss record 36 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31220==    by 0x10C4AB: interpret (interpreter.c:389)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 24 bytes in 1 blocks are still reachable in loss record 37 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10C4BF: interpret (interpreter.c:390)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 24 bytes in 1 blocks are still reachable in loss record 38 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31220==    by 0x10C4DC: interpret (interpreter.c:393)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 24 bytes in 1 blocks are still reachable in loss record 39 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10C4F0: interpret (interpreter.c:394)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 24 bytes in 1 blocks are still reachable in loss record 40 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31220==    by 0x10C50D: interpret (interpreter.c:397)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 24 bytes in 1 blocks are still reachable in loss record 41 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10C521: interpret (interpreter.c:398)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== 48 bytes in 3 blocks are still reachable in loss record 42 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x10A0B2: tokenize (tokenizer.c:115)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 48 bytes in 3 blocks are still reachable in loss record 43 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10A10B: tokenize (tokenizer.c:118)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 48 bytes in 3 blocks are still reachable in loss record 44 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x10A12E: tokenize (tokenizer.c:121)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 48 bytes in 3 blocks are still reachable in loss record 45 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10A187: tokenize (tokenizer.c:124)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 48 bytes in 3 blocks are still reachable in loss record 46 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x109221: makeNull (linkedlist.c:17)
+==31220==    by 0x10ADCC: parse (parser.c:39)
+==31220==    by 0x109932: main (main.c:12)
+==31220== 
+==31220== 48 bytes in 3 blocks are still reachable in loss record 47 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10AE85: parse (parser.c:51)
+==31220==    by 0x109932: main (main.c:12)
+==31220== 
+==31220== 72 bytes in 3 blocks are still reachable in loss record 48 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10A10B: tokenize (tokenizer.c:118)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 72 bytes in 3 blocks are still reachable in loss record 49 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10A187: tokenize (tokenizer.c:124)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 72 bytes in 3 blocks are still reachable in loss record 50 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10AE85: parse (parser.c:51)
+==31220==    by 0x109932: main (main.c:12)
+==31220== 
+==31220== 80 bytes in 5 blocks are still reachable in loss record 51 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x10A877: tokenize (tokenizer.c:239)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 80 bytes in 5 blocks are still reachable in loss record 52 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x10A877: tokenize (tokenizer.c:239)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 80 bytes in 5 blocks are still reachable in loss record 53 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x10A8C7: tokenize (tokenizer.c:242)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 80 bytes in 5 blocks are still reachable in loss record 54 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10A906: tokenize (tokenizer.c:246)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 112 bytes in 7 blocks are still reachable in loss record 55 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10AE52: parse (parser.c:47)
+==31220==    by 0x109932: main (main.c:12)
+==31220== 
+==31220== 120 bytes in 5 blocks are still reachable in loss record 56 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10A906: tokenize (tokenizer.c:246)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 128 bytes in 8 blocks are still reachable in loss record 57 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10ADAA: parse (parser.c:35)
+==31220==    by 0x109932: main (main.c:12)
+==31220== 
+==31220== 168 bytes in 7 blocks are still reachable in loss record 58 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10AE52: parse (parser.c:47)
+==31220==    by 0x109932: main (main.c:12)
+==31220== 
+==31220== 176 bytes in 11 blocks are still reachable in loss record 59 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109825: talloc (talloc.c:27)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x109677: reverse (linkedlist.c:113)
+==31220==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 192 bytes in 8 blocks are still reachable in loss record 60 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x10ADAA: parse (parser.c:35)
+==31220==    by 0x109932: main (main.c:12)
+==31220== 
+==31220== 264 bytes in 11 blocks are still reachable in loss record 61 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x1094A9: cons (linkedlist.c:69)
+==31220==    by 0x109677: reverse (linkedlist.c:113)
+==31220==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 1,505 bytes in 5 blocks are still reachable in loss record 62 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x109832: talloc (talloc.c:28)
+==31220==    by 0x10A8C7: tokenize (tokenizer.c:242)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 4,096 bytes in 1 blocks are still reachable in loss record 63 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x491C2E3: _IO_file_doallocate (filedoalloc.c:101)
+==31220==    by 0x492B713: _IO_doallocbuf (genops.c:374)
+==31220==    by 0x492B713: _IO_doallocbuf (genops.c:369)
+==31220==    by 0x49293F4: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:486)
+==31220==    by 0x492B7C1: _IO_default_uflow (genops.c:389)
+==31220==    by 0x10A088: tokenize (tokenizer.c:110)
+==31220==    by 0x109925: main (main.c:11)
+==31220== 
+==31220== 4,096 bytes in 1 blocks are still reachable in loss record 64 of 64
+==31220==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31220==    by 0x491C2E3: _IO_file_doallocate (filedoalloc.c:101)
+==31220==    by 0x492B713: _IO_doallocbuf (genops.c:374)
+==31220==    by 0x492B713: _IO_doallocbuf (genops.c:369)
+==31220==    by 0x49297A7: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==31220==    by 0x492A2C7: _IO_new_file_xsputn (fileops.c:1244)
+==31220==    by 0x492A2C7: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==31220==    by 0x48F74C8: __printf_buffer_flush_to_file (printf_buffer_to_file.c:59)
+==31220==    by 0x48F758B: __printf_buffer_to_file_done (printf_buffer_to_file.c:120)
+==31220==    by 0x4902FEB: __vfprintf_internal (vfprintf-internal.c:1545)
+==31220==    by 0x48F6C72: printf (printf.c:33)
+==31220==    by 0x10B7E6: eval (interpreter.c:169)
+==31220==    by 0x10C54D: interpret (interpreter.c:402)
+==31220==    by 0x10993F: main (main.c:13)
+==31220== 
+==31220== LEAK SUMMARY:
+==31220==    definitely lost: 0 bytes in 0 blocks
+==31220==    indirectly lost: 0 bytes in 0 blocks
+==31220==      possibly lost: 0 bytes in 0 blocks
+==31220==    still reachable: 12,321 bytes in 158 blocks
+==31220==         suppressed: 0 bytes in 0 blocks
+==31220== 
+==31220== For lists of detected and suppressed errors, rerun with: -s
+==31220== ERROR SUMMARY: 64 errors from 64 contexts (suppressed: 0 from 0)
+
+------Test pair05 ------
+---OUTPUT INCORRECT---
+Correct output:
+5
+Student output:
+interpreter: linkedlist.c:139: Object *cdr(Object *): Assertion `list->type == CONS_TYPE' failed.
+---VALGRIND ERROR---
+Valgrind test results
+==31256== Memcheck, a memory error detector
+==31256== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==31256== Using Valgrind-3.24.0 and LibVEX; rerun with -h for copyright info
+==31256== Command: ./interpreter
+==31256== 
+interpreter: linkedlist.c:139: Object *cdr(Object *): Assertion `list->type == CONS_TYPE' failed.
+==31256== 
+==31256== Process terminating with default action of signal 6 (SIGABRT)
+==31256==    at 0x49343F4: __pthread_kill_implementation (pthread_kill.c:44)
+==31256==    by 0x48DB11F: raise (raise.c:26)
+==31256==    by 0x48C24C2: abort (abort.c:79)
+==31256==    by 0x48C23DE: __assert_fail_base.cold (assert.c:94)
+==31256==    by 0x48D3176: __assert_fail (assert.c:103)
+==31256==    by 0x10975C: cdr (linkedlist.c:139)
+==31256==    by 0x10B68E: primitiveCdr (interpreter.c:139)
+==31256==    by 0x10C410: eval (interpreter.c:372)
+==31256==    by 0x10C54D: interpret (interpreter.c:402)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== HEAP SUMMARY:
+==31256==     in use at exit: 10,822 bytes in 122 blocks
+==31256==   total heap usage: 127 allocs, 5 frees, 12,777 bytes allocated
+==31256== 
+==31256== 4 bytes in 1 blocks are still reachable in loss record 1 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x109221: makeNull (linkedlist.c:17)
+==31256==    by 0x10A072: tokenize (tokenizer.c:109)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 4 bytes in 1 blocks are still reachable in loss record 2 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x109221: makeNull (linkedlist.c:17)
+==31256==    by 0x109655: reverse (linkedlist.c:110)
+==31256==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 4 bytes in 1 blocks are still reachable in loss record 3 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x109221: makeNull (linkedlist.c:17)
+==31256==    by 0x10ACE2: parse (parser.c:15)
+==31256==    by 0x109932: main (main.c:12)
+==31256== 
+==31256== 4 bytes in 1 blocks are still reachable in loss record 4 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x109221: makeNull (linkedlist.c:17)
+==31256==    by 0x109655: reverse (linkedlist.c:110)
+==31256==    by 0x10AFEF: parse (parser.c:91)
+==31256==    by 0x109932: main (main.c:12)
+==31256== 
+==31256== 4 bytes in 1 blocks are still reachable in loss record 5 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x109221: makeNull (linkedlist.c:17)
+==31256==    by 0x10B31C: createFrame (interpreter.c:47)
+==31256==    by 0x10C494: interpret (interpreter.c:386)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 8 bytes in 2 blocks are still reachable in loss record 6 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x10A0B2: tokenize (tokenizer.c:115)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 8 bytes in 2 blocks are still reachable in loss record 7 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x10A12E: tokenize (tokenizer.c:121)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 8 bytes in 2 blocks are still reachable in loss record 8 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x109221: makeNull (linkedlist.c:17)
+==31256==    by 0x10ADCC: parse (parser.c:39)
+==31256==    by 0x109932: main (main.c:12)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 9 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x109221: makeNull (linkedlist.c:17)
+==31256==    by 0x10A072: tokenize (tokenizer.c:109)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 10 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x109221: makeNull (linkedlist.c:17)
+==31256==    by 0x109655: reverse (linkedlist.c:110)
+==31256==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 11 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x109221: makeNull (linkedlist.c:17)
+==31256==    by 0x10ACE2: parse (parser.c:15)
+==31256==    by 0x109932: main (main.c:12)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 12 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x109221: makeNull (linkedlist.c:17)
+==31256==    by 0x109655: reverse (linkedlist.c:110)
+==31256==    by 0x10AFEF: parse (parser.c:91)
+==31256==    by 0x109932: main (main.c:12)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 13 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x109677: reverse (linkedlist.c:113)
+==31256==    by 0x10AFEF: parse (parser.c:91)
+==31256==    by 0x109932: main (main.c:12)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 14 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x10B305: createFrame (interpreter.c:45)
+==31256==    by 0x10C494: interpret (interpreter.c:386)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 15 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x10B305: createFrame (interpreter.c:45)
+==31256==    by 0x10C494: interpret (interpreter.c:386)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 16 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x109221: makeNull (linkedlist.c:17)
+==31256==    by 0x10B31C: createFrame (interpreter.c:47)
+==31256==    by 0x10C494: interpret (interpreter.c:386)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 17 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31256==    by 0x10C4AB: interpret (interpreter.c:389)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 18 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31256==    by 0x10C4AB: interpret (interpreter.c:389)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 19 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31256==    by 0x10C4AB: interpret (interpreter.c:389)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 20 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31256==    by 0x10C4AB: interpret (interpreter.c:389)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 21 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31256==    by 0x10C4AB: interpret (interpreter.c:389)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 22 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10C4BF: interpret (interpreter.c:390)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 23 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31256==    by 0x10C4DC: interpret (interpreter.c:393)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 24 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31256==    by 0x10C4DC: interpret (interpreter.c:393)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 25 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31256==    by 0x10C4DC: interpret (interpreter.c:393)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 26 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31256==    by 0x10C4DC: interpret (interpreter.c:393)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 27 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31256==    by 0x10C4DC: interpret (interpreter.c:393)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 28 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10C4F0: interpret (interpreter.c:394)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 29 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31256==    by 0x10C50D: interpret (interpreter.c:397)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 30 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31256==    by 0x10C50D: interpret (interpreter.c:397)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 31 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31256==    by 0x10C50D: interpret (interpreter.c:397)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 32 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31256==    by 0x10C50D: interpret (interpreter.c:397)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 33 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31256==    by 0x10C50D: interpret (interpreter.c:397)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 1 blocks are still reachable in loss record 34 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10C521: interpret (interpreter.c:398)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 16 bytes in 2 blocks are still reachable in loss record 35 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x10A695: tokenize (tokenizer.c:212)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 24 bytes in 1 blocks are still reachable in loss record 36 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x109677: reverse (linkedlist.c:113)
+==31256==    by 0x10AFEF: parse (parser.c:91)
+==31256==    by 0x109932: main (main.c:12)
+==31256== 
+==31256== 24 bytes in 1 blocks are still reachable in loss record 37 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31256==    by 0x10C4AB: interpret (interpreter.c:389)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 24 bytes in 1 blocks are still reachable in loss record 38 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10C4BF: interpret (interpreter.c:390)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 24 bytes in 1 blocks are still reachable in loss record 39 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31256==    by 0x10C4DC: interpret (interpreter.c:393)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 24 bytes in 1 blocks are still reachable in loss record 40 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10C4F0: interpret (interpreter.c:394)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 24 bytes in 1 blocks are still reachable in loss record 41 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31256==    by 0x10C50D: interpret (interpreter.c:397)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 24 bytes in 1 blocks are still reachable in loss record 42 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10C521: interpret (interpreter.c:398)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== 32 bytes in 2 blocks are still reachable in loss record 43 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x10A0B2: tokenize (tokenizer.c:115)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 32 bytes in 2 blocks are still reachable in loss record 44 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10A10B: tokenize (tokenizer.c:118)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 32 bytes in 2 blocks are still reachable in loss record 45 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x10A877: tokenize (tokenizer.c:239)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 32 bytes in 2 blocks are still reachable in loss record 46 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x10A877: tokenize (tokenizer.c:239)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 32 bytes in 2 blocks are still reachable in loss record 47 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x10A8C7: tokenize (tokenizer.c:242)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 32 bytes in 2 blocks are still reachable in loss record 48 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10A906: tokenize (tokenizer.c:246)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 32 bytes in 2 blocks are still reachable in loss record 49 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x10A695: tokenize (tokenizer.c:212)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 32 bytes in 2 blocks are still reachable in loss record 50 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10A6FE: tokenize (tokenizer.c:217)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 32 bytes in 2 blocks are still reachable in loss record 51 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x10A12E: tokenize (tokenizer.c:121)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 32 bytes in 2 blocks are still reachable in loss record 52 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10A187: tokenize (tokenizer.c:124)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 32 bytes in 2 blocks are still reachable in loss record 53 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x109221: makeNull (linkedlist.c:17)
+==31256==    by 0x10ADCC: parse (parser.c:39)
+==31256==    by 0x109932: main (main.c:12)
+==31256== 
+==31256== 32 bytes in 2 blocks are still reachable in loss record 54 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10AE85: parse (parser.c:51)
+==31256==    by 0x109932: main (main.c:12)
+==31256== 
+==31256== 48 bytes in 2 blocks are still reachable in loss record 55 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10A10B: tokenize (tokenizer.c:118)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 48 bytes in 2 blocks are still reachable in loss record 56 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10A906: tokenize (tokenizer.c:246)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 48 bytes in 2 blocks are still reachable in loss record 57 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10A6FE: tokenize (tokenizer.c:217)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 48 bytes in 2 blocks are still reachable in loss record 58 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10A187: tokenize (tokenizer.c:124)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 48 bytes in 2 blocks are still reachable in loss record 59 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10AE85: parse (parser.c:51)
+==31256==    by 0x109932: main (main.c:12)
+==31256== 
+==31256== 80 bytes in 5 blocks are still reachable in loss record 60 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10AE52: parse (parser.c:47)
+==31256==    by 0x109932: main (main.c:12)
+==31256== 
+==31256== 96 bytes in 6 blocks are still reachable in loss record 61 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10ADAA: parse (parser.c:35)
+==31256==    by 0x109932: main (main.c:12)
+==31256== 
+==31256== 120 bytes in 5 blocks are still reachable in loss record 62 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10AE52: parse (parser.c:47)
+==31256==    by 0x109932: main (main.c:12)
+==31256== 
+==31256== 128 bytes in 8 blocks are still reachable in loss record 63 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109825: talloc (talloc.c:27)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x109677: reverse (linkedlist.c:113)
+==31256==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 144 bytes in 6 blocks are still reachable in loss record 64 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x10ADAA: parse (parser.c:35)
+==31256==    by 0x109932: main (main.c:12)
+==31256== 
+==31256== 192 bytes in 8 blocks are still reachable in loss record 65 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x1094A9: cons (linkedlist.c:69)
+==31256==    by 0x109677: reverse (linkedlist.c:113)
+==31256==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 602 bytes in 2 blocks are still reachable in loss record 66 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x109832: talloc (talloc.c:28)
+==31256==    by 0x10A8C7: tokenize (tokenizer.c:242)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 4,096 bytes in 1 blocks are still reachable in loss record 67 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x491C2E3: _IO_file_doallocate (filedoalloc.c:101)
+==31256==    by 0x492B713: _IO_doallocbuf (genops.c:374)
+==31256==    by 0x492B713: _IO_doallocbuf (genops.c:369)
+==31256==    by 0x49293F4: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:486)
+==31256==    by 0x492B7C1: _IO_default_uflow (genops.c:389)
+==31256==    by 0x10A088: tokenize (tokenizer.c:110)
+==31256==    by 0x109925: main (main.c:11)
+==31256== 
+==31256== 4,096 bytes in 1 blocks are still reachable in loss record 68 of 68
+==31256==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31256==    by 0x491C2E3: _IO_file_doallocate (filedoalloc.c:101)
+==31256==    by 0x492B713: _IO_doallocbuf (genops.c:374)
+==31256==    by 0x492B713: _IO_doallocbuf (genops.c:369)
+==31256==    by 0x49297A7: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==31256==    by 0x492A2C7: _IO_new_file_xsputn (fileops.c:1244)
+==31256==    by 0x492A2C7: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==31256==    by 0x48F74C8: __printf_buffer_flush_to_file (printf_buffer_to_file.c:59)
+==31256==    by 0x48F758B: __printf_buffer_to_file_done (printf_buffer_to_file.c:120)
+==31256==    by 0x4902FEB: __vfprintf_internal (vfprintf-internal.c:1545)
+==31256==    by 0x48F6C72: printf (printf.c:33)
+==31256==    by 0x10B7E6: eval (interpreter.c:169)
+==31256==    by 0x10C54D: interpret (interpreter.c:402)
+==31256==    by 0x10993F: main (main.c:13)
+==31256== 
+==31256== LEAK SUMMARY:
+==31256==    definitely lost: 0 bytes in 0 blocks
+==31256==    indirectly lost: 0 bytes in 0 blocks
+==31256==      possibly lost: 0 bytes in 0 blocks
+==31256==    still reachable: 10,822 bytes in 122 blocks
+==31256==         suppressed: 0 bytes in 0 blocks
+==31256== 
+==31256== For lists of detected and suppressed errors, rerun with: -s
+==31256== ERROR SUMMARY: 68 errors from 68 contexts (suppressed: 0 from 0)
+
+------Test pair06 ------
+---OUTPUT INCORRECT---
+Correct output:
+(b c)
+Student output:
+interpreter: linkedlist.c:139: Object *cdr(Object *): Assertion `list->type == CONS_TYPE' failed.
+---VALGRIND ERROR---
+Valgrind test results
+==31292== Memcheck, a memory error detector
+==31292== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==31292== Using Valgrind-3.24.0 and LibVEX; rerun with -h for copyright info
+==31292== Command: ./interpreter
+==31292== 
+interpreter: linkedlist.c:139: Object *cdr(Object *): Assertion `list->type == CONS_TYPE' failed.
+==31292== 
+==31292== Process terminating with default action of signal 6 (SIGABRT)
+==31292==    at 0x49343F4: __pthread_kill_implementation (pthread_kill.c:44)
+==31292==    by 0x48DB11F: raise (raise.c:26)
+==31292==    by 0x48C24C2: abort (abort.c:79)
+==31292==    by 0x48C23DE: __assert_fail_base.cold (assert.c:94)
+==31292==    by 0x48D3176: __assert_fail (assert.c:103)
+==31292==    by 0x10975C: cdr (linkedlist.c:139)
+==31292==    by 0x10B68E: primitiveCdr (interpreter.c:139)
+==31292==    by 0x10C410: eval (interpreter.c:372)
+==31292==    by 0x10C54D: interpret (interpreter.c:402)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== HEAP SUMMARY:
+==31292==     in use at exit: 12,321 bytes in 158 blocks
+==31292==   total heap usage: 163 allocs, 5 frees, 14,276 bytes allocated
+==31292== 
+==31292== 4 bytes in 1 blocks are still reachable in loss record 1 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x109221: makeNull (linkedlist.c:17)
+==31292==    by 0x10A072: tokenize (tokenizer.c:109)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 4 bytes in 1 blocks are still reachable in loss record 2 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x109221: makeNull (linkedlist.c:17)
+==31292==    by 0x109655: reverse (linkedlist.c:110)
+==31292==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 4 bytes in 1 blocks are still reachable in loss record 3 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x109221: makeNull (linkedlist.c:17)
+==31292==    by 0x10ACE2: parse (parser.c:15)
+==31292==    by 0x109932: main (main.c:12)
+==31292== 
+==31292== 4 bytes in 1 blocks are still reachable in loss record 4 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x109221: makeNull (linkedlist.c:17)
+==31292==    by 0x109655: reverse (linkedlist.c:110)
+==31292==    by 0x10AFEF: parse (parser.c:91)
+==31292==    by 0x109932: main (main.c:12)
+==31292== 
+==31292== 4 bytes in 1 blocks are still reachable in loss record 5 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x109221: makeNull (linkedlist.c:17)
+==31292==    by 0x10B31C: createFrame (interpreter.c:47)
+==31292==    by 0x10C494: interpret (interpreter.c:386)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 12 bytes in 3 blocks are still reachable in loss record 6 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x10A0B2: tokenize (tokenizer.c:115)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 12 bytes in 3 blocks are still reachable in loss record 7 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x10A12E: tokenize (tokenizer.c:121)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 12 bytes in 3 blocks are still reachable in loss record 8 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x109221: makeNull (linkedlist.c:17)
+==31292==    by 0x10ADCC: parse (parser.c:39)
+==31292==    by 0x109932: main (main.c:12)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 9 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x109221: makeNull (linkedlist.c:17)
+==31292==    by 0x10A072: tokenize (tokenizer.c:109)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 10 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x109221: makeNull (linkedlist.c:17)
+==31292==    by 0x109655: reverse (linkedlist.c:110)
+==31292==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 11 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x109221: makeNull (linkedlist.c:17)
+==31292==    by 0x10ACE2: parse (parser.c:15)
+==31292==    by 0x109932: main (main.c:12)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 12 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x109221: makeNull (linkedlist.c:17)
+==31292==    by 0x109655: reverse (linkedlist.c:110)
+==31292==    by 0x10AFEF: parse (parser.c:91)
+==31292==    by 0x109932: main (main.c:12)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 13 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x109677: reverse (linkedlist.c:113)
+==31292==    by 0x10AFEF: parse (parser.c:91)
+==31292==    by 0x109932: main (main.c:12)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 14 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x10B305: createFrame (interpreter.c:45)
+==31292==    by 0x10C494: interpret (interpreter.c:386)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 15 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x10B305: createFrame (interpreter.c:45)
+==31292==    by 0x10C494: interpret (interpreter.c:386)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 16 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x109221: makeNull (linkedlist.c:17)
+==31292==    by 0x10B31C: createFrame (interpreter.c:47)
+==31292==    by 0x10C494: interpret (interpreter.c:386)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 17 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31292==    by 0x10C4AB: interpret (interpreter.c:389)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 18 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31292==    by 0x10C4AB: interpret (interpreter.c:389)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 19 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31292==    by 0x10C4AB: interpret (interpreter.c:389)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 20 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31292==    by 0x10C4AB: interpret (interpreter.c:389)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 21 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31292==    by 0x10C4AB: interpret (interpreter.c:389)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 22 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10C4BF: interpret (interpreter.c:390)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 23 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31292==    by 0x10C4DC: interpret (interpreter.c:393)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 24 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31292==    by 0x10C4DC: interpret (interpreter.c:393)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 25 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31292==    by 0x10C4DC: interpret (interpreter.c:393)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 26 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31292==    by 0x10C4DC: interpret (interpreter.c:393)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 27 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31292==    by 0x10C4DC: interpret (interpreter.c:393)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 28 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10C4F0: interpret (interpreter.c:394)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 29 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31292==    by 0x10C50D: interpret (interpreter.c:397)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 30 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x10B519: createPrimitive (interpreter.c:111)
+==31292==    by 0x10C50D: interpret (interpreter.c:397)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 31 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31292==    by 0x10C50D: interpret (interpreter.c:397)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 32 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x10B531: createPrimitive (interpreter.c:113)
+==31292==    by 0x10C50D: interpret (interpreter.c:397)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 33 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31292==    by 0x10C50D: interpret (interpreter.c:397)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 16 bytes in 1 blocks are still reachable in loss record 34 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10C521: interpret (interpreter.c:398)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 24 bytes in 1 blocks are still reachable in loss record 35 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x109677: reverse (linkedlist.c:113)
+==31292==    by 0x10AFEF: parse (parser.c:91)
+==31292==    by 0x109932: main (main.c:12)
+==31292== 
+==31292== 24 bytes in 1 blocks are still reachable in loss record 36 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31292==    by 0x10C4AB: interpret (interpreter.c:389)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 24 bytes in 1 blocks are still reachable in loss record 37 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10C4BF: interpret (interpreter.c:390)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 24 bytes in 1 blocks are still reachable in loss record 38 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31292==    by 0x10C4DC: interpret (interpreter.c:393)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 24 bytes in 1 blocks are still reachable in loss record 39 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10C4F0: interpret (interpreter.c:394)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 24 bytes in 1 blocks are still reachable in loss record 40 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10B564: createPrimitive (interpreter.c:118)
+==31292==    by 0x10C50D: interpret (interpreter.c:397)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 24 bytes in 1 blocks are still reachable in loss record 41 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10C521: interpret (interpreter.c:398)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== 48 bytes in 3 blocks are still reachable in loss record 42 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x10A0B2: tokenize (tokenizer.c:115)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 48 bytes in 3 blocks are still reachable in loss record 43 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10A10B: tokenize (tokenizer.c:118)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 48 bytes in 3 blocks are still reachable in loss record 44 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x10A12E: tokenize (tokenizer.c:121)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 48 bytes in 3 blocks are still reachable in loss record 45 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10A187: tokenize (tokenizer.c:124)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 48 bytes in 3 blocks are still reachable in loss record 46 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x109221: makeNull (linkedlist.c:17)
+==31292==    by 0x10ADCC: parse (parser.c:39)
+==31292==    by 0x109932: main (main.c:12)
+==31292== 
+==31292== 48 bytes in 3 blocks are still reachable in loss record 47 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10AE85: parse (parser.c:51)
+==31292==    by 0x109932: main (main.c:12)
+==31292== 
+==31292== 72 bytes in 3 blocks are still reachable in loss record 48 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10A10B: tokenize (tokenizer.c:118)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 72 bytes in 3 blocks are still reachable in loss record 49 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10A187: tokenize (tokenizer.c:124)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 72 bytes in 3 blocks are still reachable in loss record 50 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10AE85: parse (parser.c:51)
+==31292==    by 0x109932: main (main.c:12)
+==31292== 
+==31292== 80 bytes in 5 blocks are still reachable in loss record 51 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x10A877: tokenize (tokenizer.c:239)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 80 bytes in 5 blocks are still reachable in loss record 52 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x10A877: tokenize (tokenizer.c:239)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 80 bytes in 5 blocks are still reachable in loss record 53 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x10A8C7: tokenize (tokenizer.c:242)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 80 bytes in 5 blocks are still reachable in loss record 54 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10A906: tokenize (tokenizer.c:246)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 112 bytes in 7 blocks are still reachable in loss record 55 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10AE52: parse (parser.c:47)
+==31292==    by 0x109932: main (main.c:12)
+==31292== 
+==31292== 120 bytes in 5 blocks are still reachable in loss record 56 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10A906: tokenize (tokenizer.c:246)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 128 bytes in 8 blocks are still reachable in loss record 57 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10ADAA: parse (parser.c:35)
+==31292==    by 0x109932: main (main.c:12)
+==31292== 
+==31292== 168 bytes in 7 blocks are still reachable in loss record 58 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10AE52: parse (parser.c:47)
+==31292==    by 0x109932: main (main.c:12)
+==31292== 
+==31292== 176 bytes in 11 blocks are still reachable in loss record 59 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109825: talloc (talloc.c:27)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x109677: reverse (linkedlist.c:113)
+==31292==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 192 bytes in 8 blocks are still reachable in loss record 60 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x10ADAA: parse (parser.c:35)
+==31292==    by 0x109932: main (main.c:12)
+==31292== 
+==31292== 264 bytes in 11 blocks are still reachable in loss record 61 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x1094A9: cons (linkedlist.c:69)
+==31292==    by 0x109677: reverse (linkedlist.c:113)
+==31292==    by 0x10AAA1: tokenize (tokenizer.c:268)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 1,505 bytes in 5 blocks are still reachable in loss record 62 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x109832: talloc (talloc.c:28)
+==31292==    by 0x10A8C7: tokenize (tokenizer.c:242)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 4,096 bytes in 1 blocks are still reachable in loss record 63 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x491C2E3: _IO_file_doallocate (filedoalloc.c:101)
+==31292==    by 0x492B713: _IO_doallocbuf (genops.c:374)
+==31292==    by 0x492B713: _IO_doallocbuf (genops.c:369)
+==31292==    by 0x49293F4: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:486)
+==31292==    by 0x492B7C1: _IO_default_uflow (genops.c:389)
+==31292==    by 0x10A088: tokenize (tokenizer.c:110)
+==31292==    by 0x109925: main (main.c:11)
+==31292== 
+==31292== 4,096 bytes in 1 blocks are still reachable in loss record 64 of 64
+==31292==    at 0x48447A8: malloc (vg_replace_malloc.c:446)
+==31292==    by 0x491C2E3: _IO_file_doallocate (filedoalloc.c:101)
+==31292==    by 0x492B713: _IO_doallocbuf (genops.c:374)
+==31292==    by 0x492B713: _IO_doallocbuf (genops.c:369)
+==31292==    by 0x49297A7: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==31292==    by 0x492A2C7: _IO_new_file_xsputn (fileops.c:1244)
+==31292==    by 0x492A2C7: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==31292==    by 0x48F74C8: __printf_buffer_flush_to_file (printf_buffer_to_file.c:59)
+==31292==    by 0x48F758B: __printf_buffer_to_file_done (printf_buffer_to_file.c:120)
+==31292==    by 0x4902FEB: __vfprintf_internal (vfprintf-internal.c:1545)
+==31292==    by 0x48F6C72: printf (printf.c:33)
+==31292==    by 0x10B7E6: eval (interpreter.c:169)
+==31292==    by 0x10C54D: interpret (interpreter.c:402)
+==31292==    by 0x10993F: main (main.c:13)
+==31292== 
+==31292== LEAK SUMMARY:
+==31292==    definitely lost: 0 bytes in 0 blocks
+==31292==    indirectly lost: 0 bytes in 0 blocks
+==31292==      possibly lost: 0 bytes in 0 blocks
+==31292==    still reachable: 12,321 bytes in 158 blocks
+==31292==         suppressed: 0 bytes in 0 blocks
+==31292== 
+==31292== For lists of detected and suppressed errors, rerun with: -s
+==31292== ERROR SUMMARY: 64 errors from 64 contexts (suppressed: 0 from 0)
+
+------Test plus01 ------
+---OUTPUT INCORRECT---
+Correct output:
+8
+Student output:
+Evaluating cons, the car's type is 9Evaluating symbolEvaluation Error: Failed to find symbol binding
+---VALGRIND NO ERROR---
+------Test plus02 ------
+---OUTPUT INCORRECT---
+Correct output:
+15
+Student output:
+Evaluating cons, the car's type is 9Evaluating symbolEvaluation Error: Failed to find symbol binding
+---VALGRIND NO ERROR---
+------Test plus06 ------
+---OUTPUT INCORRECT---
+Correct output:
+3
+Student output:
+Evaluating cons, the car's type is 9Evaluating cons, the car's type is 9Evaluating symbolEvaluation Error: Failed to find symbol binding
+---VALGRIND NO ERROR---
