@@ -24,9 +24,9 @@ Object *lookup(Object *inputSymbol, Frame *frame, bool searchParents) {
     while (bindingsCopy->type != NULL_TYPE) {
         // Get the name of the current binding variable for comparison
         String *bVariable = (String *)car(car(bindingsCopy));
-
         // Check if the current binding matches the input symbol & return if match
         if (strcmp(bVariable->value, symb->value) == 0) {
+            printf("Matched symbol. Returning something of type %u", cdr(car(bindingsCopy))->type);
             return car(bindingsCopy);
         }
 
@@ -52,39 +52,6 @@ Object *createUnspecified() {
     Object *unspecified = talloc(sizeof(Object));
     unspecified->type = UNSPECIFIED_TYPE;
     return unspecified;
-}
-
-Object *eval(Object *tree, Frame *frame);
-void printResult(Object *result);
-
-Object *apply(Object *function, Object *args) {
-    if (function->type != CLOSURE_TYPE) {
-        return evaluationError("Failed to apply as eval");
-    }
-
-    Closure *inputClosure = (Closure *)function;
-    Frame *lambdaFrame = createFrame(inputClosure->frame);
-
-    Object *params = inputClosure->paramNames;
-    Object *functionCode = inputClosure->functionCode;
-
-    // Bind params to arguments and add to new lambda frame
-    while (params->type != NULL_TYPE && params->type == CONS_TYPE && car(params)->type != NULL_TYPE) {
-        Object *newBinding = cons(car(params), car(args));
-        lambdaFrame->bindings = cons(newBinding, lambdaFrame->bindings);
-        params = cdr(params);
-        args = cdr(args);
-    }
-
-    // Evaluate the function expressions
-    Object *evaluatedExpression;
-    while (functionCode->type != NULL_TYPE && functionCode->type == CONS_TYPE && car(functionCode)->type != NULL_TYPE) {
-        evaluatedExpression = eval(car(functionCode), lambdaFrame);
-        // printResult(evaluatedExpression);
-        functionCode = cdr(functionCode);
-    }
-
-    return evaluatedExpression;
 }
 
 void printResult(Object *result) {
@@ -140,6 +107,36 @@ void printResult(Object *result) {
     }
 }
 
+Object *createPrimitive(char *name, Object*(*pf)()) {
+    Primitive *myPrimitive = talloc(sizeof(Primitive));
+    Symbol *primitiveName = talloc(sizeof(String));
+    primitiveName->value = name;
+    myPrimitive->pf = pf;
+
+    return (Object *)myPrimitive;
+}
+
+Object *primitiveNull(Object *args) {
+    Boolean *myBool = talloc(sizeof(Boolean));
+    if (car(args)->type == NULL_TYPE) {
+        myBool->value = 0;
+        return (Object *)myBool;
+    }
+    if (cdr(cdr(args))->type != NULL_TYPE) myBool->value = 0;
+    myBool->value = 1;
+    return (Object *)myBool;
+}
+
+Object *primitiveCar(Object *args) {
+    if (args->type != CONS_TYPE) return evaluationError("Passing non-cons into car");
+    else return car(car(args));
+}
+
+Object *primitiveCdr(Object *args) {
+    if (args->type != CONS_TYPE) return evaluationError("Passing non-cons into cdr");
+    else return cdr(car(args));
+}
+
 // Input tree: A cons cell representing the root of the abstract syntax tree for 
 // a single Scheme expression (not an entire program).
 // Input frame: The frame, with respect to which to perform the evaluation.
@@ -158,11 +155,14 @@ Object *eval(Object *tree, Frame *frame) {
         return tree;
     }
     else if (tree->type == SYMBOL_TYPE) {
+        printf("Evaluating symbol");
         Object *binding = lookup(tree, frame, true);
         if (binding->type == NULL_TYPE) return evaluationError("Failed to find symbol binding");
+        else printf("%u", binding->type);
         return cdr(binding);
     }
     else if (tree->type == CONS_TYPE) {
+        printf("Evaluating cons, the car's type is %u", car(tree)->type);
         Symbol *symb = (Symbol *)(car(tree));
         // Handle if statements
         if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "if") == 0) {
@@ -264,8 +264,7 @@ Object *eval(Object *tree, Frame *frame) {
         else if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "quote") == 0) {
             if (cdr(tree)->type == NULL_TYPE) return evaluationError("Second arg for quote is NULL");
             if (cdr(cdr(tree))->type != NULL_TYPE) return evaluationError("Third arg for quote is NULL");
-            printResult(car(cdr(tree)));
-            return makeNull();
+            return car(cdr(tree));
         }
         //Handle define
         else if (car(tree)->type == SYMBOL_TYPE && strcmp(symb->value, "define") == 0) {
@@ -299,36 +298,34 @@ Object *eval(Object *tree, Frame *frame) {
             newClosure->functionCode = cdr(cdr(tree)); // function body
             newClosure->frame = frame;
 
+            // Check for duplicate identifiers in lambda's parameter list
+            Object *argList = car(cdr(tree));
+            Object *checkedArgs = makeNull();
 
-        // Check for duplicate identifiers in lambda's parameter list
-        Object *argList = car(cdr(tree));
-        Object *checkedArgs = makeNull();
-
-        while (argList->type == CONS_TYPE && car(argList)->type != NULL_TYPE) {
-            Object *param = car(argList);
-            // Ensure each parameter is a symbol
-            if (param->type != SYMBOL_TYPE) {
-                return evaluationError("Formal parameters for lambda must be symbols");
-            }
-
-            // Check for duplicates in the already-processed parameter list
-            Object *temp = checkedArgs;
-            while (temp->type == CONS_TYPE) {
-                if (strcmp(((Symbol *)car(temp))->value, ((Symbol *)param)->value) == 0) {
-                    return evaluationError("Duplicate parameter name in lambda argument list");
+            while (argList->type == CONS_TYPE && car(argList)->type != NULL_TYPE) {
+                Object *param = car(argList);
+                // Ensure each parameter is a symbol
+                if (param->type != SYMBOL_TYPE) {
+                    return evaluationError("Formal parameters for lambda must be symbols");
                 }
-                temp = cdr(temp);
+
+                // Check for duplicates in the already-processed parameter list
+                Object *temp = checkedArgs;
+                while (temp->type == CONS_TYPE) {
+                    if (strcmp(((Symbol *)car(temp))->value, ((Symbol *)param)->value) == 0) {
+                        return evaluationError("Duplicate parameter name in lambda argument list");
+                    }
+                    temp = cdr(temp);
+                }
+
+                // Add parameter to checked list
+                checkedArgs = cons(param, checkedArgs);
+                argList = cdr(argList);
             }
 
-            // Add parameter to checked list
-            checkedArgs = cons(param, checkedArgs);
-            argList = cdr(argList);
+                return (Object *)newClosure;
         }
-
-            return (Object *)newClosure;
-        }
-        // Handle else
-        else {
+        else if (car(tree)->type == CLOSURE_TYPE){
             // Handle closure evaluation
             Object *result = eval(car(tree), frame);
             if (result->type == CLOSURE_TYPE) {
@@ -359,6 +356,15 @@ Object *eval(Object *tree, Frame *frame) {
                 return evaledExpression;
             }
         }
+        //Handle primitives
+        else if (eval(car(tree), frame)->type == PRIMITIVE_TYPE) {
+            printf("Handling primitive");
+            Primitive *primitiveCar = (Primitive *)car(tree);
+            return primitiveCar->pf(cdr(tree));
+        }
+        else {
+            return evaluationError("you gave me some wack shit");
+        }
     }
     return evaluationError("Nothing is going to plan :(");
 }
@@ -372,13 +378,40 @@ void interpret(Object *tree) {
     //Set up the global frame and add built-in functions to it (none yet)
     Frame *globalFrame = createFrame(NULL);
 
+    //Create primitive null?
+    Primitive *null = talloc(sizeof(Primitive));
+    null->type = PRIMITIVE_TYPE;
+    null->pf = &primitiveNull;
+    Symbol *nullSymbol = talloc(sizeof(Symbol));
+    nullSymbol->type = SYMBOL_TYPE;
+    nullSymbol->value = "null?";
+    globalFrame->bindings = cons(cons((Object *)nullSymbol, (Object *)null), globalFrame->bindings);
+
+    //Create primitive car
+    Primitive *primCar = talloc(sizeof(Primitive));
+    primCar->type = PRIMITIVE_TYPE;
+    primCar->pf = &primitiveCar;
+    Symbol *carSymbol = talloc(sizeof(Symbol));
+    carSymbol->type = SYMBOL_TYPE;
+    carSymbol->value = "car";
+    globalFrame->bindings = cons(cons((Object *)carSymbol, (Object *)primCar), globalFrame->bindings);
+
+    //Create primitive cdr
+    Primitive *primCdr = talloc(sizeof(Primitive));
+    primCdr->type = PRIMITIVE_TYPE;
+    primCdr->pf = &primitiveCdr;
+    Symbol *cdrSymbol = talloc(sizeof(Symbol));
+    cdrSymbol->type = SYMBOL_TYPE;
+    cdrSymbol->value = "cdr";
+    globalFrame->bindings = cons(cons((Object *)cdrSymbol, (Object *)primCdr), globalFrame->bindings);
+
     while (tree->type != NULL_TYPE) {
         Object *result = eval(car(tree), globalFrame);
         printResult(result);
         printf("\n");
         tree = cdr(tree);
     }
-    
-    tfree();    
+
+    tfree();
     return;
 }

@@ -1,0 +1,53 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     interpreter
+relocations:
+  - { offset: 0x26, size: 0x8, addend: 0x0, symName: _makeNull, symObjAddr: 0x0, symBinAddr: 0x100003DF0, symSize: 0x78 }
+  - { offset: 0x1BE, size: 0x8, addend: 0x0, symName: _makeNull, symObjAddr: 0x0, symBinAddr: 0x100003DF0, symSize: 0x78 }
+  - { offset: 0x1E6, size: 0x8, addend: 0x0, symName: _makeInt, symObjAddr: 0x78, symBinAddr: 0x100003E68, symSize: 0x88 }
+  - { offset: 0x21C, size: 0x8, addend: 0x0, symName: _makeDbl, symObjAddr: 0x100, symBinAddr: 0x100003EF0, symSize: 0x8C }
+  - { offset: 0x252, size: 0x8, addend: 0x0, symName: _makeStr, symObjAddr: 0x18C, symBinAddr: 0x100003F7C, symSize: 0xF0 }
+  - { offset: 0x288, size: 0x8, addend: 0x0, symName: _makeSymb, symObjAddr: 0x27C, symBinAddr: 0x10000406C, symSize: 0x88 }
+  - { offset: 0x2BE, size: 0x8, addend: 0x0, symName: _cons, symObjAddr: 0x304, symBinAddr: 0x1000040F4, symSize: 0x98 }
+  - { offset: 0x302, size: 0x8, addend: 0x0, symName: _display, symObjAddr: 0x39C, symBinAddr: 0x10000418C, symSize: 0x16C }
+  - { offset: 0x396, size: 0x8, addend: 0x0, symName: _reverse, symObjAddr: 0x508, symBinAddr: 0x1000042F8, symSize: 0xA8 }
+  - { offset: 0x404, size: 0x8, addend: 0x0, symName: _car, symObjAddr: 0x5B0, symBinAddr: 0x1000043A0, symSize: 0x74 }
+  - { offset: 0x43A, size: 0x8, addend: 0x0, symName: _cdr, symObjAddr: 0x624, symBinAddr: 0x100004414, symSize: 0x74 }
+  - { offset: 0x470, size: 0x8, addend: 0x0, symName: _isNull, symObjAddr: 0x698, symBinAddr: 0x100004488, symSize: 0x24 }
+  - { offset: 0x498, size: 0x8, addend: 0x0, symName: _length, symObjAddr: 0x6BC, symBinAddr: 0x1000044AC, symSize: 0x84 }
+  - { offset: 0x552, size: 0x8, addend: 0x0, symName: _talloc, symObjAddr: 0x0, symBinAddr: 0x100004530, symSize: 0x5C }
+  - { offset: 0x56B, size: 0x8, addend: 0x0, symName: _head, symBinAddr: 0x10000C000, symSize: 0x0 }
+  - { offset: 0x5B1, size: 0x8, addend: 0x0, symName: _talloc, symObjAddr: 0x0, symBinAddr: 0x100004530, symSize: 0x5C }
+  - { offset: 0x5E7, size: 0x8, addend: 0x0, symName: _tfree, symObjAddr: 0x5C, symBinAddr: 0x10000458C, symSize: 0x84 }
+  - { offset: 0x60B, size: 0x8, addend: 0x0, symName: _texit, symObjAddr: 0xE0, symBinAddr: 0x100004610, symSize: 0x1C }
+  - { offset: 0x672, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x10000462C, symSize: 0x48 }
+  - { offset: 0x6E9, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x10000462C, symSize: 0x48 }
+  - { offset: 0x77C, size: 0x8, addend: 0x0, symName: _isDigit, symObjAddr: 0x0, symBinAddr: 0x100004674, symSize: 0x130 }
+  - { offset: 0x976, size: 0x8, addend: 0x0, symName: _isDigit, symObjAddr: 0x0, symBinAddr: 0x100004674, symSize: 0x130 }
+  - { offset: 0x99E, size: 0x8, addend: 0x0, symName: _isWhitespace, symObjAddr: 0x130, symBinAddr: 0x1000047A4, symSize: 0x90 }
+  - { offset: 0x9C6, size: 0x8, addend: 0x0, symName: _isTokenBreak, symObjAddr: 0x1C0, symBinAddr: 0x100004834, symSize: 0xCC }
+  - { offset: 0x9EE, size: 0x8, addend: 0x0, symName: _isSpecial, symObjAddr: 0x28C, symBinAddr: 0x100004900, symSize: 0x158 }
+  - { offset: 0xA16, size: 0x8, addend: 0x0, symName: _isLetter, symObjAddr: 0x3E4, symBinAddr: 0x100004A58, symSize: 0x90 }
+  - { offset: 0xA3E, size: 0x8, addend: 0x0, symName: _isInteger, symObjAddr: 0x474, symBinAddr: 0x100004AE8, symSize: 0xA0 }
+  - { offset: 0xA74, size: 0x8, addend: 0x0, symName: _isDecimal, symObjAddr: 0x514, symBinAddr: 0x100004B88, symSize: 0x11C }
+  - { offset: 0xAAA, size: 0x8, addend: 0x0, symName: _isString, symObjAddr: 0x630, symBinAddr: 0x100004CA4, symSize: 0xB0 }
+  - { offset: 0xAFC, size: 0x8, addend: 0x0, symName: _isInitial, symObjAddr: 0x6E0, symBinAddr: 0x100004D54, symSize: 0x6C }
+  - { offset: 0xB24, size: 0x8, addend: 0x0, symName: _isSubsequent, symObjAddr: 0x74C, symBinAddr: 0x100004DC0, symSize: 0xA8 }
+  - { offset: 0xB4C, size: 0x8, addend: 0x0, symName: _isSymbol, symObjAddr: 0x7F4, symBinAddr: 0x100004E68, symSize: 0x1B0 }
+  - { offset: 0xB82, size: 0x8, addend: 0x0, symName: _tokenize, symObjAddr: 0x9A4, symBinAddr: 0x100005018, symSize: 0xA78 }
+  - { offset: 0xD32, size: 0x8, addend: 0x0, symName: _displayTokens, symObjAddr: 0x141C, symBinAddr: 0x100005A90, symSize: 0x268 }
+  - { offset: 0xEA6, size: 0x8, addend: 0x0, symName: _parse, symObjAddr: 0x0, symBinAddr: 0x100005CF8, symSize: 0x3D0 }
+  - { offset: 0x103E, size: 0x8, addend: 0x0, symName: _parse, symObjAddr: 0x0, symBinAddr: 0x100005CF8, symSize: 0x3D0 }
+  - { offset: 0x10BA, size: 0x8, addend: 0x0, symName: _printTree, symObjAddr: 0x3D0, symBinAddr: 0x1000060C8, symSize: 0x1F4 }
+  - { offset: 0x11D1, size: 0x8, addend: 0x0, symName: _evaluationError, symObjAddr: 0x0, symBinAddr: 0x1000062E4, symSize: 0x40 }
+  - { offset: 0x144E, size: 0x8, addend: 0x0, symName: _evaluationError, symObjAddr: 0x0, symBinAddr: 0x1000062E4, symSize: 0x40 }
+  - { offset: 0x1476, size: 0x8, addend: 0x0, symName: _lookup, symObjAddr: 0x40, symBinAddr: 0x100006324, symSize: 0x134 }
+  - { offset: 0x14F2, size: 0x8, addend: 0x0, symName: _createFrame, symObjAddr: 0x174, symBinAddr: 0x100006458, symSize: 0x44 }
+  - { offset: 0x1528, size: 0x8, addend: 0x0, symName: _createUnspecified, symObjAddr: 0x1B8, symBinAddr: 0x10000649C, symSize: 0x34 }
+  - { offset: 0x1550, size: 0x8, addend: 0x0, symName: _printResult, symObjAddr: 0x1EC, symBinAddr: 0x1000064D0, symSize: 0x1BC }
+  - { offset: 0x1600, size: 0x8, addend: 0x0, symName: _primitiveNull, symObjAddr: 0x3E0, symBinAddr: 0x1000066C4, symSize: 0xA0 }
+  - { offset: 0x1636, size: 0x8, addend: 0x0, symName: _primitiveCar, symObjAddr: 0x480, symBinAddr: 0x100006764, symSize: 0x60 }
+  - { offset: 0x165E, size: 0x8, addend: 0x0, symName: _primitiveCdr, symObjAddr: 0x4E0, symBinAddr: 0x1000067C4, symSize: 0x60 }
+  - { offset: 0x1686, size: 0x8, addend: 0x0, symName: _eval, symObjAddr: 0x540, symBinAddr: 0x100006824, symSize: 0xE14 }
+  - { offset: 0x19B5, size: 0x8, addend: 0x0, symName: _interpret, symObjAddr: 0x1354, symBinAddr: 0x100007638, symSize: 0x1F0 }
+...

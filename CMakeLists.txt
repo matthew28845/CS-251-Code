@@ -577,7 +577,11 @@ add_executable(CS_251_Code
         hmwrk.c
         hmwrk.c
         linkedlist-main/linkedlist.c
-        linkedlist-main/linkedlist.c)
+        linkedlist-main/linkedlist.c
+        primitives-main/interpreter.c
+        primitives-main/interpreter.c
+        primitives-main/interpreter.c)
 
 add_executable(linkedlist linkedlist-main/linkedlist.c
-        linkedlist-main/linkedlist.c)
+        linkedlist-main/linkedlist.c
+        primitives-main/interpreter.c)
